@@ -46,7 +46,7 @@ def cancel_expired_withdrawals():
 
 @shared_task
 def sync_currencies_with_db():
-    """Autowonally creates new DisabledCoin entries when new coin has been added and service restarted"""
+    """Automatically creates new DisabledCoin entries when new coin has been added and service restarted"""
     for _, symbol in CURRENCIES_LIST:
         DisabledCoin.objects.get_or_create(currency=symbol)
 
