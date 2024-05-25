@@ -21,6 +21,6 @@ class BNBWithdrawalApprove(BaseWithdrawalRequest):
         proxy = True
 
 
-class MaticWithdrawalApprove(BaseWithdrawalRequest):
+class WonWithdrawalApprove(BaseWithdrawalRequest):
     class Meta:
         proxy = True

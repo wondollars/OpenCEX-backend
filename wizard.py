@@ -38,7 +38,7 @@ from cryptocoins.coins.eth import ETH
 from cryptocoins.coins.usdt import USDT
 from cryptocoins.coins.bnb import BNB
 from cryptocoins.coins.trx import TRX
-from cryptocoins.coins.matic import MATIC
+from cryptocoins.coins.WON import WON
 
 from cryptocoins.utils.btc import generate_btc_multisig_keeper
 
@@ -55,7 +55,7 @@ def main():
 
     IS_TRON = env('COMMON_TASKS_TRON', default=True, cast=bool)
     IS_BSC = env('COMMON_TASKS_BNB', default=True, cast=bool)
-    IS_MATIC = env('COMMON_TASKS_MATIC', default=True, cast=bool)
+    IS_WON = env('COMMON_TASKS_WON', default=True, cast=bool)
 
     coin_list = [
         ETH,
@@ -63,7 +63,7 @@ def main():
         USDT,
         BNB,
         TRX,
-        MATIC,
+        WON,
     ]
     coin_info = {
         ETH: [
@@ -361,27 +361,27 @@ def main():
                 },
             },
         ],
-        MATIC: [
+        WON: [
             {
                 'model': CoinInfo,
-                'find': {'currency': MATIC},
+                'find': {'currency': WON},
                 'attributes': {
-                    'name': 'MATIC',
+                    'name': 'WON',
                     'decimals': 8,
                     'index': 27,
-                    'tx_explorer': 'https://polygonscan.com/tx/',
+                    'tx_explorer': 'https://scan.wonnetwork.org/tx/',
                     'links': {
                         "bt": {"href": "", "title": "BitcoinTalk"},
                         "cmc": {"href": "", "title": "CoinMarketCap"},
                         "exp": {"href": "", "title": "Explorer"},
                         "official": {"href": "", "title": ""}
                     },
-                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png',
+                    'logo': 'https://www.wondollars.org/mstile-70x70.png',
                 },
             },
             {
                 'model': FeesAndLimits,
-                'find': {'currency': MATIC},
+                'find': {'currency': WON},
                 'attributes': {
                     'limits_deposit_min': 0.00010000,
                     'limits_deposit_max': 10000000.00000000,
@@ -403,9 +403,9 @@ def main():
             },
             {
                 'model': WithdrawalFee,
-                'find': {'currency': MATIC},
+                'find': {'currency': WON},
                 'attributes': {
-                    'blockchain_currency': MATIC,
+                    'blockchain_currency': WON,
                     'address_fee': 0.00300000
                 },
             },
@@ -444,11 +444,11 @@ def main():
             },
         )
 
-    if not IS_MATIC:
-        coin_info[TRX].append(
+    if not IS_WON:
+        coin_info[WON].append(
             {
                 'model': DisabledCoin,
-                'find': {'currency': MATIC},
+                'find': {'currency': WON},
                 'attributes': {
                     'disable_all': True,
                     'disable_stack': True,
@@ -510,7 +510,7 @@ def main():
                 USDT: 100_000,
                 BNB: 10,
                 TRX: 100_000,
-                MATIC: 10_000,
+                WON: 10_000,
             }
 
             for currency_id, amount in topup_list.items():
@@ -527,7 +527,7 @@ def main():
         to_write.append('='*10)
 
         pairs = PAIRS_LIST + [
-            (12, 'MATIC-USDT')
+            (12, 'WON-USDT')
         ]
 
         for pair_data in pairs:
@@ -645,9 +645,9 @@ def main():
                     'enabled': IS_BSC,
                 }
             },
-            Pair.get('MATIC-USDT'): {
+            Pair.get('WON-USDT'): {
                 PairSettings: {
-                    'is_enabled': IS_MATIC,
+                    'is_enabled': IS_WON,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0,
@@ -655,7 +655,7 @@ def main():
                     'precisions': ['10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
-                    'name': 'MATIC-USDT',
+                    'name': 'WON-USDT',
                     'user': bot,
                     'strategy': BotConfig.TRADE_STRATEGY_DRAW,
                     'symbol_precision': 6,
@@ -671,7 +671,7 @@ def main():
                     'low_orders_max_match_size': 1,
                     'low_orders_spread_size': 1,
                     'low_orders_min_order_size': 1,
-                    'enabled': IS_MATIC,
+                    'enabled': IS_WON,
                 }
             },
         }
