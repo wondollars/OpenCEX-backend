@@ -38,7 +38,7 @@ from cryptocoins.coins.eth import ETH
 from cryptocoins.coins.usdt import USDT
 from cryptocoins.coins.bnb import BNB
 from cryptocoins.coins.trx import TRX
-from cryptocoins.coins.WON import WON
+from cryptocoins.coins.won import WON
 
 from cryptocoins.utils.btc import generate_btc_multisig_keeper
 
