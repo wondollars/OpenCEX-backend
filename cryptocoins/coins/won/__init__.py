@@ -6,6 +6,11 @@ from cryptocoins.utils.register import register_coin
 
 w3 = get_w3_won_connection()
 
+WON = 27
+CODE = 'WON'
+DECIMALS = 18
+
+
 WON_CURRENCY = register_coin(
     currency_id=WON,
     currency_code=CODE,
@@ -14,3 +19,4 @@ WON_CURRENCY = register_coin(
     latest_block_fn=lambda currency: w3.eth.get_block_number(),
     blocks_diff_alert=100,
 )
+
