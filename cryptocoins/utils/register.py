@@ -4,8 +4,6 @@ from typing import Dict, Optional, Callable
 
 from core.consts.currencies import (
     ALL_CURRENCIES,
-    BEP20_CURRENCIES,
-    BEP20_WON_CURRENCIES,
     CRYPTO_COINS_PARAMS,
     CRYPTO_WALLET_ACCOUNT_CREATORS,
     ERC20_MATIC_CURRENCIES,
