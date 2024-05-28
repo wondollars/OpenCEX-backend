@@ -1,3 +1,0 @@
-WON = 27
-CODE = 'WON'
-DECIMALS = 18

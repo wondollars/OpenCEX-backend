@@ -4,9 +4,6 @@ from cryptocoins.coins.won.consts import WON, CODE
 from cryptocoins.coins.won.wallet import won_wallet_creation_wrapper, is_valid_won_address
 from cryptocoins.utils.register import register_coin
 
-WON = 27
-CODE = 'WON'
-DECIMALS = 18
 
 
 w3 = get_w3_wonchain_connection()
