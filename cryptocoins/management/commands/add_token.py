@@ -21,13 +21,13 @@ TOKENS_BLOCKCHAINS_MAP = {
     'ETH': ERC20_CURRENCIES,
     'BNB': BEP20_CURRENCIES,
     'TRX': TRC20_CURRENCIES,
-    'MATIC': ERC20_MATIC_CURRENCIES,
+    'WON': ERC20_MATIC_CURRENCIES,
 }
 EXPLORERS_MAP = {
     'ETH': 'https://etherscan.io/',
     'BNB': 'https://bscscan.com/',
     'TRX': 'https://tronscan.org/',
-    'MATIC': 'https://scan.wonnetwork.org/',
+    'WON': 'https://scan.wonnetwork.org/',
 }
 
 HEADER = """ 
@@ -123,7 +123,7 @@ class Command(BaseCommand):
             # common token data
             token_symbol = prompt('Token symbol* (i.e. USDT)').upper()
             blockchain_symbol = prompt('Token blockchain symbol* (i.e. ETH)', choices=[
-                'ETH', 'BNB', 'TRX', 'MATIC',
+                'ETH', 'BNB', 'TRX', 'WON',
             ])
 
             if is_token_exists(token_symbol, blockchain_symbol):
@@ -363,7 +363,7 @@ def prompt_contract(blockchain):
         if not check_address(blockchain, contract, blockchain):
             print('[!] Incorrect contract address')
             continue
-        if blockchain in ['ETH', 'BNB', 'MATIC']:
+        if blockchain in ['ETH', 'BNB', 'WON']:
             contract = Web3.to_checksum_address(contract)
         exists_contracts = [v.contract_address for k, v in TOKENS_BLOCKCHAINS_MAP[blockchain].items()]
         if contract in exists_contracts:

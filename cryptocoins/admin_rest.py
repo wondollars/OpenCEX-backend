@@ -111,7 +111,7 @@ class MaticWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
     def get_queryset(self):
         return get_withdrawal_requests_to_process(
             [MATIC_CURRENCY, *ERC20_MATIC_CURRENCIES],
-            blockchain_currency='MATIC'
+            blockchain_currency='WON'
         )
 
     @api_admin.action(permissions=True)
@@ -119,7 +119,7 @@ class MaticWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
         serializer = MaticKeySerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             password = request.data.get('key')
-            process_payouts_task.apply_async(['MATIC', password, ], queue='matic_payouts')
+            process_payouts_task.apply_async(['WON', password, ], queue='matic_payouts')
 
     process.short_description = 'Process withdrawals'
 

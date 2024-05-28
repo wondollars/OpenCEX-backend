@@ -38,7 +38,7 @@ from cryptocoins.coins.eth import ETH
 from cryptocoins.coins.usdt import USDT
 from cryptocoins.coins.bnb import BNB
 from cryptocoins.coins.trx import TRX
-from cryptocoins.coins.matic import MATIC
+from cryptocoins.coins.matic import WON
 
 from cryptocoins.utils.btc import generate_btc_multisig_keeper
 
@@ -63,7 +63,7 @@ def main():
         USDT,
         BNB,
         TRX,
-        MATIC,
+        WON,
     ]
     coin_info = {
         ETH: [
@@ -361,10 +361,10 @@ def main():
                 },
             },
         ],
-        MATIC: [
+        WON: [
             {
                 'model': CoinInfo,
-                'find': {'currency': MATIC},
+                'find': {'currency': WON},
                 'attributes': {
                     'name': 'WON Coin',
                     'decimals': 8,
@@ -381,7 +381,7 @@ def main():
             },
             {
                 'model': FeesAndLimits,
-                'find': {'currency': MATIC},
+                'find': {'currency': WON},
                 'attributes': {
                     'limits_deposit_min': 0.00010000,
                     'limits_deposit_max': 10000000.00000000,
@@ -403,9 +403,9 @@ def main():
             },
             {
                 'model': WithdrawalFee,
-                'find': {'currency': MATIC},
+                'find': {'currency': WON},
                 'attributes': {
-                    'blockchain_currency': MATIC,
+                    'blockchain_currency': WON,
                     'address_fee': 0.00300000
                 },
             },
@@ -448,7 +448,7 @@ def main():
         coin_info[TRX].append(
             {
                 'model': DisabledCoin,
-                'find': {'currency': MATIC},
+                'find': {'currency': WON},
                 'attributes': {
                     'disable_all': True,
                     'disable_stack': True,
@@ -510,7 +510,7 @@ def main():
                 USDT: 100_000,
                 BNB: 10,
                 TRX: 100_000,
-                MATIC: 10_000,
+                WON: 10_000,
             }
 
             for currency_id, amount in topup_list.items():

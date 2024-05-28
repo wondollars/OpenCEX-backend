@@ -176,7 +176,7 @@ def admin_bnb_withdrawal_request_approve(request):
 @staff_member_required
 def admin_matic_withdrawal_request_approve(request):
     currencies = [MATIC_CURRENCY] + list(ERC20_MATIC_CURRENCIES)
-    withdrawal_requests = get_withdrawal_requests_to_process(currencies, blockchain_currency='MATIC')
+    withdrawal_requests = get_withdrawal_requests_to_process(currencies, blockchain_currency='WON')
 
     if request.method == 'POST':
         form = MaticApproveAdminForm(request.POST)
@@ -184,7 +184,7 @@ def admin_matic_withdrawal_request_approve(request):
         try:
             if form.is_valid():
                 password = form.cleaned_data.get('key')
-                process_payouts_task.apply_async(['MATIC', password, ], queue='matic_payouts')
+                process_payouts_task.apply_async(['WON', password, ], queue='matic_payouts')
                 messages.success(request, 'Withdrawals in processing')
                 return redirect('admin_withdrawal_request_approve_matic')  # need for clear post data
         except Exception as e:  # all messages and errors to admin message
