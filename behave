@@ -1,3 +1,0 @@
-#!/bin/bash
-export DJANGO_SETTINGS_MODULE=exchange.settings_behave
-./manage.py behave $@
