@@ -527,7 +527,7 @@ def main():
         to_write.append('='*10)
 
         pairs = PAIRS_LIST + [
-            (12, 'MATIC-USDT')
+            (12, 'WON-USDT')
         ]
 
         for pair_data in pairs:
@@ -645,7 +645,7 @@ def main():
                     'enabled': IS_BSC,
                 }
             },
-            Pair.get('MATIC-USDT'): {
+            Pair.get('WON-USDT'): {
                 PairSettings: {
                     'is_enabled': IS_MATIC,
                     'is_autoorders_enabled': True,
@@ -655,7 +655,7 @@ def main():
                     'precisions': ['10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
-                    'name': 'MATIC-USDT',
+                    'name': 'WON-USDT',
                     'user': bot,
                     'strategy': BotConfig.TRADE_STRATEGY_DRAW,
                     'symbol_precision': 6,
