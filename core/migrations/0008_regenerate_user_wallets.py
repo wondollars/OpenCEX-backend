@@ -10,6 +10,7 @@ def regenerate_addresses(apps, schema_editor):
     from cryptocoins.coins.eth.wallet import create_eth_address
     from cryptocoins.coins.trx.wallet import create_trx_address
     from cryptocoins.coins.bnb.wallet import create_bnb_address
+    from cryptocoins.coins.won.wallet import create_won_address
 
     wallets = UserWallet.objects.filter(blockchain_currency='ETH')
     count = wallets.count()
@@ -54,6 +55,24 @@ def regenerate_addresses(apps, schema_editor):
 
     for wallet in wallets:
         address, encrypted_key = create_bnb_address()
+
+        UserWallet.objects.create(
+            user_id=wallet.user_id,
+            currency=wallet.currency,
+            blockchain_currency=wallet.blockchain_currency,
+            address=address,
+            private_key=encrypted_key,
+        )
+        wallet.is_old = True
+        wallet.save()
+    
+    wallets = UserWallet.objects.filter(blockchain_currency='WON')
+    count = wallets.count()
+    
+    print(f'Won Wallets regeneration started. Total: {count}')
+
+    for wallet in wallets:
+        address, encrypted_key = create_won_address()
 
         UserWallet.objects.create(
             user_id=wallet.user_id,

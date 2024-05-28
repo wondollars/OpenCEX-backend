@@ -627,6 +627,7 @@ class CodePhoneVerification(views.APIView):
                           "blockchain_list": [
                             "ETH",
                             "BNB",
+                            "WON",
                             "TRX"
                           ]
                         },
@@ -662,6 +663,7 @@ class CodePhoneVerification(views.APIView):
                           "blockchain_list": [
                             "ETH",
                             "BNB",
+                            "WON",
                             "TRX"
                           ]
                         },

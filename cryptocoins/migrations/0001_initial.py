@@ -105,6 +105,17 @@ class Migration(migrations.Migration):
             bases=('core.withdrawalrequest',),
         ),
         migrations.CreateModel(
+            name='WONWithdrawalApprove',
+            fields=[
+            ],
+            options={
+                'proxy': True,
+                'indexes': [],
+                'constraints': [],
+            },
+            bases=('core.withdrawalrequest',),
+        ),
+        migrations.CreateModel(
             name='BTCWithdrawalApprove',
             fields=[
             ],

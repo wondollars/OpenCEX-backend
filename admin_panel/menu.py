@@ -137,6 +137,7 @@ class CustomMenu(Menu):
                     items.MenuItem(
                         _('Withdrawal Approve'),
                         children=[
+                            items.MenuItem('Approve WON', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/won/')
                             items.MenuItem('Approve BTC', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/btc/'),
                             items.MenuItem('Approve ETH', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/eth/'),
                             items.MenuItem('Approve TRX', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/trx/'),

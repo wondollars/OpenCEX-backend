@@ -10,6 +10,8 @@ from core.models.inouts.wallet import WalletTransactions
 from core.models.inouts.withdrawal import WithdrawalRequest
 from cryptocoins.cold_wallet_stats.bep20_stats_handler import UsdtBnbStatsHandler
 from cryptocoins.cold_wallet_stats.bnb_stats_handler import BnbStatsHandler
+from cryptocoins.cold_wallet_stats.won20_stats_handler import UsdtWonStatsHandler
+from cryptocoins.cold_wallet_stats.won_stats_handler import WonStatsHandler
 from cryptocoins.cold_wallet_stats.btc_stats_handler import BtcStatsHandler
 from cryptocoins.cold_wallet_stats.erc20_stats_handler import UsdtEthStatsHandler
 from cryptocoins.cold_wallet_stats.eth_stats_handler import EthStatsHandler
@@ -25,8 +27,10 @@ CRYPTO_STATS_HANDLERS = [
     EthStatsHandler,
     TrxStatsHandler,
     BnbStatsHandler,
+    WonStatsHandler,
     UsdtEthStatsHandler,
     UsdtBnbStatsHandler,
+    UsdtWonStatsHandler,
     UsdtTrxStatsHandler,
 ]
 

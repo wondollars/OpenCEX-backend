@@ -20,6 +20,9 @@ class Migration(migrations.Migration):
             name='BNBWithdrawalApprove',
         ),
         migrations.DeleteModel(
+            name='WONWithdrawalApprove',
+        ),
+        migrations.DeleteModel(
             name='TRXWithdrawalApprove',
         ),
         migrations.RemoveField(

@@ -4,12 +4,15 @@ from typing import Dict, Optional, Callable
 
 from core.consts.currencies import (
     ALL_CURRENCIES,
+    BEP20_CURRENCIES,
+    BEP20_WON_CURRENCIES,
     CRYPTO_COINS_PARAMS,
     CRYPTO_WALLET_ACCOUNT_CREATORS,
     ERC20_MATIC_CURRENCIES,
 )
 from core.consts.currencies import ALL_TOKEN_CURRENCIES
 from core.consts.currencies import BEP20_CURRENCIES
+from core.consts.currencies import BEP20_WON_CURRENCIES
 from core.consts.currencies import CRYPTO_ADDRESS_VALIDATORS
 from core.consts.currencies import CRYPTO_WALLET_CREATORS
 from core.consts.currencies import CURRENCIES_LIST
@@ -111,6 +114,17 @@ def register_token(currency_id, currency_code, blockchains: Optional[Dict[str, T
             address_validators['MATIC'] = is_valid_matic_address
 
             log.debug(f'Token {currency} registered as ERC20 Polygon')
+        if 'WON' in blockchains:
+            from cryptocoins.coins.won.wallet import won20_wallet_creation_wrapper, is_valid_won_address
+            
+
+            BEP20_WON_CURRENCIES.update({
+                currency: blockchains['WON']
+            })
+            wallet_creators['WON'] = won20_wallet_creation_wrapper
+            address_validators['WON'] = is_valid_won_address
+
+            log.debug(f'Token {currency} registered as WON20')
 
         CRYPTO_WALLET_CREATORS[currency] = wallet_creators
         CRYPTO_ADDRESS_VALIDATORS[currency] = address_validators

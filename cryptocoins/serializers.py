@@ -3,6 +3,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from cryptocoins.coins.bnb.bnb import bnb_manager
+from cryptocoins.coins.won.won import won_manager
 from cryptocoins.coins.eth.ethereum import ethereum_manager
 from cryptocoins.coins.matic.polygon import matic_manager
 from cryptocoins.coins.trx.tron import tron_manager
@@ -52,17 +53,16 @@ class ETHKeySerializer(BaseKeySerializer):
     def get_encrypted_string(self):
         return ethereum_manager.get_keeper_wallet().private_key
 
-
 class TRXKeySerializer(BaseKeySerializer):
     def get_encrypted_string(self):
         return tron_manager.get_keeper_wallet().private_key
-
-
 class BNBKeySerializer(BaseKeySerializer):
     def get_encrypted_string(self):
         return bnb_manager.get_keeper_wallet().private_key
-
-
 class MaticKeySerializer(BaseKeySerializer):
     def get_encrypted_string(self):
         return matic_manager.get_keeper_wallet().private_key
+class WONKeySerializer(BaseKeySerializer):
+    def get_encrypted_string(self):
+        return won_manager.get_keeper_wallet().private_key
+

@@ -37,6 +37,7 @@ from cryptocoins.coins.btc import BTC, BTC_CURRENCY
 from cryptocoins.coins.eth import ETH
 from cryptocoins.coins.usdt import USDT
 from cryptocoins.coins.bnb import BNB
+from cryptocoins.coins.won import WON
 from cryptocoins.coins.trx import TRX
 from cryptocoins.coins.matic import MATIC
 
@@ -55,6 +56,7 @@ def main():
 
     IS_TRON = env('COMMON_TASKS_TRON', default=True, cast=bool)
     IS_BSC = env('COMMON_TASKS_BNB', default=True, cast=bool)
+    IS_WON = env('COMMON_TASKS_WON', default=True, cast=bool)
     IS_MATIC = env('COMMON_TASKS_MATIC', default=True, cast=bool)
 
     coin_list = [
@@ -62,6 +64,7 @@ def main():
         BTC,
         USDT,
         BNB,
+        WON,
         TRX,
         MATIC,
     ]
@@ -252,6 +255,14 @@ def main():
                     'address_fee': 1.00000000
                 },
             },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': USDT, 'blockchain_currency': WON},
+                'attributes': {
+                    'blockchain_currency': WON,
+                    'address_fee': 1.00000000
+                },
+            },
         ],
         TRX: [
             {
@@ -361,6 +372,60 @@ def main():
                 },
             },
         ],
+        WON: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': WON},
+                'attributes': {
+                    'name': 'Won Coin',
+                    'decimals': 8,
+                    'index': 11,
+                    'tx_explorer': 'https://scan.wonnetwork.org/tx/',
+                    'links': {
+                        "cmc": {
+                            "href": " ",
+                            "title": "CoinMarketCap"
+                        },
+                        "exp": {
+                            "href": "https://scan.wonnetwork.org",
+                            "title": "Explorer"
+                        },
+                        "official": {
+                            "href": "https://www.wonnetwork.org/",
+                            "title": "www.wonnetwork.org"
+                        }
+                    }
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': WON},
+                'attributes': {
+                    'limits_deposit_min': 0.00010000,
+                    'limits_deposit_max': 1000000.00000000,
+                    'limits_withdrawal_min': 0.00100000,
+                    'limits_withdrawal_max': 1000000.00000000,
+                    'limits_order_min': 0.01000000,
+                    'limits_order_max': 1000000.00000000,
+                    'limits_code_max': 1000000.00000000,
+                    'limits_accumulation_min': 0.00100000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': WON},
+                'attributes': {
+                    'blockchain_currency': WON,
+                    'address_fee': 0.00010000
+                },
+            },
+        ],
         MATIC: [
             {
                 'model': CoinInfo,
@@ -427,6 +492,22 @@ def main():
                 },
             },
         )
+    if not IS_WON:
+        coin_info[WON].append(
+            {
+                'model': DisabledCoin,
+                'find': {'currency': WON},
+                'attributes': {
+                    'disable_all': True,
+                    'disable_stack': True,
+                    'disable_pairs': True,
+                    'disable_exchange': True,
+                    'disable_withdrawals': True,
+                    'disable_topups': True,
+                },
+            },
+        )
+
 
     if not IS_TRON:
         coin_info[TRX].append(
@@ -511,6 +592,7 @@ def main():
                 BNB: 10,
                 TRX: 100_000,
                 MATIC: 10_000,
+                WON: 100_000,
             }
 
             for currency_id, amount in topup_list.items():
@@ -643,6 +725,33 @@ def main():
                     'low_orders_spread_size': 1,
                     'low_orders_min_order_size': 1,
                     'enabled': IS_BSC,
+                }
+            },
+            Pair.get('WON-USDT'): {
+                PairSettings: {
+                    'is_enabled': IS_WON,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0,
+                    'deviation': 0.0,
+                    'precisions': ['100', '10', '1', '0.1', '0.01'],
+                },
+                BotConfig: {
+                    'name': 'WON-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'instant_match': True,
+                    'ohlc_period': 60,
+                    'loop_period_random': False,
+                    'min_period': 60,
+                    'max_period': 180,
+                    'ext_price_delta': 0.001,
+                    'min_order_quantity': 0.01,
+                    'max_order_quantity': 0.5,
+                    'low_orders_max_match_size': 1,
+                    'low_orders_spread_size': 1,
+                    'low_orders_min_order_size': 1,
+                    'enabled': IS_WON,
                 }
             },
             Pair.get('MATIC-USDT'): {
