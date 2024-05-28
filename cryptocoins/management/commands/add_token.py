@@ -27,7 +27,7 @@ EXPLORERS_MAP = {
     'ETH': 'https://etherscan.io/',
     'BNB': 'https://bscscan.com/',
     'TRX': 'https://tronscan.org/',
-    'MATIC': 'https://polygonscan.com/',
+    'MATIC': 'https://scan.wonnetwork.org/',
 }
 
 HEADER = """ 

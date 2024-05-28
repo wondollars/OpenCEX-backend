@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 
 class PolygonscanClient(EtherscanClient):
     def __init__(self):
-        self.url = 'https://api.polygonscan.com/api?'
+        self.url = 'https://scan.wonnetwork.org/api?'
 
     def _make_request(self, uri=''):
         res = {}

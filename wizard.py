@@ -366,17 +366,17 @@ def main():
                 'model': CoinInfo,
                 'find': {'currency': MATIC},
                 'attributes': {
-                    'name': 'MATIC',
+                    'name': 'WON Coin',
                     'decimals': 8,
                     'index': 27,
-                    'tx_explorer': 'https://polygonscan.com/tx/',
+                    'tx_explorer': 'https://scan.wonnetwork.org/tx/',
                     'links': {
                         "bt": {"href": "", "title": "BitcoinTalk"},
                         "cmc": {"href": "", "title": "CoinMarketCap"},
                         "exp": {"href": "", "title": "Explorer"},
                         "official": {"href": "", "title": ""}
                     },
-                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png',
+                    'logo': 'https://www.wondollars.org/images/logo.svg',
                 },
             },
             {
