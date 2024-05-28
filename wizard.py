@@ -38,7 +38,7 @@ from cryptocoins.coins.eth import ETH
 from cryptocoins.coins.usdt import USDT
 from cryptocoins.coins.bnb import BNB
 from cryptocoins.coins.trx import TRX
-from cryptocoins.coins.matic import WON
+from cryptocoins.coins.matic import MATIC
 
 from cryptocoins.utils.btc import generate_btc_multisig_keeper
 
@@ -63,7 +63,7 @@ def main():
         USDT,
         BNB,
         TRX,
-        WON,
+        MATIC,
     ]
     coin_info = {
         ETH: [
@@ -361,12 +361,12 @@ def main():
                 },
             },
         ],
-        WON: [
+        MATIC: [
             {
                 'model': CoinInfo,
-                'find': {'currency': WON},
+                'find': {'currency': MATIC},
                 'attributes': {
-                    'name': 'WON Coin',
+                    'name': 'MATIC Coin',
                     'decimals': 8,
                     'index': 27,
                     'tx_explorer': 'https://scan.wonnetwork.org/tx/',
@@ -381,7 +381,7 @@ def main():
             },
             {
                 'model': FeesAndLimits,
-                'find': {'currency': WON},
+                'find': {'currency': MATIC},
                 'attributes': {
                     'limits_deposit_min': 0.00010000,
                     'limits_deposit_max': 10000000.00000000,
@@ -403,9 +403,9 @@ def main():
             },
             {
                 'model': WithdrawalFee,
-                'find': {'currency': WON},
+                'find': {'currency': MATIC},
                 'attributes': {
-                    'blockchain_currency': WON,
+                    'blockchain_currency': MATIC,
                     'address_fee': 0.00300000
                 },
             },
@@ -448,7 +448,7 @@ def main():
         coin_info[TRX].append(
             {
                 'model': DisabledCoin,
-                'find': {'currency': WON},
+                'find': {'currency': MATIC},
                 'attributes': {
                     'disable_all': True,
                     'disable_stack': True,
@@ -510,7 +510,7 @@ def main():
                 USDT: 100_000,
                 BNB: 10,
                 TRX: 100_000,
-                WON: 10_000,
+                MATIC: 10_000,
             }
 
             for currency_id, amount in topup_list.items():
@@ -527,7 +527,7 @@ def main():
         to_write.append('='*10)
 
         pairs = PAIRS_LIST + [
-            (12, 'WON-USDT')
+            (12, 'MATIC-USDT')
         ]
 
         for pair_data in pairs:
@@ -645,7 +645,7 @@ def main():
                     'enabled': IS_BSC,
                 }
             },
-            Pair.get('WON-USDT'): {
+            Pair.get('MATIC-USDT'): {
                 PairSettings: {
                     'is_enabled': IS_MATIC,
                     'is_autoorders_enabled': True,
@@ -655,7 +655,7 @@ def main():
                     'precisions': ['10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
-                    'name': 'WON-USDT',
+                    'name': 'MATIC-USDT',
                     'user': bot,
                     'strategy': BotConfig.TRADE_STRATEGY_DRAW,
                     'symbol_precision': 6,

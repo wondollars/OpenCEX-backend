@@ -101,14 +101,14 @@ def register_token(currency_id, currency_code, blockchains: Optional[Dict[str, T
 
             log.debug(f'Token {currency} registered as TRC20')
 
-        if 'WON' in blockchains:
+        if 'MATIC' in blockchains:
             from cryptocoins.coins.matic.wallet import erc20_polygon_wallet_creation_wrapper, is_valid_matic_address
 
             ERC20_MATIC_CURRENCIES.update({
-                currency: blockchains['WON']
+                currency: blockchains['MATIC']
             })
-            wallet_creators['WON'] = erc20_polygon_wallet_creation_wrapper
-            address_validators['WON'] = is_valid_matic_address
+            wallet_creators['MATIC'] = erc20_polygon_wallet_creation_wrapper
+            address_validators['MATIC'] = is_valid_matic_address
 
             log.debug(f'Token {currency} registered as ERC20 Polygon')
 

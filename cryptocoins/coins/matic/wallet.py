@@ -6,7 +6,7 @@ from django.db import transaction
 from eth_account import Account
 from web3 import Web3
 
-from cryptocoins.coins.matic.consts import WON
+from cryptocoins.coins.matic.consts import MATIC
 from lib.cipher import AESCoderDecoder
 
 log = logging.getLogger(__name__)
@@ -38,8 +38,8 @@ def get_or_create_matic_wallet(user_id, is_new=False):
 
     user_wallet = UserWallet.objects.filter(
         user_id=user_id,
-        currency=WON,
-        blockchain_currency=WON,
+        currency=MATIC,
+        blockchain_currency=MATIC,
     ).order_by('-id').first()
 
     if not is_new and user_wallet is not None:
@@ -49,10 +49,10 @@ def get_or_create_matic_wallet(user_id, is_new=False):
 
     user_wallet = UserWallet.objects.create(
         user_id=user_id,
-        currency=WON,
+        currency=MATIC,
         address=address,
         private_key=encrypted_key,
-        blockchain_currency=WON,
+        blockchain_currency=MATIC,
     )
 
     return user_wallet
@@ -65,7 +65,7 @@ def get_or_create_erc20_polygon_wallet(user_id, token_currency, is_new=False):
     erc20_polygon_wallet = UserWallet.objects.filter(
         user_id=user_id,
         currency=token_currency,
-        blockchain_currency=WON,
+        blockchain_currency=MATIC,
     ).order_by('-id').first()
 
     if not is_new and erc20_polygon_wallet is not None:
@@ -78,7 +78,7 @@ def get_or_create_erc20_polygon_wallet(user_id, token_currency, is_new=False):
         address=address,
         private_key=encrypted_key,
         currency=token_currency,
-        blockchain_currency=WON,
+        blockchain_currency=MATIC,
     )
 
     return erc20_polygon_wallet
