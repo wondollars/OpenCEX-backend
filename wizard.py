@@ -767,7 +767,7 @@ def main():
                 to_write.append('Keeper and GasKeeper exists, see previous file')
                 to_write.append('=' * 10)
 
-        filename = f'save_to_self_and_delete_{int(datetime.now().timestamp())}.txt'
+        filename = f'save_to_self_and_delete.txt'
         filename_path = os.path.join(settings.BASE_DIR, filename)
         with open(filename_path, 'a+') as file:
             for line in to_write:
