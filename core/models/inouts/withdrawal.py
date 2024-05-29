@@ -115,6 +115,8 @@ class WithdrawalRequest(UserMixinModel, BaseModel):
         from core.cache import external_exchanges_pairs_price_cache
         price = external_exchanges_pairs_price_cache.get(
             '{}-{}'.format(self.currency.code, 'USDT'), 1)
+        if price is None:
+                price = 1
         self.amount_usdt = self.amount * price
 
         # user_balance = BalanceManager.get_amount(self.user_id, self.currency)

@@ -897,6 +897,8 @@ class Order(UserMixinModel, BaseModel):
         OrderChangeHistory(**data).save()
 
     def get_executed_amount(self, quantity, price):
+        if price is None:
+                price = 1
         return to_decimal(quantity if self.operation == BUY else quantity * price)
 
     def calculate_fee_amount(self, amount):

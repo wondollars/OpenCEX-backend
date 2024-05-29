@@ -323,6 +323,8 @@ class PreMatch(object):
         quantityt_left = to_decimal(quantity)
         cost = 0
         for price, qty in self.orders:
+            if price is None:
+                price = 1
             price = to_decimal(price)
             qty = to_decimal(qty)
 
