@@ -25,6 +25,10 @@ TRC20_CURRENCIES: Dict[Currency, TokenParams] = {}
 BEP20_CURRENCIES: Dict[Currency, TokenParams] = {}
 ERC20_MATIC_CURRENCIES: Dict[Currency, TokenParams] = {}
 ERC20_WON_CURRENCIES: Dict[Currency, TokenParams] = {}
+ERC20_CELO_CURRENCIES: Dict[Currency, TokenParams] = {}
+ERC20_FUSE_CURRENCIES: Dict[Currency, TokenParams] = {} 
+ERC20_CORE_CURRENCIES: Dict[Currency, TokenParams] = {} 
+ERC20_AVAX_CURRENCIES: Dict[Currency, TokenParams] = {}
 
 ALL_TOKEN_CURRENCIES: List[Currency] = []
 

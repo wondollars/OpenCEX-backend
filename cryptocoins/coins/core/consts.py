@@ -1,0 +1,3 @@
+CORE = 31
+CODE = 'CORE'
+DECIMALS = 18

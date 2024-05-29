@@ -7,7 +7,7 @@ from django.db.models import Max
 from web3 import Web3
 
 from core.consts.currencies import BEP20_CURRENCIES, ERC20_CURRENCIES, TRC20_CURRENCIES, CURRENCIES_LIST, \
-    CRYPTO_ADDRESS_VALIDATORS, ERC20_MATIC_CURRENCIES, ERC20_WON_CURRENCIES
+    CRYPTO_ADDRESS_VALIDATORS, ERC20_MATIC_CURRENCIES, ERC20_WON_CURRENCIES, ERC20_CELO_CURRENCIES, ERC20_CORE_CURRENCIES, ERC20_FUSE_CURRENCIES, ERC20_AVAX_CURRENCIES
 from core.currency import Currency, CurrencyNotFound
 from core.models import PairSettings, FeesAndLimits, WithdrawalFee
 from core.models.facade import CoinInfo
@@ -23,6 +23,10 @@ TOKENS_BLOCKCHAINS_MAP = {
     'TRX': TRC20_CURRENCIES,
     'MATIC': ERC20_MATIC_CURRENCIES,
     'WON': ERC20_WON_CURRENCIES,
+    'CELO': ERC20_CELO_CURRENCIES,
+    'CORE': ERC20_CORE_CURRENCIES,
+    'FUSE': ERC20_FUSE_CURRENCIES,
+    'AVAX': ERC20_AVAX_CURRENCIES,
 }
 EXPLORERS_MAP = {
     'ETH': 'https://etherscan.io/',
@@ -30,6 +34,10 @@ EXPLORERS_MAP = {
     'TRX': 'https://tronscan.org/',
     'MATIC': 'https://polygonscan.com/',
     'WON': 'https://scan.wonnetwork.org/',
+    'CELO': 'https://celoscan.io/',
+    'CORE': 'https://scan.coredao.org/',
+    'FUSE': 'https://explorer.fuse.io/',
+    'AVAX': 'https://snowtrace.io/',
 }
 
 HEADER = """ 
@@ -125,7 +133,7 @@ class Command(BaseCommand):
             # common token data
             token_symbol = prompt('Token symbol* (i.e. USDT)').upper()
             blockchain_symbol = prompt('Token blockchain symbol* (i.e. ETH)', choices=[
-                'ETH', 'BNB', 'TRX', 'MATIC', 'WON',
+                'ETH', 'BNB', 'TRX', 'MATIC', 'WON', 'CELO', 'CORE', 'FUSE', 'AVAX',
             ])
 
             if is_token_exists(token_symbol, blockchain_symbol):

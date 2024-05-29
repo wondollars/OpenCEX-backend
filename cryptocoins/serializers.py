@@ -6,6 +6,10 @@ from cryptocoins.coins.bnb.bnb import bnb_manager
 from cryptocoins.coins.eth.ethereum import ethereum_manager
 from cryptocoins.coins.matic.polygon import matic_manager
 from cryptocoins.coins.won.won import won_manager
+from cryptocoins.coins.celo.celo import celo_manager
+from cryptocoins.coins.core.core import core_manager
+from cryptocoins.coins.fuse.fuse import fuse_manager
+from cryptocoins.coins.avax.avax import avax_manager
 from cryptocoins.coins.trx.tron import tron_manager
 from lib.cipher import AESCoderDecoder
 
@@ -71,3 +75,19 @@ class MaticKeySerializer(BaseKeySerializer):
 class WonKeySerializer(BaseKeySerializer):
     def get_encrypted_string(self):
         return won_manager.get_keeper_wallet().private_key
+
+class CeloKeySerializer(BaseKeySerializer):
+    def get_encrypted_string(self):
+        return celo_manager.get_keeper_wallet().private_key
+    
+class CoreKeySerializer(BaseKeySerializer):
+    def get_encrypted_string(self):
+        return core_manager.get_keeper_wallet().private_key
+    
+class FuseKeySerializer(BaseKeySerializer):
+    def get_encrypted_string(self):
+        return fuse_manager.get_keeper_wallet().private_key
+    
+class AvaxKeySerializer(BaseKeySerializer):
+    def get_encrypted_string(self):
+        return avax_manager.get_keeper_wallet().private_key

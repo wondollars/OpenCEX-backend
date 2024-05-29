@@ -1,0 +1,3 @@
+CELO = 29
+CODE = 'CELO'
+DECIMALS = 18

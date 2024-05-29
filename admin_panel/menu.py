@@ -143,6 +143,10 @@ class CustomMenu(Menu):
                             items.MenuItem('Approve BNB', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/bnb/'),
                             items.MenuItem('Approve MATIC', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/matic/'),
                             items.MenuItem('Approve WON', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/won/'),
+                            items.MenuItem('Approve CELO', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/celo/'),
+                            items.MenuItem('Approve CORE', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/core/'),
+                            items.MenuItem('Approve FUSE', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/fuse/'),
+                            items.MenuItem('Approve AVAX', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/avax/'),
                         ]
                     ),
                     items.MenuItem('Make Topup', f'/{ADMIN_BASE_URL}/make/top-up/'),

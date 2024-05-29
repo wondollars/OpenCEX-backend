@@ -1,0 +1,3 @@
+FUSE = 32
+CODE = 'FUSE'
+DECIMALS = 18

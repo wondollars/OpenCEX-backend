@@ -1,0 +1,3 @@
+AVAX = 30
+CODE = 'AVAX'
+DECIMALS = 18

@@ -8,6 +8,10 @@ from core.consts.currencies import (
     CRYPTO_WALLET_ACCOUNT_CREATORS,
     ERC20_MATIC_CURRENCIES,
     ERC20_WON_CURRENCIES,
+    ERC20_CELO_CURRENCIES,
+    ERC20_CORE_CURRENCIES,
+    ERC20_FUSE_CURRENCIES,
+    ERC20_AVAX_CURRENCIES,
 )
 from core.consts.currencies import ALL_TOKEN_CURRENCIES
 from core.consts.currencies import BEP20_CURRENCIES
@@ -119,10 +123,49 @@ def register_token(currency_id, currency_code, blockchains: Optional[Dict[str, T
                 currency: blockchains['WON']
             })
             wallet_creators['WON'] = erc20_won_wallet_creation_wrapper
-            address_validators['MAWONTIC'] = is_valid_won_address
+            address_validators['WON'] = is_valid_won_address
 
             log.debug(f'Token {currency} registered as ERC20 Won')
+        if 'CELO' in blockchains:
+            from cryptocoins.coins.celo.wallet import erc20_celo_wallet_creation_wrapper, is_valid_celo_address
 
+            ERC20_CELO_CURRENCIES.update({
+                currency: blockchains['CELO']
+            })
+            wallet_creators['CELO'] = erc20_celo_wallet_creation_wrapper
+            address_validators['CELO'] = is_valid_celo_address
+
+            log.debug(f'Token {currency} registered as ERC20 Celo')
+        if 'CORE' in blockchains:
+            from cryptocoins.coins.core.wallet import erc20_core_wallet_creation_wrapper, is_valid_core_address
+
+            ERC20_CORE_CURRENCIES.update({
+                currency: blockchains['CORE']
+            })
+            wallet_creators['CORE'] = erc20_core_wallet_creation_wrapper
+            address_validators['CORE'] = is_valid_core_address
+
+            log.debug(f'Token {currency} registered as ERC20 Core')
+        if 'FUSE' in blockchains:
+            from cryptocoins.coins.fuse.wallet import erc20_fuse_wallet_creation_wrapper, is_valid_fuse_address
+
+            ERC20_FUSE_CURRENCIES.update({
+                currency: blockchains['FUSE']
+            })
+            wallet_creators['FUSE'] = erc20_fuse_wallet_creation_wrapper
+            address_validators['FUSE'] = is_valid_fuse_address
+
+            log.debug(f'Token {currency} registered as ERC20 FUSE')
+        if 'AVAX' in blockchains:
+            from cryptocoins.coins.avax.wallet import erc20_avax_wallet_creation_wrapper, is_valid_avax_address
+
+            ERC20_AVAX_CURRENCIES.update({
+                currency: blockchains['AVAX']
+            })
+            wallet_creators['AVAX'] = erc20_avax_wallet_creation_wrapper
+            address_validators['AVAX'] = is_valid_avax_address
+
+            log.debug(f'Token {currency} registered as ERC20 AVAX')
         CRYPTO_WALLET_CREATORS[currency] = wallet_creators
         CRYPTO_ADDRESS_VALIDATORS[currency] = address_validators
         currency.set_blockchain_list(list(blockchains))

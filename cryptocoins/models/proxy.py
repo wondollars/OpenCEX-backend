@@ -28,3 +28,19 @@ class MaticWithdrawalApprove(BaseWithdrawalRequest):
 class WonWithdrawalApprove(BaseWithdrawalRequest):
     class Meta:
         proxy = True
+
+class CeloWithdrawalApprove(BaseWithdrawalRequest):
+    class Meta:
+        proxy = True
+
+class CoreWithdrawalApprove(BaseWithdrawalRequest):
+    class Meta:
+        proxy = True
+
+class FuseWithdrawalApprove(BaseWithdrawalRequest):
+    class Meta:
+        proxy = True
+
+class AvaxWithdrawalApprove(BaseWithdrawalRequest):
+    class Meta:
+        proxy = True

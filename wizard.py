@@ -40,6 +40,10 @@ from cryptocoins.coins.bnb import BNB
 from cryptocoins.coins.trx import TRX
 from cryptocoins.coins.matic import MATIC
 from cryptocoins.coins.won import WON
+from cryptocoins.coins.celo import CELO
+from cryptocoins.coins.fuse import FUSE
+from cryptocoins.coins.core import CORE
+from cryptocoins.coins.avax import AVAX
 
 from cryptocoins.utils.btc import generate_btc_multisig_keeper
 
@@ -58,6 +62,10 @@ def main():
     IS_BSC = env('COMMON_TASKS_BNB', default=True, cast=bool)
     IS_MATIC = env('COMMON_TASKS_MATIC', default=True, cast=bool)
     IS_WON = env('COMMON_TASKS_WON', default=True, cast=bool)
+    IS_CELO = env('COMMON_TASKS_CELO', default=True, cast=bool)
+    IS_CORE = env('COMMON_TASKS_CORE', default=True, cast=bool)
+    IS_FUSE = env('COMMON_TASKS_FUSE', default=True, cast=bool)
+    IS_AVAX = env('COMMON_TASKS_AVAX', default=True, cast=bool)
 
     coin_list = [
         ETH,
@@ -67,6 +75,10 @@ def main():
         TRX,
         MATIC,
         WON,
+        CELO,
+        CORE,
+        FUSE,
+        AVAX,
     ]
     coin_info = {
         ETH: [
@@ -426,7 +438,7 @@ def main():
                 'model': CoinInfo,
                 'find': {'currency': WON},
                 'attributes': {
-                    'name': 'WON Coin',
+                    'name': 'Won Coin',
                     'decimals': 8,
                     'index': 28,
                     'tx_explorer': 'https://scan.wonnetwork.org/tx/',
@@ -466,6 +478,202 @@ def main():
                 'find': {'currency': WON},
                 'attributes': {
                     'blockchain_currency': WON,
+                    'address_fee': 0.00100000
+                },
+            },
+        ],
+        CELO: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': CELO},
+                'attributes': {
+                    'name': 'CELO Coin',
+                    'decimals': 8,
+                    'index': 28,
+                    'tx_explorer': 'https://celoscan.io/tx/',
+                    'links': {
+                        "bt": {"href": "", "title": "BitcoinTalk"},
+                        "cmc": {"href": "", "title": "CoinMarketCap"},
+                        "exp": {"href": "", "title": "Explorer"},
+                        "official": {"href": "", "title": ""}
+                    },
+                    'logo': 'https://wonnetwork.org/images/svg/celo.svg',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': CELO},
+                'attributes': {
+                    'limits_deposit_min': 0.00010000,
+                    'limits_deposit_max': 10000000.00000000,
+                    'limits_withdrawal_min': 0.00010000,
+                    'limits_withdrawal_max': 10000000.00000000,
+                    'limits_order_min': 0.01000000,
+                    'limits_order_max': 100000000.00000000,
+                    'limits_code_max': 10000000.00000000,
+                    'limits_accumulation_min': 0.00010000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                    'limits_keeper_accumulation_balance': 100.00000000,
+                    'limits_accumulation_max_gas_price': 500.00000000,
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': CELO},
+                'attributes': {
+                    'blockchain_currency': CELO,
+                    'address_fee': 0.00100000
+                },
+            },
+        ],
+        CORE: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': CORE},
+                'attributes': {
+                    'name': 'Core-Dao Coin',
+                    'decimals': 8,
+                    'index': 28,
+                    'tx_explorer': 'https://scan.coredao.org/tx/',
+                    'links': {
+                        "bt": {"href": "", "title": "BitcoinTalk"},
+                        "cmc": {"href": "", "title": "CoinMarketCap"},
+                        "exp": {"href": "", "title": "Explorer"},
+                        "official": {"href": "", "title": ""}
+                    },
+                    'logo': 'https://wonnetwork.org/images/svg/core.svg',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': CORE},
+                'attributes': {
+                    'limits_deposit_min': 0.00010000,
+                    'limits_deposit_max': 10000000.00000000,
+                    'limits_withdrawal_min': 0.00010000,
+                    'limits_withdrawal_max': 10000000.00000000,
+                    'limits_order_min': 0.01000000,
+                    'limits_order_max': 100000000.00000000,
+                    'limits_code_max': 10000000.00000000,
+                    'limits_accumulation_min': 0.00010000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                    'limits_keeper_accumulation_balance': 100.00000000,
+                    'limits_accumulation_max_gas_price': 500.00000000,
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': CORE},
+                'attributes': {
+                    'blockchain_currency': CORE,
+                    'address_fee': 0.00100000
+                },
+            },
+        ],
+        FUSE: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': FUSE},
+                'attributes': {
+                    'name': 'Fuse Coin',
+                    'decimals': 8,
+                    'index': 28,
+                    'tx_explorer': 'https://explorer.fuse.io/tx/',
+                    'links': {
+                        "bt": {"href": "", "title": "BitcoinTalk"},
+                        "cmc": {"href": "", "title": "CoinMarketCap"},
+                        "exp": {"href": "", "title": "Explorer"},
+                        "official": {"href": "", "title": ""}
+                    },
+                    'logo': 'https://wonnetwork.org/images/svg/fuse.svg',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': FUSE},
+                'attributes': {
+                    'limits_deposit_min': 0.00010000,
+                    'limits_deposit_max': 10000000.00000000,
+                    'limits_withdrawal_min': 0.00010000,
+                    'limits_withdrawal_max': 10000000.00000000,
+                    'limits_order_min': 0.01000000,
+                    'limits_order_max': 100000000.00000000,
+                    'limits_code_max': 10000000.00000000,
+                    'limits_accumulation_min': 0.00010000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                    'limits_keeper_accumulation_balance': 100.00000000,
+                    'limits_accumulation_max_gas_price': 500.00000000,
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': FUSE},
+                'attributes': {
+                    'blockchain_currency': FUSE,
+                    'address_fee': 0.00100000
+                },
+            },
+        ],
+        AVAX: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': AVAX},
+                'attributes': {
+                    'name': 'Avalanche Coin',
+                    'decimals': 8,
+                    'index': 30,
+                    'tx_explorer': 'https://snowtrace.io/tx/',
+                    'links': {
+                        "bt": {"href": "", "title": "BitcoinTalk"},
+                        "cmc": {"href": "", "title": "CoinMarketCap"},
+                        "exp": {"href": "", "title": "Explorer"},
+                        "official": {"href": "", "title": ""}
+                    },
+                    'logo': 'https://wonnetwork.org/images/svg/avax.svg',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': AVAX},
+                'attributes': {
+                    'limits_deposit_min': 0.00010000,
+                    'limits_deposit_max': 10000000.00000000,
+                    'limits_withdrawal_min': 0.00010000,
+                    'limits_withdrawal_max': 10000000.00000000,
+                    'limits_order_min': 0.01000000,
+                    'limits_order_max': 100000000.00000000,
+                    'limits_code_max': 10000000.00000000,
+                    'limits_accumulation_min': 0.00010000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                    'limits_keeper_accumulation_balance': 100.00000000,
+                    'limits_accumulation_max_gas_price': 500.00000000,
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': AVAX},
+                'attributes': {
+                    'blockchain_currency': AVAX,
                     'address_fee': 0.00100000
                 },
             },
@@ -534,6 +742,66 @@ def main():
                 },
             },
         )
+    if not IS_CELO:
+        coin_info[TRX].append(
+            {
+                'model': DisabledCoin,
+                'find': {'currency': CELO},
+                'attributes': {
+                    'disable_all': True,
+                    'disable_stack': True,
+                    'disable_pairs': True,
+                    'disable_exchange': True,
+                    'disable_withdrawals': True,
+                    'disable_topups': True,
+                },
+            },
+        )
+    if not IS_CORE:
+        coin_info[TRX].append(
+            {
+                'model': DisabledCoin,
+                'find': {'currency': CORE},
+                'attributes': {
+                    'disable_all': True,
+                    'disable_stack': True,
+                    'disable_pairs': True,
+                    'disable_exchange': True,
+                    'disable_withdrawals': True,
+                    'disable_topups': True,
+                },
+            },
+        )
+    if not IS_FUSE:
+        coin_info[TRX].append(
+            {
+                'model': DisabledCoin,
+                'find': {'currency': FUSE},
+                'attributes': {
+                    'disable_all': True,
+                    'disable_stack': True,
+                    'disable_pairs': True,
+                    'disable_exchange': True,
+                    'disable_withdrawals': True,
+                    'disable_topups': True,
+                },
+            },
+        )
+    if not IS_AVAX:
+        coin_info[TRX].append(
+            {
+                'model': DisabledCoin,
+                'find': {'currency': AVAX},
+                'attributes': {
+                    'disable_all': True,
+                    'disable_stack': True,
+                    'disable_pairs': True,
+                    'disable_exchange': True,
+                    'disable_withdrawals': True,
+                    'disable_topups': True,
+                },
+            },
+        )
 
     with atomic():
         to_write = []
@@ -587,6 +855,10 @@ def main():
                 TRX: 100_000,
                 MATIC: 10_000,
                 WON: 1000_000,
+                CELO: 100_000,
+                CORE: 100_000,
+                FUSE: 100_000,
+                AVAX: 100_000,
             }
 
             for currency_id, amount in topup_list.items():
@@ -604,7 +876,12 @@ def main():
 
         pairs = PAIRS_LIST + [
             (12, 'MATIC-USDT'),
-            (13, 'WON-USDT')
+            (13, 'WON-USDT'),
+            (14, 'AVAX-USDT'),
+            (15, 'FUSE-USDT'),
+            (16, 'CORE-USDT'),
+            (17, 'CELO-USDT')
+
         ]
 
         for pair_data in pairs:
@@ -778,6 +1055,122 @@ def main():
                     'low_orders_spread_size': 1,
                     'low_orders_min_order_size': 1,
                     'enabled': IS_WON,
+                }
+            },
+            Pair.get('CELO-USDT'): {
+                PairSettings: {
+                    'is_enabled': IS_CELO,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0.1,
+                    'deviation': 0.0,
+                    'precisions': ['10', '1', '0.1', '0.01', '0.001'],
+                },
+                BotConfig: {
+                    'name': 'CELO-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.PRICE_SOURCE_EXTERNAL,
+                    'symbol_precision': 6,
+                    'quote_precision': 6,
+                    'instant_match': True,
+                    'ohlc_period': 60,
+                    'loop_period_random': True,
+                    'min_period': 60,
+                    'max_period': 180,
+                    'ext_price_delta': 0.001,
+                    'min_order_quantity': 10,
+                    'max_order_quantity': 10000,
+                    'low_orders_max_match_size': 1,
+                    'low_orders_spread_size': 1,
+                    'low_orders_min_order_size': 1,
+                    'enabled': IS_CELO,
+                }
+            },
+            Pair.get('CORE-USDT'): {
+                PairSettings: {
+                    'is_enabled': IS_CORE,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0.1,
+                    'deviation': 0.0,
+                    'precisions': ['10', '1', '0.1', '0.01', '0.001'],
+                },
+                BotConfig: {
+                    'name': 'CORE-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'symbol_precision': 6,
+                    'quote_precision': 6,
+                    'instant_match': True,
+                    'ohlc_period': 60,
+                    'loop_period_random': True,
+                    'min_period': 60,
+                    'max_period': 180,
+                    'ext_price_delta': 0.001,
+                    'min_order_quantity': 10,
+                    'max_order_quantity': 10000,
+                    'low_orders_max_match_size': 1,
+                    'low_orders_spread_size': 1,
+                    'low_orders_min_order_size': 1,
+                    'enabled': IS_CORE,
+                }
+            },
+            Pair.get('FUSE-USDT'): {
+                PairSettings: {
+                    'is_enabled': IS_FUSE,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0.1,
+                    'deviation': 0.0,
+                    'precisions': ['10', '1', '0.1', '0.01', '0.001'],
+                },
+                BotConfig: {
+                    'name': 'FUSE-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'symbol_precision': 6,
+                    'quote_precision': 6,
+                    'instant_match': True,
+                    'ohlc_period': 60,
+                    'loop_period_random': True,
+                    'min_period': 60,
+                    'max_period': 180,
+                    'ext_price_delta': 0.001,
+                    'min_order_quantity': 10,
+                    'max_order_quantity': 10000,
+                    'low_orders_max_match_size': 1,
+                    'low_orders_spread_size': 1,
+                    'low_orders_min_order_size': 1,
+                    'enabled': IS_FUSE,
+                }
+            },
+            Pair.get('AVAX-USDT'): {
+                PairSettings: {
+                    'is_enabled': IS_AVAX,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0.1,
+                    'deviation': 0.0,
+                    'precisions': ['10', '1', '0.1', '0.01', '0.001'],
+                },
+                BotConfig: {
+                    'name': 'AVAX-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'symbol_precision': 6,
+                    'quote_precision': 6,
+                    'instant_match': True,
+                    'ohlc_period': 60,
+                    'loop_period_random': True,
+                    'min_period': 60,
+                    'max_period': 180,
+                    'ext_price_delta': 0.001,
+                    'min_order_quantity': 10,
+                    'max_order_quantity': 10000,
+                    'low_orders_max_match_size': 1,
+                    'low_orders_spread_size': 1,
+                    'low_orders_min_order_size': 1,
+                    'enabled': IS_AVAX,
                 }
             },
         }
