@@ -111,11 +111,11 @@ class WithdrawalSerializer(CryptoWithdrawalSerializerMixIn, SciWithdrawalSeriali
             price = external_exchanges_pairs_price_cache.get('{}-{}'.format(attrs['currency'].code, 'USDT'), 1)
             amount = amount * price
 
-        if limit_data.get('amount', 0) + amount > user_limit.amount:
-            raise ValidationError({
-                'message': 'Out of limit!',
-                'type': 'out_of_limit'
-            })
+        # if limit_data.get('amount', 0) + amount > user_limit.amount:
+        #     raise ValidationError({
+        #         'message': 'Out of limit!',
+        #         'type': 'out_of_limit'
+        #     })
 
         if sci_gate_id:
             attrs['sci_gate_id'] = sci_gate_id

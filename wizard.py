@@ -455,10 +455,10 @@ def main():
             },
             {
                 'model': WithdrawalFee,
-                'find': {'currency': MATIC},
+                'find': {'currency': WON},
                 'attributes': {
-                    'blockchain_currency': MATIC,
-                    'address_fee': 0.00300000
+                    'blockchain_currency': WON,
+                    'address_fee': 0.00100000
                 },
             },
         ],
