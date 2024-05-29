@@ -7,7 +7,7 @@ from django.db.models import Max
 from web3 import Web3
 
 from core.consts.currencies import BEP20_CURRENCIES, ERC20_CURRENCIES, TRC20_CURRENCIES, CURRENCIES_LIST, \
-    CRYPTO_ADDRESS_VALIDATORS, ERC20_MATIC_CURRENCIES
+    CRYPTO_ADDRESS_VALIDATORS, ERC20_MATIC_CURRENCIES, ERC20_WON_CURRENCIES
 from core.currency import Currency, CurrencyNotFound
 from core.models import PairSettings, FeesAndLimits, WithdrawalFee
 from core.models.facade import CoinInfo
@@ -22,12 +22,14 @@ TOKENS_BLOCKCHAINS_MAP = {
     'BNB': BEP20_CURRENCIES,
     'TRX': TRC20_CURRENCIES,
     'MATIC': ERC20_MATIC_CURRENCIES,
+    'WON': ERC20_WON_CURRENCIES,
 }
 EXPLORERS_MAP = {
     'ETH': 'https://etherscan.io/',
     'BNB': 'https://bscscan.com/',
     'TRX': 'https://tronscan.org/',
-    'MATIC': 'https://scan.wonnetwork.org/',
+    'MATIC': 'https://polygonscan.com/',
+    'WON': 'https://scan.wonnetwork.org/',
 }
 
 HEADER = """ 
@@ -123,7 +125,7 @@ class Command(BaseCommand):
             # common token data
             token_symbol = prompt('Token symbol* (i.e. USDT)').upper()
             blockchain_symbol = prompt('Token blockchain symbol* (i.e. ETH)', choices=[
-                'ETH', 'BNB', 'TRX', 'MATIC',
+                'ETH', 'BNB', 'TRX', 'MATIC', 'WON',
             ])
 
             if is_token_exists(token_symbol, blockchain_symbol):

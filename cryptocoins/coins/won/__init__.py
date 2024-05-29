@@ -1,16 +1,13 @@
 from core.currency import CoinParams
-from cryptocoins.coins.won.connection import get_w3_wonchain_connection
-from cryptocoins.coins.won.consts import MATIC, CODE
+from cryptocoins.coins.won.connection import get_w3_won_connection
+from cryptocoins.coins.won.consts import WON , CODE
 from cryptocoins.coins.won.wallet import won_wallet_creation_wrapper, is_valid_won_address
 from cryptocoins.utils.register import register_coin
 
+w3 = get_w3_won_connection()
 
-
-w3 = get_w3_wonchain_connection()
-
-
-MATIC_CURRENCY = register_coin(
-    currency_id=MATIC,
+WON_CURRENCY = register_coin(
+    currency_id=WON,
     currency_code=CODE,
     address_validation_fn=is_valid_won_address,
     wallet_creation_fn=won_wallet_creation_wrapper,

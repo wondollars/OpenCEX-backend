@@ -7,6 +7,7 @@ from core.consts.currencies import (
     CRYPTO_COINS_PARAMS,
     CRYPTO_WALLET_ACCOUNT_CREATORS,
     ERC20_MATIC_CURRENCIES,
+    ERC20_WON_CURRENCIES,
 )
 from core.consts.currencies import ALL_TOKEN_CURRENCIES
 from core.consts.currencies import BEP20_CURRENCIES
@@ -111,6 +112,16 @@ def register_token(currency_id, currency_code, blockchains: Optional[Dict[str, T
             address_validators['MATIC'] = is_valid_matic_address
 
             log.debug(f'Token {currency} registered as ERC20 Polygon')
+        if 'WON' in blockchains:
+            from cryptocoins.coins.won.wallet import erc20_won_wallet_creation_wrapper, is_valid_won_address
+
+            ERC20_WON_CURRENCIES.update({
+                currency: blockchains['WON']
+            })
+            wallet_creators['WON'] = erc20_won_wallet_creation_wrapper
+            address_validators['MAWONTIC'] = is_valid_won_address
+
+            log.debug(f'Token {currency} registered as ERC20 Won')
 
         CRYPTO_WALLET_CREATORS[currency] = wallet_creators
         CRYPTO_ADDRESS_VALIDATORS[currency] = address_validators
