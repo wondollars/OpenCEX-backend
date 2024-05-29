@@ -109,6 +109,8 @@ class WithdrawalSerializer(CryptoWithdrawalSerializerMixIn, SciWithdrawalSeriali
         if attrs['currency'] != Currency.get('USDT'):
             from core.cache import external_exchanges_pairs_price_cache
             price = external_exchanges_pairs_price_cache.get('{}-{}'.format(attrs['currency'].code, 'USDT'), 1)
+            if price is None:
+                price = 1  # Force price to be 1 if it is None      
             amount = amount * price
 
         # if limit_data.get('amount', 0) + amount > user_limit.amount:
