@@ -755,8 +755,8 @@ def main():
                 PairSettings: {
                     'is_enabled': IS_WON,
                     'is_autoorders_enabled': True,
-                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
+                    'price_source': PairSettings.PRICE_SOURCE_CUSTOM,
+                    'custom_price': 0.1,
                     'deviation': 0.0,
                     'precisions': ['10', '1', '0.1', '0.01', '0.001'],
                 },
