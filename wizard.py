@@ -1069,7 +1069,7 @@ def main():
                 BotConfig: {
                     'name': 'CELO-USDT',
                     'user': bot,
-                    'strategy': BotConfig.PRICE_SOURCE_EXTERNAL,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
                     'symbol_precision': 6,
                     'quote_precision': 6,
                     'instant_match': True,

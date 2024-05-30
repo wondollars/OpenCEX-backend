@@ -91,6 +91,102 @@ class KuCoinDataSource(BaseDataSource):
         kucoin_pairs = [bc['symbol'] for bc in data]
         return pair_symbol in kucoin_pairs
 
+class BitstampDataSource(BaseDataSource):
+    NAME = 'Bitstamp'
+    MAX_DEVIATION = settings.EXTERNAL_PRICES_DEVIATION_PERCENTS
+
+    def __init__(self):
+        self._data: Dict[Pair, Decimal] = {}
+
+    @property
+    def data(self) -> Dict[Pair, Decimal]:
+        return self._data
+
+    def get_latest_prices(self) -> Dict[Pair, Decimal]:
+        response = requests.get('https://www.bitstamp.net/api/v2/ticker/')
+        data = response.json()
+        
+        pairs_prices = {}
+        for ticker in data:
+            pair_code = ticker['pair'].replace('/', '-')
+            pair = Pair.get(pair_code)
+            if pair:
+                pairs_prices[pair] = to_decimal(ticker['last'])
+        
+        self._data = pairs_prices
+        return pairs_prices
+
+    def is_pair_exists(self, pair_symbol) -> bool:
+        response = requests.get('https://www.bitstamp.net/api/v2/ticker/')
+        data = response.json()
+        pairs = [ticker['pair'].replace('/', '-') for ticker in data]
+        return pair_symbol in pairs
+
+class MexcDataSource(BaseDataSource):
+    NAME = 'MEXC'
+    MAX_DEVIATION = settings.EXTERNAL_PRICES_DEVIATION_PERCENTS
+
+    def __init__(self):
+        self._data: Dict[Pair, Decimal] = {}
+
+    @property
+    def data(self) -> Dict[Pair, Decimal]:
+        return self._data
+
+    def get_latest_prices(self) -> Dict[Pair, Decimal]:
+        response = requests.get('https://www.mexc.com/open/api/v2/market/ticker')
+        data = response.json().get('data', [])
+        
+        pairs_prices = {}
+        for ticker in data:
+            symbol = ticker['symbol'].replace('_', '-')
+            pair = Pair.get(symbol)
+            if pair:
+                pairs_prices[pair] = to_decimal(ticker['last'])
+        
+        self._data = pairs_prices
+        return pairs_prices
+
+    def is_pair_exists(self, pair_symbol) -> bool:
+        response = requests.get('https://www.mexc.com/open/api/v2/market/ticker')
+        data = response.json().get('data', [])
+        pairs = [ticker['symbol'].replace('_', '-') for ticker in data]
+        return pair_symbol in pairs
+
+class OkxDataSource(BaseDataSource):
+    NAME = 'OKX'
+    MAX_DEVIATION = settings.EXTERNAL_PRICES_DEVIATION_PERCENTS
+
+    def __init__(self):
+        self._data: Dict[Pair, Decimal] = {}
+
+    @property
+    def data(self) -> Dict[Pair, Decimal]:
+        return self._data
+
+    def get_latest_prices(self) -> Dict[Pair, Decimal]:
+        response = requests.get('https://www.okx.com/api/v5/public/mark-price?instType=SWAP')
+        data = response.json().get('data', [])
+        
+        pairs_prices = {}
+        for ticker in data:
+            symbol = ticker['instId'].replace('-', '/').replace('_SWAP', '')
+            pair = Pair.get(symbol)
+            if pair:
+                pairs_prices[pair] = to_decimal(ticker['markPx'])
+        
+        self._data = pairs_prices
+        return pairs_prices
+
+    def is_pair_exists(self, pair_symbol) -> bool:
+        response = requests.get('https://www.okx.com/api/v5/public/mark-price?instType=SWAP')
+        data = response.json().get('data', [])
+        pairs = [ticker['instId'].replace('-', '/').replace('_SWAP', '') for ticker in data]
+        return pair_symbol in pairs
 
 binance_data_source = BinanceDataSource()
 kucoin_data_source = KuCoinDataSource()
+bitstamp_data_source = BitstampDataSource()
+mexc_data_source = MexcDataSource()
+okx_data_source = OkxDataSource()
+
