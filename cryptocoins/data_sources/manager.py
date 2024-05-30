@@ -35,32 +35,29 @@ class DataSourcesManager:
             return {}
 
     def _get_reserve_source_data(self):
+        reserve_data = {}
         for source in self.reserve_sources:
             try:
-                return source.get_latest_prices()
+                reserve_data.update(source.get_latest_prices())
             except Exception as e:
                 send_telegram_message(f'Datasource provider {source.NAME} error:\n{e}')
-        return {}
+        return reserve_data
 
     def update_prices(self):
-        self._get_main_source_data()
-        self._get_reserve_source_data()
-
-        main_source = self.main_source
-        reserve_sources = self.reserve_sources
+        main_source_data = self._get_main_source_data()
+        reserve_source_data = self._get_reserve_source_data()
 
         new_data: Dict[Pair, Decimal] = copy.copy(self._data)
 
         # alerts
-        if not main_source.data:
-            for source in reserve_sources:
-                if source.data:
-                    main_source = source
-                    break
-            else:
+        if not main_source_data:
+            if not reserve_source_data:
                 send_telegram_message(f'All data sources not available!')
                 self._update_cached_prices()
                 return new_data
+
+            # switch to reserve datasource
+            main_source_data = reserve_source_data
 
         # check deviation
         for pair, old_price in self._data.items():
@@ -70,26 +67,24 @@ class DataSourcesManager:
                 new_data[pair] = custom_price
                 continue
 
-            new_price = main_source.data.get(pair)
+            new_price = main_source_data.get(pair.code)
             if new_price:
                 if not old_price:
                     new_data[pair] = new_price
                     continue
 
-                if calc_relative_percent_difference(old_price, new_price) < main_source.MAX_DEVIATION:
+                if calc_relative_percent_difference(old_price, new_price) < self.main_source.MAX_DEVIATION:
                     new_data[pair] = new_price
                 else:
-                    for source in reserve_sources:
-                        reserve_price = source.data.get(pair)
-                        if reserve_price and calc_relative_percent_difference(new_price, reserve_price) < source.MAX_DEVIATION:
-                            new_data[pair] = reserve_price
-                            break
+                    reserve_price = reserve_source_data.get(pair.code)
+                    if reserve_price and calc_relative_percent_difference(new_price, reserve_price) < self.main_source.MAX_DEVIATION:
+                        new_data[pair] = reserve_price
                     else:
-                        send_telegram_message(f'{pair.code} price changes more than {main_source.MAX_DEVIATION}%.'
+                        send_telegram_message(f'{pair.code} price changes more than {self.main_source.MAX_DEVIATION}%.'
                                               f'\nCurrent price is {old_price}, new price: {new_price}')
             else:
                 if PairSettings.is_alerts_enabled(pair):
-                    send_telegram_message(f'{main_source.NAME} {pair.code} price is not available!')
+                    send_telegram_message(f'{self.main_source.NAME} {pair.code} price is not available!')
 
         from core.tasks.orders import run_otc_orders_price_update
         history = []
