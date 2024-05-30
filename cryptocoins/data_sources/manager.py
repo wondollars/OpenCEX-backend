@@ -11,9 +11,9 @@ from lib.helpers import calc_relative_percent_difference
 from lib.notifications import send_telegram_message
 
 class DataSourcesManager:
-    def __init__(self, main_source: BaseDataSource, reserve_sources: List[BaseDataSource]):
+    def __init__(self, main_source: BaseDataSource, reserve_sources: list[BaseDataSource]):
         self.main_source: BaseDataSource = main_source
-        self.reserve_sources: List[BaseDataSource] = reserve_sources
+        self.reserve_sources: list[BaseDataSource] = reserve_sources
         self._data: Dict[Pair, Decimal] = {}
         self._restore_old_prices()
 
@@ -86,7 +86,7 @@ class DataSourcesManager:
                             break
                     else:
                         send_telegram_message(f'{pair.code} price changes more than {main_source.MAX_DEVIATION}%.'
-                                              f'\nCurrent price is {old_price}, new price: {new_price}')
+                                            f'\nCurrent price is {old_price}, new price: {new_price}')
             else:
                 if PairSettings.is_alerts_enabled(pair):
                     send_telegram_message(f'{main_source.NAME} {pair.code} price is not available!')
