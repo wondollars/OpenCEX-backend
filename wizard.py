@@ -1466,9 +1466,44 @@ def main():
         )
 
 
+# def keeper_create(currency, is_gas_keeper=False):
+
+#     wallet_create_fn = CRYPTO_WALLET_CREATORS[currency]
+#     kwargs = {'user_id': None, 'is_new': True, 'currency': currency}
+
+#     new_keeper_wallet: UserWallet = wallet_create_fn(**kwargs)
+#     if isinstance(new_keeper_wallet, QuerySet):
+#         new_keeper_wallet = new_keeper_wallet.first()
+
+#     if not new_keeper_wallet:
+#         raise Exception('New wallet was not created')
+
+#     password = None
+#     if not is_gas_keeper:
+#         password = User.objects.make_random_password()
+#         private_key = AESCoderDecoder(settings.CRYPTO_KEY).decrypt(new_keeper_wallet.private_key)
+#         encrypted_key = AESCoderDecoder(password).encrypt(private_key)
+#         dbl_encrypted_key = AESCoderDecoder(settings.CRYPTO_KEY).encrypt(encrypted_key)
+#         new_keeper_wallet.private_key = dbl_encrypted_key
+#         new_keeper_wallet.save()
+
+#     KeeperModel = Keeper
+#     if is_gas_keeper:
+#         # if currency not in [ETH_CURRENCY, TRX_CURRENCY]:
+#         #     raise Exception('Only ETH and TRX GasKeeper can be created')
+#         KeeperModel = GasKeeper
+
+#     keeper = create_keeper(new_keeper_wallet, KeeperModel)
+#     return password, keeper
+
 def keeper_create(currency, is_gas_keeper=False):
+    if currency not in CRYPTO_WALLET_CREATORS:
+        raise ValueError(f"Unsupported currency: {currency}")
 
     wallet_create_fn = CRYPTO_WALLET_CREATORS[currency]
+    if not callable(wallet_create_fn):
+        raise TypeError(f"{wallet_create_fn} is not callable")
+
     kwargs = {'user_id': None, 'is_new': True, 'currency': currency}
 
     new_keeper_wallet: UserWallet = wallet_create_fn(**kwargs)
@@ -1489,8 +1524,6 @@ def keeper_create(currency, is_gas_keeper=False):
 
     KeeperModel = Keeper
     if is_gas_keeper:
-        # if currency not in [ETH_CURRENCY, TRX_CURRENCY]:
-        #     raise Exception('Only ETH and TRX GasKeeper can be created')
         KeeperModel = GasKeeper
 
     keeper = create_keeper(new_keeper_wallet, KeeperModel)
