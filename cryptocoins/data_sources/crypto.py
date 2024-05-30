@@ -104,32 +104,26 @@ class BitstampDataSource(BaseDataSource):
         return self._data
 
     def get_latest_prices(self) -> Dict[Pair, Decimal]:
-        response = requests.get('https://www.bitstamp.net/api/v2/ticker/')
-        data = response.json()
-        
-        logging.debug(f'Bitstamp API response: {data}')
-
+        response = requests.get('https://www.bitstamp.net/api/v2/ticker/').json()
+        bitstamp_prices_data = {bc['pair'].replace('/', '-'): bc['last'] for bc in response}             
         pairs_prices = {}
-        for ticker in data:
-            symbol = ticker['pair'].replace('/', '-')
-            pair = Pair.get(symbol)
-            if pair:
-                pairs_prices[pair] = to_decimal(ticker['last'])
-            else:
-                logging.warning(f'Pair not found for symbol: {symbol}')
-        
+        for pair in Pair.objects.all():
+            pair_exchange_key = f'{pair.base.code}-{pair.quote.code}'
+            if pair_exchange_key in bitstamp_prices_data:
+                pairs_prices[pair] = to_decimal(bitstamp_prices_data[pair_exchange_key])
         self._data = pairs_prices
         return pairs_prices
+        
 
     def is_pair_exists(self, pair_symbol) -> bool:
-        response = requests.get('https://www.bitstamp.net/api/v2/ticker/')
-        data = response.json()
-        pairs = [ticker['pair'].replace('/', '-') for ticker in data]
-        exists = pair_symbol in pairs
+        response = requests.get('https://www.bitstamp.net/api/v2/ticker/').json()
+        bitstamp_pairs = [bc['pair'].replace('/', '-') for bc in response]       
+    
+        exists = pair_symbol in bitstamp_pairs
         if not exists:
-            logging.warning(f'Pair symbol {pair_symbol} not found in Bitstamp data')
+            logging.warning(f'Pair symbol {pair_symbol} not found in MEXC data')
         return exists
-
+      
 class MexcDataSource(BaseDataSource):
     NAME = 'MEXC'
     MAX_DEVIATION = settings.EXTERNAL_PRICES_DEVIATION_PERCENTS
@@ -142,28 +136,21 @@ class MexcDataSource(BaseDataSource):
         return self._data
 
     def get_latest_prices(self) -> Dict[Pair, Decimal]:
-        response = requests.get('https://www.mexc.com/open/api/v2/market/ticker')
-        data = {bc['symbol']: bc['last'] for bc in response}
-        
-        logging.debug(f'MEXC API response: {data}')
-        
+        response = requests.get('https://www.mexc.com/open/api/v2/market/ticker').json()['data']
+        mexc_prices_data = {bc['symbol'].replace('_', '-'): bc['last'] for bc in response}             
         pairs_prices = {}
-
         for pair in Pair.objects.all():
             pair_exchange_key = f'{pair.base.code}-{pair.quote.code}'
-            pair_exchange_key = pair_exchange_key.replace('-', '_')
-            if pair_exchange_key in data:
-                pairs_prices[pair] = to_decimal(data[pair_exchange_key]) 
-        
+            if pair_exchange_key in mexc_prices_data:
+                pairs_prices[pair] = to_decimal(mexc_prices_data[pair_exchange_key])
         self._data = pairs_prices
         return pairs_prices
 
     def is_pair_exists(self, pair_symbol) -> bool:
-        response = requests.get('https://www.mexc.com/open/api/v2/market/ticker')
-        pair_symbol_new = pair_symbol.replace('-', '_')
-        data = response.json().get('data', [])
-        pairs = [ticker['symbol'] for ticker in data]
-        exists = pair_symbol_new in pairs
+        response = requests.get('https://www.mexc.com/open/api/v2/market/ticker').json()['data']
+        mexc_pairs = [bc['symbol'].replace('_', '-') for bc in response]       
+    
+        exists = pair_symbol in mexc_pairs
         if not exists:
             logging.warning(f'Pair symbol {pair_symbol} not found in MEXC data')
         return exists
@@ -180,24 +167,23 @@ class OkxDataSource(BaseDataSource):
         return self._data
 
     def get_latest_prices(self) -> Dict[Pair, Decimal]:
-        response = requests.get('https://www.okx.com/api/v5/public/mark-price?instType=SWAP')
-        data = response.json().get('data', [])
-        
+        response = requests.get('https://www.okx.com/api/v5/public/mark-price?instType=SWAP').json()['data']
+        okx_prices_data = {bc['instId'].replace('-SWAP', ''): bc['markPx'] for bc in response}            
         pairs_prices = {}
-        for ticker in data:
-            symbol = ticker['instId'].replace('_SWAP', '')
-            pair = Pair.get(symbol)
-            if pair:
-                pairs_prices[pair] = to_decimal(ticker['markPx'])
-        
+        for pair in Pair.objects.all():
+            pair_exchange_key = f'{pair.base.code}-{pair.quote.code}'
+            if pair_exchange_key in okx_prices_data:
+                pairs_prices[pair] = to_decimal(okx_prices_data[pair_exchange_key])
         self._data = pairs_prices
         return pairs_prices
 
     def is_pair_exists(self, pair_symbol) -> bool:
-        response = requests.get('https://www.okx.com/api/v5/public/mark-price?instType=SWAP')
-        data = response.json().get('data', [])
-        pairs = [ticker['instId']   .replace('_SWAP', '') for ticker in data]
-        return pair_symbol in pairs
+        response = requests.get('https://www.okx.com/api/v5/public/mark-price?instType=SWAP').json()['data']
+        okx_pairs = [bc['instId'].replace('-SWAP', '') for bc in response]         
+        exists = pair_symbol in okx_pairs
+        if not exists:
+            logging.warning(f'Pair symbol {pair_symbol} not found in MEXC data')
+        return exists
 
 binance_data_source = BinanceDataSource()
 kucoin_data_source = KuCoinDataSource()
