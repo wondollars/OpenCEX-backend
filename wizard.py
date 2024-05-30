@@ -44,8 +44,8 @@ from cryptocoins.coins.celo import CELO
 from cryptocoins.coins.fuse import FUSE
 from cryptocoins.coins.core import CORE
 from cryptocoins.coins.avax import AVAX
-from cryptocoins.coins.doge import DOGE
-from cryptocoins.coins.ton import TON
+# from cryptocoins.coins.doge import DOGE
+# from cryptocoins.coins.ton import TON
 
 from cryptocoins.utils.btc import generate_btc_multisig_keeper
 
@@ -81,8 +81,8 @@ def main():
         CORE,
         FUSE,
         AVAX,
-        DOGE,
-        TON,
+        # DOGE,
+        # TON,
     ]
     coin_info = {
         ETH: [
@@ -280,132 +280,132 @@ def main():
                 },
             },
         ],
-        TON: [
-            {
-                'model': CoinInfo,
-                'find': {'currency': TON},
-                'attributes': {
-                    'name': 'Toncoin ',
-                    'decimals': 10,
-                    'index': 33,
-                    'links': {
-                        "cmc": {
-                            "href": "https://coinmarketcap.com/currencies/toncoin/",
-                            "title": "CoinMarketCap"
-                        },
-                        "exp": {
-                            "href": "https://bscscan.com/",
-                            "title": "Explorer"
-                        },
-                        "official": {
-                            "href": "https://ton.org/",
-                            "title": "Ton"
-                        }
-                    },
-                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/11419.png',
-                },
-            },
-            {
-                'model': FeesAndLimits,
-                'find': {'currency': TON},
-                'attributes': {
-                    'limits_deposit_min': 1.00000000,
-                    'limits_deposit_max': 1000000.00000000,
-                    'limits_withdrawal_min': 2.00000000,
-                    'limits_withdrawal_max': 10000.00000000,
-                    'limits_order_min': 1.00000000,
-                    'limits_order_max': 100000.00000000,
-                    'limits_code_max': 100000.00000000,
-                    'limits_accumulation_min': 1.00000000,
-                    'fee_deposit_address': 0,
-                    'fee_deposit_code': 0,
-                    'fee_withdrawal_code': 0,
-                    'fee_order_limits': 0.00100000,
-                    'fee_order_market': 0.00200000,
-                    'fee_exchange_value': 0.00200000,
-                },
-            },
-            # {
-            #     'model': WithdrawalFee,
-            #     'find': {'currency': USDT, 'blockchain_currency': ETH},
-            #     'attributes': {
-            #         'blockchain_currency': ETH,
-            #         'address_fee': 5.00000000
-            #     },
-            # },
-            {
-                'model': WithdrawalFee,
-                'find': {'currency': TON, 'blockchain_currency': BNB},
-                'attributes': {
-                    'blockchain_currency': BNB,
-                    'address_fee': 0.00010000
-                },
-            },
+        # TON: [
+        #     {
+        #         'model': CoinInfo,
+        #         'find': {'currency': TON},
+        #         'attributes': {
+        #             'name': 'Toncoin ',
+        #             'decimals': 10,
+        #             'index': 33,
+        #             'links': {
+        #                 "cmc": {
+        #                     "href": "https://coinmarketcap.com/currencies/toncoin/",
+        #                     "title": "CoinMarketCap"
+        #                 },
+        #                 "exp": {
+        #                     "href": "https://bscscan.com/",
+        #                     "title": "Explorer"
+        #                 },
+        #                 "official": {
+        #                     "href": "https://ton.org/",
+        #                     "title": "Ton"
+        #                 }
+        #             },
+        #             'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/11419.png',
+        #         },
+        #     },
+        #     {
+        #         'model': FeesAndLimits,
+        #         'find': {'currency': TON},
+        #         'attributes': {
+        #             'limits_deposit_min': 1.00000000,
+        #             'limits_deposit_max': 1000000.00000000,
+        #             'limits_withdrawal_min': 2.00000000,
+        #             'limits_withdrawal_max': 10000.00000000,
+        #             'limits_order_min': 1.00000000,
+        #             'limits_order_max': 100000.00000000,
+        #             'limits_code_max': 100000.00000000,
+        #             'limits_accumulation_min': 1.00000000,
+        #             'fee_deposit_address': 0,
+        #             'fee_deposit_code': 0,
+        #             'fee_withdrawal_code': 0,
+        #             'fee_order_limits': 0.00100000,
+        #             'fee_order_market': 0.00200000,
+        #             'fee_exchange_value': 0.00200000,
+        #         },
+        #     },
+        #     # {
+        #     #     'model': WithdrawalFee,
+        #     #     'find': {'currency': USDT, 'blockchain_currency': ETH},
+        #     #     'attributes': {
+        #     #         'blockchain_currency': ETH,
+        #     #         'address_fee': 5.00000000
+        #     #     },
+        #     # },
+        #     {
+        #         'model': WithdrawalFee,
+        #         'find': {'currency': TON, 'blockchain_currency': BNB},
+        #         'attributes': {
+        #             'blockchain_currency': BNB,
+        #             'address_fee': 0.00010000
+        #         },
+        #     },
              
-        ],
-        DOGE: [
-            {
-                'model': CoinInfo,
-                'find': {'currency': DOGE},
-                'attributes': {
-                    'name': 'Dogecoin',
-                    'decimals': 10,
-                    'index': 33,
-                    'links': {
-                        "cmc": {
-                            "href": "https://coinmarketcap.com/currencies/dogecoin/",
-                            "title": "CoinMarketCap"
-                        },
-                        "exp": {
-                            "href": "https://bscscan.com/",
-                            "title": "Explorer"
-                        },
-                        "official": {
-                            "href": "https://dogecoin.com/",
-                            "title": "Dogecoin"
-                        }
-                    },
-                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/74.png',
-                },
-            },
-            {
-                'model': FeesAndLimits,
-                'find': {'currency': DOGE},
-                'attributes': {
-                    'limits_deposit_min': 1.00000000,
-                    'limits_deposit_max': 1000000.00000000,
-                    'limits_withdrawal_min': 2.00000000,
-                    'limits_withdrawal_max': 10000.00000000,
-                    'limits_order_min': 1.00000000,
-                    'limits_order_max': 100000.00000000,
-                    'limits_code_max': 100000.00000000,
-                    'limits_accumulation_min': 1.00000000,
-                    'fee_deposit_address': 0,
-                    'fee_deposit_code': 0,
-                    'fee_withdrawal_code': 0,
-                    'fee_order_limits': 0.00100000,
-                    'fee_order_market': 0.00200000,
-                    'fee_exchange_value': 0.00200000,
-                },
-            },
-            # {
-            #     'model': WithdrawalFee,
-            #     'find': {'currency': USDT, 'blockchain_currency': ETH},
-            #     'attributes': {
-            #         'blockchain_currency': ETH,
-            #         'address_fee': 5.00000000
-            #     },
-            # },
-            {
-                'model': WithdrawalFee,
-                'find': {'currency': DOGE, 'blockchain_currency': BNB},
-                'attributes': {
-                    'blockchain_currency': BNB,
-                    'address_fee': 0.00010000
-                },
-            },
+        # ],
+        # DOGE: [
+        #     {
+        #         'model': CoinInfo,
+        #         'find': {'currency': DOGE},
+        #         'attributes': {
+        #             'name': 'Dogecoin',
+        #             'decimals': 10,
+        #             'index': 33,
+        #             'links': {
+        #                 "cmc": {
+        #                     "href": "https://coinmarketcap.com/currencies/dogecoin/",
+        #                     "title": "CoinMarketCap"
+        #                 },
+        #                 "exp": {
+        #                     "href": "https://bscscan.com/",
+        #                     "title": "Explorer"
+        #                 },
+        #                 "official": {
+        #                     "href": "https://dogecoin.com/",
+        #                     "title": "Dogecoin"
+        #                 }
+        #             },
+        #             'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/74.png',
+        #         },
+        #     },
+        #     {
+        #         'model': FeesAndLimits,
+        #         'find': {'currency': DOGE},
+        #         'attributes': {
+        #             'limits_deposit_min': 1.00000000,
+        #             'limits_deposit_max': 1000000.00000000,
+        #             'limits_withdrawal_min': 2.00000000,
+        #             'limits_withdrawal_max': 10000.00000000,
+        #             'limits_order_min': 1.00000000,
+        #             'limits_order_max': 100000.00000000,
+        #             'limits_code_max': 100000.00000000,
+        #             'limits_accumulation_min': 1.00000000,
+        #             'fee_deposit_address': 0,
+        #             'fee_deposit_code': 0,
+        #             'fee_withdrawal_code': 0,
+        #             'fee_order_limits': 0.00100000,
+        #             'fee_order_market': 0.00200000,
+        #             'fee_exchange_value': 0.00200000,
+        #         },
+        #     },
+        #     # {
+        #     #     'model': WithdrawalFee,
+        #     #     'find': {'currency': USDT, 'blockchain_currency': ETH},
+        #     #     'attributes': {
+        #     #         'blockchain_currency': ETH,
+        #     #         'address_fee': 5.00000000
+        #     #     },
+        #     # },
+        #     {
+        #         'model': WithdrawalFee,
+        #         'find': {'currency': DOGE, 'blockchain_currency': BNB},
+        #         'attributes': {
+        #             'blockchain_currency': BNB,
+        #             'address_fee': 0.00010000
+        #         },
+        #     },
              
-        ],
+        # ],
         TRX: [
             {
                 'model': CoinInfo,
@@ -989,8 +989,8 @@ def main():
                 CORE: 100_000,
                 FUSE: 100_000,
                 AVAX: 100_000,
-                DOGE: 1000_000_000_000,
-                TON: 1000_000,
+                # DOGE: 1000_000_000_000,
+                # TON: 1000_000,
             }
 
             for currency_id, amount in topup_list.items():
@@ -1013,8 +1013,8 @@ def main():
             (15, 'FUSE-USDT'),
             (16, 'CORE-USDT'),
             (17, 'CELO-USDT'),
-            (18, 'DOGE-USDT'),
-            (19, 'TON-USDT'),
+            # (18, 'DOGE-USDT'),
+            # (19, 'TON-USDT'),
 
         ]
 
@@ -1025,60 +1025,60 @@ def main():
 
         # create pairs
         pair_list = {
-            Pair.get('TON-USDT'): {
-                PairSettings: {
-                    'is_enabled': True,
-                    'is_autoorders_enabled': True,
-                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation': 0.99000000,
-                    'precisions': ['100', '10', '1', '0.1', '0.01']
-                },
-                BotConfig: {
-                    'name': 'TON-USDT',
-                    'user': bot,
-                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
-                    'instant_match': True,
-                    'ohlc_period': 5,
-                    'loop_period_random': True,
-                    'min_period': 5,
-                    'max_period': 10,
-                    'ext_price_delta': 0,
-                    'min_order_quantity': 1,
-                    'max_order_quantity': 100000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
-                    'enabled': True,
-                }
-            },
-            Pair.get('DOGE-USDT'): {
-                PairSettings: {
-                    'is_enabled': True,
-                    'is_autoorders_enabled': True,
-                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation': 0.99000000,
-                    'precisions': ['100', '10', '1', '0.1', '0.01']
-                },
-                BotConfig: {
-                    'name': 'DOGE-USDT',
-                    'user': bot,
-                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
-                    'instant_match': True,
-                    'ohlc_period': 5,
-                    'loop_period_random': True,
-                    'min_period': 5,
-                    'max_period': 10,
-                    'ext_price_delta': 0,
-                    'min_order_quantity': 1,
-                    'max_order_quantity': 10000000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
-                    'enabled': True,
-                }
-            },
+            # Pair.get('TON-USDT'): {
+            #     PairSettings: {
+            #         'is_enabled': True,
+            #         'is_autoorders_enabled': True,
+            #         'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+            #         'custom_price': 0,
+            #         'deviation': 0.99000000,
+            #         'precisions': ['100', '10', '1', '0.1', '0.01']
+            #     },
+            #     BotConfig: {
+            #         'name': 'TON-USDT',
+            #         'user': bot,
+            #         'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+            #         'instant_match': True,
+            #         'ohlc_period': 5,
+            #         'loop_period_random': True,
+            #         'min_period': 5,
+            #         'max_period': 10,
+            #         'ext_price_delta': 0,
+            #         'min_order_quantity': 1,
+            #         'max_order_quantity': 100000,
+            #         'low_orders_max_match_size': 0.0029,
+            #         'low_orders_spread_size': 200,
+            #         'low_orders_min_order_size': 0.0003,
+            #         'enabled': True,
+            #     }
+            # },
+            # Pair.get('DOGE-USDT'): {
+            #     PairSettings: {
+            #         'is_enabled': True,
+            #         'is_autoorders_enabled': True,
+            #         'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+            #         'custom_price': 0,
+            #         'deviation': 0.99000000,
+            #         'precisions': ['100', '10', '1', '0.1', '0.01']
+            #     },
+            #     BotConfig: {
+            #         'name': 'DOGE-USDT',
+            #         'user': bot,
+            #         'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+            #         'instant_match': True,
+            #         'ohlc_period': 5,
+            #         'loop_period_random': True,
+            #         'min_period': 5,
+            #         'max_period': 10,
+            #         'ext_price_delta': 0,
+            #         'min_order_quantity': 1,
+            #         'max_order_quantity': 10000000,
+            #         'low_orders_max_match_size': 0.0029,
+            #         'low_orders_spread_size': 200,
+            #         'low_orders_min_order_size': 0.0003,
+            #         'enabled': True,
+            #     }
+            # },
             Pair.get('BTC-USDT'): {
                 PairSettings: {
                     'is_enabled': True,
