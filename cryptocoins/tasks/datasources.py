@@ -19,5 +19,5 @@ def update_crypto_external_prices():
         if acquired:
             DataSourcesManager(
                 main_source=binance_data_source,
-                reserve_sources=[kucoin_data_source, bitstamp_data_source,mexc_data_source,okx_data_source],
+                reserve_sources=[kucoin_data_source, mexc_data_source],
             ).update_prices()

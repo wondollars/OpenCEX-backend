@@ -7,7 +7,7 @@ from web3.providers import (
 
 def get_w3_fuse_connection():
     from exchange.settings import env
-    w3 = Web3(HTTPProvider(env('FUSE_RPC_URL', default='https://rpc.fusenetwork.org')))
+    w3 = Web3(HTTPProvider(env('FUSE_RPC_URL', default='https://rpc.fuse.io')))
     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
     return w3
 

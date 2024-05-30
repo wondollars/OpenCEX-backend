@@ -143,27 +143,27 @@ class MexcDataSource(BaseDataSource):
 
     def get_latest_prices(self) -> Dict[Pair, Decimal]:
         response = requests.get('https://www.mexc.com/open/api/v2/market/ticker')
-        data = response.json().get('data', [])
+        data = {bc['symbol']: bc['last'] for bc in response}
         
         logging.debug(f'MEXC API response: {data}')
-
+        
         pairs_prices = {}
-        for ticker in data:
-            symbol = ticker['symbol'].replace('_', '-')
-            pair = Pair.get(symbol)
-            if pair:
-                pairs_prices[pair] = to_decimal(ticker['last'])
-            else:
-                logging.warning(f'Pair not found for symbol: {symbol}')
+
+        for pair in Pair.objects.all():
+            pair_exchange_key = f'{pair.base.code}-{pair.quote.code}'
+            pair_exchange_key = pair_exchange_key.replace('-', '_')
+            if pair_exchange_key in data:
+                pairs_prices[pair] = to_decimal(data[pair_exchange_key]) 
         
         self._data = pairs_prices
         return pairs_prices
 
     def is_pair_exists(self, pair_symbol) -> bool:
         response = requests.get('https://www.mexc.com/open/api/v2/market/ticker')
+        pair_symbol_new = pair_symbol.replace('-', '_')
         data = response.json().get('data', [])
-        pairs = [ticker['symbol'].replace('_', '-') for ticker in data]
-        exists = pair_symbol in pairs
+        pairs = [ticker['symbol'] for ticker in data]
+        exists = pair_symbol_new in pairs
         if not exists:
             logging.warning(f'Pair symbol {pair_symbol} not found in MEXC data')
         return exists
