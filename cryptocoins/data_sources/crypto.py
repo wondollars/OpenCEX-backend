@@ -1,5 +1,6 @@
 from decimal import Decimal
 from typing import Dict
+import logging
 
 import requests
 from binance.client import Client as BinanceClient
@@ -106,12 +107,16 @@ class BitstampDataSource(BaseDataSource):
         response = requests.get('https://www.bitstamp.net/api/v2/ticker/')
         data = response.json()
         
+        logging.debug(f'Bitstamp API response: {data}')
+
         pairs_prices = {}
         for ticker in data:
-            pair_code = ticker['pair'].replace('/', '-')
-            pair = Pair.get(pair_code)
+            symbol = ticker['pair'].replace('/', '-')
+            pair = Pair.get(symbol)
             if pair:
                 pairs_prices[pair] = to_decimal(ticker['last'])
+            else:
+                logging.warning(f'Pair not found for symbol: {symbol}')
         
         self._data = pairs_prices
         return pairs_prices
@@ -120,7 +125,10 @@ class BitstampDataSource(BaseDataSource):
         response = requests.get('https://www.bitstamp.net/api/v2/ticker/')
         data = response.json()
         pairs = [ticker['pair'].replace('/', '-') for ticker in data]
-        return pair_symbol in pairs
+        exists = pair_symbol in pairs
+        if not exists:
+            logging.warning(f'Pair symbol {pair_symbol} not found in Bitstamp data')
+        return exists
 
 class MexcDataSource(BaseDataSource):
     NAME = 'MEXC'
@@ -137,12 +145,16 @@ class MexcDataSource(BaseDataSource):
         response = requests.get('https://www.mexc.com/open/api/v2/market/ticker')
         data = response.json().get('data', [])
         
+        logging.debug(f'MEXC API response: {data}')
+
         pairs_prices = {}
         for ticker in data:
             symbol = ticker['symbol'].replace('_', '-')
             pair = Pair.get(symbol)
             if pair:
                 pairs_prices[pair] = to_decimal(ticker['last'])
+            else:
+                logging.warning(f'Pair not found for symbol: {symbol}')
         
         self._data = pairs_prices
         return pairs_prices
@@ -151,7 +163,10 @@ class MexcDataSource(BaseDataSource):
         response = requests.get('https://www.mexc.com/open/api/v2/market/ticker')
         data = response.json().get('data', [])
         pairs = [ticker['symbol'].replace('_', '-') for ticker in data]
-        return pair_symbol in pairs
+        exists = pair_symbol in pairs
+        if not exists:
+            logging.warning(f'Pair symbol {pair_symbol} not found in MEXC data')
+        return exists
 
 class OkxDataSource(BaseDataSource):
     NAME = 'OKX'
@@ -170,7 +185,7 @@ class OkxDataSource(BaseDataSource):
         
         pairs_prices = {}
         for ticker in data:
-            symbol = ticker['instId'].replace('-', '/').replace('_SWAP', '')
+            symbol = ticker['instId'].replace('_SWAP', '')
             pair = Pair.get(symbol)
             if pair:
                 pairs_prices[pair] = to_decimal(ticker['markPx'])
@@ -181,12 +196,12 @@ class OkxDataSource(BaseDataSource):
     def is_pair_exists(self, pair_symbol) -> bool:
         response = requests.get('https://www.okx.com/api/v5/public/mark-price?instType=SWAP')
         data = response.json().get('data', [])
-        pairs = [ticker['instId'].replace('-', '/').replace('_SWAP', '') for ticker in data]
+        pairs = [ticker['instId']   .replace('_SWAP', '') for ticker in data]
         return pair_symbol in pairs
 
 binance_data_source = BinanceDataSource()
 kucoin_data_source = KuCoinDataSource()
 bitstamp_data_source = BitstampDataSource()
 mexc_data_source = MexcDataSource()
-# okx_data_source = OkxDataSource()
+okx_data_source = OkxDataSource()
 
