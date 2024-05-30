@@ -126,13 +126,16 @@ class BitstampDataSource(BaseDataSource):
     def is_pair_exists(self, pair_symbol) -> bool:
         response = requests.get('https://www.bitstamp.net/api/v2/ticker/')
         
+        
+        data = response.json()
+
         if data:
             short_response = data[:3]  # Get the first 3 elements of the data list
             message = f'Datasource provider response bitstapm: {json.dumps(short_response)}'
             send_telegram_message(message)
         else:
             send_telegram_message(f'Datasource provider error bitstapm')
-        data = response.json()
+
         pairs = [ticker['pair'].replace('/', '-') for ticker in data]
         exists = pair_symbol in pairs
         if not exists:
@@ -171,6 +174,9 @@ class MexcDataSource(BaseDataSource):
     def is_pair_exists(self, pair_symbol) -> bool:
         response = requests.get('https://www.mexc.com/open/api/v2/market/ticker')
         
+        
+        pair_symbol_new = pair_symbol.replace('-', '_')
+        data = response.json().get('data', [])
         if data:
             short_response = data[:3]  # Get the first 3 elements of the data list
             message = f'Datasource provider response Mexc: {json.dumps(short_response)}'
@@ -178,8 +184,6 @@ class MexcDataSource(BaseDataSource):
         else:
             send_telegram_message(f'Datasource provider error mexc')
 
-        pair_symbol_new = pair_symbol.replace('-', '_')
-        data = response.json().get('data', [])
         pairs = [ticker['symbol'] for ticker in data]
         exists = pair_symbol_new in pairs
         if not exists:
@@ -213,6 +217,10 @@ class OkxDataSource(BaseDataSource):
 
     def is_pair_exists(self, pair_symbol) -> bool:
         response = requests.get('https://www.okx.com/api/v5/public/mark-price?instType=SWAP')
+        
+
+        data = response.json().get('data', [])
+        
         if data:
             short_response = data[:3]  # Get the first 3 elements of the data list
             message = f'Datasource provider response OK: {json.dumps(short_response)}'
@@ -220,7 +228,6 @@ class OkxDataSource(BaseDataSource):
         else:
             send_telegram_message(f'Datasource provider error OK')
 
-        data = response.json().get('data', [])
         pairs = [ticker['instId']   .replace('_SWAP', '') for ticker in data]
         return pair_symbol in pairs
 
