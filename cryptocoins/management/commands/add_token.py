@@ -373,7 +373,7 @@ def prompt_contract(blockchain):
         if not check_address(blockchain, contract, blockchain):
             print('[!] Incorrect contract address')
             continue
-        if blockchain in ['ETH', 'BNB', 'MATIC']:
+        if blockchain in ['ETH', 'BNB', 'MATIC', 'WON', 'CELO', 'CORE', 'FUSE', 'AVAX']:
             contract = Web3.to_checksum_address(contract)
         exists_contracts = [v.contract_address for k, v in TOKENS_BLOCKCHAINS_MAP[blockchain].items()]
         if contract in exists_contracts:
