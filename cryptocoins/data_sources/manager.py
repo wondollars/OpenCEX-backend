@@ -11,9 +11,9 @@ from lib.helpers import calc_relative_percent_difference, to_decimal
 from lib.notifications import send_telegram_message
 
 class DataSourcesManager:
-    def __init__(self, main_source: BaseDataSource, reserve_sources: list[BaseDataSource]):
+    def __init__(self, main_source: BaseDataSource, reserve_sources: List[BaseDataSource]):
         self.main_source: BaseDataSource = main_source
-        self.reserve_sources: list[BaseDataSource] = reserve_sources
+        self.reserve_sources: List[BaseDataSource] = reserve_sources
         self._data: Dict[Pair, Decimal] = {}
         self._restore_old_prices()
 
