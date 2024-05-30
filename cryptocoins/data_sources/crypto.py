@@ -188,5 +188,5 @@ binance_data_source = BinanceDataSource()
 kucoin_data_source = KuCoinDataSource()
 bitstamp_data_source = BitstampDataSource()
 mexc_data_source = MexcDataSource()
-okx_data_source = OkxDataSource()
+# okx_data_source = OkxDataSource()
 
