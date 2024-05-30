@@ -1013,8 +1013,8 @@ def main():
             (15, 'FUSE-USDT'),
             (16, 'CORE-USDT'),
             (17, 'CELO-USDT'),
-            (18, 'DOGE-USDT')
-            (19, 'TON-USDT')
+            (18, 'DOGE-USDT'),
+            (19, 'TON-USDT'),
 
         ]
 
