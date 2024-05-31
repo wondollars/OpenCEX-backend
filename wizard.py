@@ -1220,11 +1220,11 @@ def main():
             (15, 'FUSE-USDT'),
             (16, 'CORE-USDT'),
             (17, 'CELO-USDT'),
-            (22, 'ETC-USDT'),
-            (21, 'FTM-USDT'),
+            (18, 'ETC-USDT'),
+            (19, 'FTM-USDT'),
             (20, 'XDAI-USDT'),
-            (18, 'DOGE-USDT'),
-            (19, 'TON-USDT'),
+            (21, 'DOGE-USDT'),
+            (22, 'TON-USDT'),
 
         ]
 
