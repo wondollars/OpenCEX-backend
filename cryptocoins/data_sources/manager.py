@@ -34,17 +34,24 @@ class DataSourcesManager:
             send_telegram_message(f'Datasource provider {self.main_source.NAME} error:\n{e}')
             return {}
 
-    def _get_reserve_source_data(self):
+    def _get_reserve_source_data(self) -> Dict[Pair, Decimal]:
         all_data = {}
+
         for source in self.reserve_sources:
             try:
                 data = source.get_latest_prices()
-                for pair, price in data.items():
-                    if pair not in all_data:
-                        all_data[pair] = price
+                if data:
+                    all_data.update(data)
+                else:
+                    send_telegram_message(f'No data from datasource provider {source.NAME}')
             except Exception as e:
                 send_telegram_message(f'Datasource provider {source.NAME} error:\n{e}')
+
+        if not all_data:
+            send_telegram_message('All reserve sources failed to provide data.')
+
         return all_data
+
 
 
 
