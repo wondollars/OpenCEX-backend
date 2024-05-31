@@ -10,6 +10,9 @@ from cryptocoins.coins.celo.celo import celo_manager
 from cryptocoins.coins.core.core import core_manager
 from cryptocoins.coins.fuse.fuse import fuse_manager
 from cryptocoins.coins.avax.avax import avax_manager
+from cryptocoins.coins.etc.etc import etc_manager
+from cryptocoins.coins.ftm.ftm import ftm_manager
+from cryptocoins.coins.dai.dai import dai_manager
 from cryptocoins.coins.trx.tron import tron_manager
 from lib.cipher import AESCoderDecoder
 
@@ -94,15 +97,15 @@ class AvaxKeySerializer(BaseKeySerializer):
     
 class EtcKeySerializer(BaseKeySerializer):
     def get_encrypted_string(self):
-        return avax_manager.get_keeper_wallet().private_key
+        return etc_manager.get_keeper_wallet().private_key
     
 class FtmKeySerializer(BaseKeySerializer):
     def get_encrypted_string(self):
-        return avax_manager.get_keeper_wallet().private_key
+        return ftm_manager.get_keeper_wallet().private_key
     
-class XdaiKeySerializer(BaseKeySerializer):
+class DaiKeySerializer(BaseKeySerializer):
     def get_encrypted_string(self):
-        return avax_manager.get_keeper_wallet().private_key
+        return dai_manager.get_keeper_wallet().private_key
     
  
 

@@ -1,3 +1,0 @@
-XDAI = 38
-CODE = 'XDAI'
-DECIMALS = 18

@@ -6,13 +6,13 @@ from django.db import transaction
 from eth_account import Account
 from web3 import Web3
 
-from cryptocoins.coins.xdai.consts import XDAI
+from cryptocoins.coins.dai.consts import DAI
 from lib.cipher import AESCoderDecoder
 
 log = logging.getLogger(__name__)
 
 
-def create_xdai_address():
+def create_dai_address():
     while 1:
         private_key = Web3.to_hex(secrets.token_bytes(32))
         account = Account.from_key(private_key)
@@ -29,7 +29,7 @@ def create_xdai_address():
 
 
 @transaction.atomic
-def get_or_create_xdai_wallet(user_id, is_new=False):
+def get_or_create_dai_wallet(user_id, is_new=False):
     """
     Make new user wallet and related objects if not exists
     """
@@ -38,70 +38,70 @@ def get_or_create_xdai_wallet(user_id, is_new=False):
 
     user_wallet = UserWallet.objects.filter(
         user_id=user_id,
-        currency=XDAI,
-        blockchain_currency=XDAI,
+        currency=DAI,
+        blockchain_currency=DAI,
     ).order_by('-id').first()
 
     if not is_new and user_wallet is not None:
         return user_wallet
 
-    address, encrypted_key = create_xdai_address()
+    address, encrypted_key = create_dai_address()
 
     user_wallet = UserWallet.objects.create(
         user_id=user_id,
-        currency=XDAI,
+        currency=DAI,
         address=address,
         private_key=encrypted_key,
-        blockchain_currency=XDAI,
+        blockchain_currency=DAI,
     )
 
     return user_wallet
 
 
 @transaction.atomic
-def get_or_create_erc20_xdai_wallet(user_id, token_currency, is_new=False):
+def get_or_create_erc20_dai_wallet(user_id, token_currency, is_new=False):
     from core.models.cryptocoins import UserWallet
 
-    erc20_xdai_wallet = UserWallet.objects.filter(
+    erc20_dai_wallet = UserWallet.objects.filter(
         user_id=user_id,
         currency=token_currency,
-        blockchain_currency=XDAI,
+        blockchain_currency=DAI,
     ).order_by('-id').first()
 
-    if not is_new and erc20_xdai_wallet is not None:
-        return erc20_xdai_wallet
+    if not is_new and erc20_dai_wallet is not None:
+        return erc20_dai_wallet
 
-    address, encrypted_key = create_xdai_address()
+    address, encrypted_key = create_dai_address()
 
-    erc20_xdai_wallet = UserWallet.objects.create(
+    erc20_dai_wallet = UserWallet.objects.create(
         user_id=user_id,
         address=address,
         private_key=encrypted_key,
         currency=token_currency,
-        blockchain_currency=XDAI,
+        blockchain_currency=DAI,
     )
 
-    return erc20_xdai_wallet
+    return erc20_dai_wallet
 
 
-def is_valid_xdai_address(address):
+def is_valid_dai_address(address):
     return Web3.is_address(address)
 
 
-def xdai_wallet_creation_wrapper(user_id, is_new=False, **kwargs):
+def dai_wallet_creation_wrapper(user_id, is_new=False, **kwargs):
     from core.models.cryptocoins import UserWallet
 
-    wallet = get_or_create_xdai_wallet(
+    wallet = get_or_create_dai_wallet(
         user_id,
         is_new=is_new,
     )
     return UserWallet.objects.filter(id=wallet.id)
 
 
-def erc20_xdai_wallet_creation_wrapper(user_id, currency, is_new=False, **kwargs):
+def erc20_dai_wallet_creation_wrapper(user_id, currency, is_new=False, **kwargs):
     from core.models.cryptocoins import UserWallet
 
-    wallet = get_or_create_erc20_xdai_wallet(
+    wallet = get_or_create_erc20_dai_wallet(
         user_id,
         token_currency=currency,
         is_new=is_new,

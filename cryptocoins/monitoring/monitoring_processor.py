@@ -13,7 +13,7 @@ from cryptocoins.monitoring.monitors.core_monitor import CoreMonitor
 from cryptocoins.monitoring.monitors.polygon_monitor import PolygonMonitor
 from cryptocoins.monitoring.monitors.fuse_monitor import FuseMonitor
 from cryptocoins.monitoring.monitors.ftm_monitor import FtmMonitor
-from cryptocoins.monitoring.monitors.xdai_monitor import XdaiMonitor
+from cryptocoins.monitoring.monitors.dai_monitor import DaiMonitor
 from cryptocoins.monitoring.monitors.etc_monitor import EtcMonitor
 
 log = logging.getLogger(__name__)
@@ -29,7 +29,7 @@ MONITORS = {
     'CORE': CoreMonitor,
     'FUSE': FuseMonitor,
     'FTM': FtmMonitor,
-    'XDAI': XdaiMonitor,
+    'DAI': DaiMonitor,
     'MATIC': PolygonMonitor,
     'USDTTRX': UsdtTrxMonitor,
     'USDTETH': UsdtEthMonitor,

@@ -1,7 +1,7 @@
 from admin_rest import restful_admin as api_admin
 from admin_rest.mixins import ReadOnlyMixin
 from admin_rest.restful_admin import DefaultApiAdmin
-from core.consts.currencies import BEP20_CURRENCIES, ERC20_MATIC_CURRENCIES, ERC20_WON_CURRENCIES, ERC20_CELO_CURRENCIES, ERC20_CORE_CURRENCIES, ERC20_FUSE_CURRENCIES, ERC20_AVAX_CURRENCIES,ERC20_ETC_CURRENCIES, ERC20_FTM_CURRENCIES,ERC20_XDAI_CURRENCIES
+from core.consts.currencies import BEP20_CURRENCIES, ERC20_MATIC_CURRENCIES, ERC20_WON_CURRENCIES, ERC20_CELO_CURRENCIES, ERC20_CORE_CURRENCIES, ERC20_FUSE_CURRENCIES, ERC20_AVAX_CURRENCIES,ERC20_ETC_CURRENCIES, ERC20_FTM_CURRENCIES,ERC20_DAI_CURRENCIES
 from core.consts.currencies import ERC20_CURRENCIES
 from core.consts.currencies import TRC20_CURRENCIES
 from core.models import UserWallet
@@ -18,7 +18,7 @@ from cryptocoins.coins.avax import AVAX_CURRENCY
 from cryptocoins.coins.trx import TRX_CURRENCY
 from cryptocoins.coins.etc import ETC_CURRENCY
 from cryptocoins.coins.ftm import FTM_CURRENCY
-from cryptocoins.coins.xdai import XDAI_CURRENCY
+from cryptocoins.coins.dai import DAI_CURRENCY
 from cryptocoins.models import ScoringSettings
 from cryptocoins.models import TransactionInputScore
 from cryptocoins.models.proxy import BNBWithdrawalApprove, MaticWithdrawalApprove
@@ -32,7 +32,7 @@ from cryptocoins.models.proxy import FuseWithdrawalApprove
 from cryptocoins.models.proxy import AvaxWithdrawalApprove
 from cryptocoins.models.proxy import EtcWithdrawalApprove
 from cryptocoins.models.proxy import FtmWithdrawalApprove
-from cryptocoins.models.proxy import XdaiWithdrawalApprove
+from cryptocoins.models.proxy import DaiWithdrawalApprove
  
 from cryptocoins.serializers import BNBKeySerializer
 from cryptocoins.serializers import BTCKeySerializer
@@ -46,7 +46,7 @@ from cryptocoins.serializers import FuseKeySerializer
 from cryptocoins.serializers import AvaxKeySerializer
 from cryptocoins.serializers import EtcKeySerializer
 from cryptocoins.serializers import FtmKeySerializer
-from cryptocoins.serializers import XdaiKeySerializer
+from cryptocoins.serializers import DaiKeySerializer
  
 from cryptocoins.tasks.evm import process_payouts_task
 
@@ -268,20 +268,20 @@ class FtmWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
 
     process.short_description = 'Process withdrawals'
 
-@api_admin.register(XdaiWithdrawalApprove)
-class XdaiWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
+@api_admin.register(DaiWithdrawalApprove)
+class DaiWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
     def get_queryset(self):
         return get_withdrawal_requests_to_process(
-            [XDAI_CURRENCY, *ERC20_XDAI_CURRENCIES],
-            blockchain_currency='XDAI'
+            [DAI_CURRENCY, *ERC20_DAI_CURRENCIES],
+            blockchain_currency='DAI'
         )
 
     @api_admin.action(permissions=True)
     def process(self, request, queryset):
-        serializer = XdaiKeySerializer(data=request.data)
+        serializer = DaiKeySerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             password = request.data.get('key')
-            process_payouts_task.apply_async(['XDAI', password, ], queue='xdai_payouts')
+            process_payouts_task.apply_async(['DAI', password, ], queue='dai_payouts')
 
     process.short_description = 'Process withdrawals'
 

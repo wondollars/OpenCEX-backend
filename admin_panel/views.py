@@ -6,8 +6,8 @@ from django.db.transaction import atomic
 from django.shortcuts import render, redirect
 
 from admin_panel.forms import BtcApproveAdminForm, EthApproveAdminForm, MakeTopUpForm, TrxApproveAdminForm, \
-    BnbApproveAdminForm, MaticApproveAdminForm, WonApproveAdminForm, CeloApproveAdminForm, CoreApproveAdminForm, FuseApproveAdminForm, AvaxApproveAdminForm, EtcApproveAdminForm, FtmApproveAdminForm, XdaiApproveAdminForm
-from core.consts.currencies import BEP20_CURRENCIES, TRC20_CURRENCIES, ERC20_CURRENCIES, ERC20_MATIC_CURRENCIES, ERC20_WON_CURRENCIES, ERC20_CELO_CURRENCIES, ERC20_FUSE_CURRENCIES, ERC20_CORE_CURRENCIES, ERC20_AVAX_CURRENCIES, ERC20_ETC_CURRENCIES, ERC20_FTM_CURRENCIES,ERC20_XDAI_CURRENCIES
+    BnbApproveAdminForm, MaticApproveAdminForm, WonApproveAdminForm, CeloApproveAdminForm, CoreApproveAdminForm, FuseApproveAdminForm, AvaxApproveAdminForm, EtcApproveAdminForm, FtmApproveAdminForm, DaiApproveAdminForm
+from core.consts.currencies import BEP20_CURRENCIES, TRC20_CURRENCIES, ERC20_CURRENCIES, ERC20_MATIC_CURRENCIES, ERC20_WON_CURRENCIES, ERC20_CELO_CURRENCIES, ERC20_FUSE_CURRENCIES, ERC20_CORE_CURRENCIES, ERC20_AVAX_CURRENCIES, ERC20_ETC_CURRENCIES, ERC20_FTM_CURRENCIES,ERC20_DAI_CURRENCIES
 from core.models import Transaction
 from core.models.inouts.transaction import REASON_MANUAL_TOPUP
 from core.utils.wallet_history import create_or_update_wallet_history_item_from_transaction
@@ -24,7 +24,7 @@ from cryptocoins.coins.avax import AVAX_CURRENCY
 from cryptocoins.coins.trx import TRX_CURRENCY
 from cryptocoins.coins.etc import ETC_CURRENCY
 from cryptocoins.coins.ftm import FTM_CURRENCY
-from cryptocoins.coins.xdai import XDAI_CURRENCY
+from cryptocoins.coins.dai import DAI_CURRENCY
 from cryptocoins.tasks.evm import process_payouts_task
 
 
@@ -414,23 +414,23 @@ def admin_ftm_withdrawal_request_approve(request):
             {'label': 'details', 'param': 'data.destination'},
         ]
     })
-def admin_xdai_withdrawal_request_approve(request):
-    currencies = [XDAI_CURRENCY] + list(ERC20_XDAI_CURRENCIES)
-    withdrawal_requests = get_withdrawal_requests_to_process(currencies, blockchain_currency='XDAI')
+def admin_dai_withdrawal_request_approve(request):
+    currencies = [DAI_CURRENCY] + list(ERC20_DAI_CURRENCIES)
+    withdrawal_requests = get_withdrawal_requests_to_process(currencies, blockchain_currency='DAI')
 
     if request.method == 'POST':
-        form = XdaiApproveAdminForm(request.POST)
+        form = DaiApproveAdminForm(request.POST)
 
         try:
             if form.is_valid():
                 password = form.cleaned_data.get('key')
-                process_payouts_task.apply_async(['XDAI', password, ], queue='xdai_payouts')
+                process_payouts_task.apply_async(['DAI', password, ], queue='dai_payouts')
                 messages.success(request, 'Withdrawals in processing')
-                return redirect('admin_withdrawal_request_approve_xdai')  # need for clear post data
+                return redirect('admin_withdrawal_request_approve_dai')  # need for clear post data
         except Exception as e:  # all messages and errors to admin message
             messages.error(request, e)
     else:
-        form = XdaiApproveAdminForm()
+        form = DaiApproveAdminForm()
 
     return render(request, 'admin/withdrawal/request_approve_form.html', context={
         'form': form,

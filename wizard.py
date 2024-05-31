@@ -46,10 +46,16 @@ from cryptocoins.coins.core import CORE
 from cryptocoins.coins.avax import AVAX
 from cryptocoins.coins.etc import ETC
 from cryptocoins.coins.ftm import FTM
-from cryptocoins.coins.xdai import XDAI
+from cryptocoins.coins.dai import DAI
 
 from cryptocoins.coins.doge import DOGE
 from cryptocoins.coins.ton import TON
+
+from cryptocoins.coins.pepe import PEPE
+from cryptocoins.coins.babydoge import BABYDOGE
+from cryptocoins.coins.shib import SHIB
+from cryptocoins.coins.floki import FLOKI
+from cryptocoins.coins.meme import MEME
 
 from cryptocoins.utils.btc import generate_btc_multisig_keeper
 
@@ -74,7 +80,7 @@ def main():
     IS_AVAX = env('COMMON_TASKS_AVAX', default=True, cast=bool)
     IS_ETC = env('COMMON_TASKS_ETC', default=True, cast=bool)
     IS_FTM = env('COMMON_TASKS_FTM', default=True, cast=bool)
-    IS_XDAI = env('COMMON_TASKS_XDAI', default=True, cast=bool)
+    IS_DAI = env('COMMON_TASKS_DAI', default=True, cast=bool)
 
     coin_list = [
         ETH,
@@ -90,9 +96,14 @@ def main():
         AVAX,
         ETC,
         FTM,
-        XDAI,
+        DAI,
         DOGE,
         TON,
+        PEPE,
+        BABYDOGE,
+        SHIB,
+        FLOKI,
+        MEME,
     ]
     coin_info = {
         ETH: [
@@ -720,10 +731,10 @@ def main():
                 },
             },
         ],
-        XDAI: [
+        DAI: [
             {
                 'model': CoinInfo,
-                'find': {'currency': XDAI},
+                'find': {'currency': DAI},
                 'attributes': {
                     'name': 'xDai Coin',
                     'decimals': 8,
@@ -740,7 +751,7 @@ def main():
             },
             {
                 'model': FeesAndLimits,
-                'find': {'currency': XDAI},
+                'find': {'currency': DAI},
                 'attributes': {
                     'limits_deposit_min': 0.00010000,
                     'limits_deposit_max': 10000000.00000000,
@@ -762,9 +773,9 @@ def main():
             },
             {
                 'model': WithdrawalFee,
-                'find': {'currency': XDAI},
+                'find': {'currency': DAI},
                 'attributes': {
-                    'blockchain_currency': XDAI,
+                    'blockchain_currency': DAI,
                     'address_fee': 0.00100000
                 },
             },
@@ -965,6 +976,322 @@ def main():
                 },
             },
         ],
+        PEPE: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': PEPE},
+                'attributes': {
+                    'name': 'PEPE',
+                    'decimals': 10,
+                    'index': 39,
+                    'links': {
+                        "cmc": {
+                            "href": "https://coinmarketcap.com/currencies/pepe/",
+                            "title": "CoinMarketCap"
+                        },
+                        "exp": {
+                            "href": "https://etherscan.io/",
+                            "title": "Explorer"
+                        },
+                        "official": {
+                            "href": "https://www.pepe.vip/",
+                            "title": "PEPE"
+                        }
+                    },
+                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/24478.png',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': PEPE},
+                'attributes': {
+                    'limits_deposit_min': 1.00000000,
+                    'limits_deposit_max': 1000000.00000000,
+                    'limits_withdrawal_min': 2.00000000,
+                    'limits_withdrawal_max': 10000.00000000,
+                    'limits_order_min': 1.00000000,
+                    'limits_order_max': 100000.00000000,
+                    'limits_code_max': 100000.00000000,
+                    'limits_accumulation_min': 1.00000000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                },
+            },
+            # {
+            #     'model': WithdrawalFee,
+            #     'find': {'currency': USDT, 'blockchain_currency': ETH},
+            #     'attributes': {
+            #         'blockchain_currency': ETH,
+            #         'address_fee': 5.00000000
+            #     },
+            # },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': PEPE, 'blockchain_currency': ETH},
+                'attributes': {
+                    'blockchain_currency': ETH,
+                    'address_fee': 0.00010000
+                },
+            },
+             
+        ],
+        SHIB: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': SHIB},
+                'attributes': {
+                    'name': 'Shiba Inu',
+                    'decimals': 10,
+                    'index': 43,
+                    'links': {
+                        "cmc": {
+                            "href": "https://coinmarketcap.com/currencies/shiba-inu/",
+                            "title": "CoinMarketCap"
+                        },
+                        "exp": {
+                            "href": "https://etherscan.io/",
+                            "title": "Explorer"
+                        },
+                        "official": {
+                            "href": "https://shibatoken.com/",
+                            "title": "Shiba Inu"
+                        }
+                    },
+                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/74.png',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': SHIB},
+                'attributes': {
+                    'limits_deposit_min': 1.00000000,
+                    'limits_deposit_max': 1000000.00000000,
+                    'limits_withdrawal_min': 2.00000000,
+                    'limits_withdrawal_max': 10000.00000000,
+                    'limits_order_min': 1.00000000,
+                    'limits_order_max': 100000.00000000,
+                    'limits_code_max': 100000.00000000,
+                    'limits_accumulation_min': 1.00000000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                },
+            },
+            # {
+            #     'model': WithdrawalFee,
+            #     'find': {'currency': USDT, 'blockchain_currency': ETH},
+            #     'attributes': {
+            #         'blockchain_currency': ETH,
+            #         'address_fee': 5.00000000
+            #     },
+            # },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': SHIB, 'blockchain_currency': ETH},
+                'attributes': {
+                    'blockchain_currency': ETH,
+                    'address_fee': 0.00010000
+                },
+            },
+             
+        ],
+        FLOKI: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': FLOKI},
+                'attributes': {
+                    'name': 'FLOKI',
+                    'decimals': 10,
+                    'index': 33,
+                    'links': {
+                        "cmc": {
+                            "href": "https://coinmarketcap.com/currencies/floki-inu/",
+                            "title": "CoinMarketCap"
+                        },
+                        "exp": {
+                            "href": "https://etherscan.io/",
+                            "title": "Explorer"
+                        },
+                        "official": {
+                            "href": "https://floki.com/",
+                            "title": "FLOKI"
+                        }
+                    },
+                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/10804.png',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': FLOKI},
+                'attributes': {
+                    'limits_deposit_min': 1.00000000,
+                    'limits_deposit_max': 1000000.00000000,
+                    'limits_withdrawal_min': 2.00000000,
+                    'limits_withdrawal_max': 10000.00000000,
+                    'limits_order_min': 1.00000000,
+                    'limits_order_max': 100000.00000000,
+                    'limits_code_max': 100000.00000000,
+                    'limits_accumulation_min': 1.00000000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                },
+            },
+            # {
+            #     'model': WithdrawalFee,
+            #     'find': {'currency': USDT, 'blockchain_currency': ETH},
+            #     'attributes': {
+            #         'blockchain_currency': ETH,
+            #         'address_fee': 5.00000000
+            #     },
+            # },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': FLOKI, 'blockchain_currency': ETH},
+                'attributes': {
+                    'blockchain_currency': ETH,
+                    'address_fee': 0.00010000
+                },
+            },
+             
+        ],
+        MEME: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': MEME},
+                'attributes': {
+                    'name': 'MEME',
+                    'decimals': 10,
+                    'index': 33,
+                    'links': {
+                        "cmc": {
+                            "href": "https://coinmarketcap.com/currencies/meme/",
+                            "title": "CoinMarketCap"
+                        },
+                        "exp": {
+                            "href": "https://etherscan.io/",
+                            "title": "Explorer"
+                        },
+                        "official": {
+                            "href": "https://memecoin.org/",
+                            "title": "MEME"
+                        }
+                    },
+                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/28301.png',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': MEME},
+                'attributes': {
+                    'limits_deposit_min': 1.00000000,
+                    'limits_deposit_max': 1000000.00000000,
+                    'limits_withdrawal_min': 2.00000000,
+                    'limits_withdrawal_max': 10000.00000000,
+                    'limits_order_min': 1.00000000,
+                    'limits_order_max': 100000.00000000,
+                    'limits_code_max': 100000.00000000,
+                    'limits_accumulation_min': 1.00000000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                },
+            },
+            # {
+            #     'model': WithdrawalFee,
+            #     'find': {'currency': USDT, 'blockchain_currency': ETH},
+            #     'attributes': {
+            #         'blockchain_currency': ETH,
+            #         'address_fee': 5.00000000
+            #     },
+            # },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': MEME, 'blockchain_currency': ETH},
+                'attributes': {
+                    'blockchain_currency': ETH,
+                    'address_fee': 0.00010000
+                },
+            },
+             
+        ],
+        BABYDOGE: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': BABYDOGE},
+                'attributes': {
+                    'name': 'Baby Doge Coin',
+                    'decimals': 10,
+                    'index': 33,
+                    'links': {
+                        "cmc": {
+                            "href": "https://coinmarketcap.com/currencies/baby-doge-coin/",
+                            "title": "CoinMarketCap"
+                        },
+                        "exp": {
+                            "href": "https://etherscan.io/",
+                            "title": "Explorer"
+                        },
+                        "official": {
+                            "href": "https://www.babydoge.com/",
+                            "title": "Baby Doge Coin"
+                        }
+                    },
+                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/28301.png',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': BABYDOGE},
+                'attributes': {
+                    'limits_deposit_min': 1.00000000,
+                    'limits_deposit_max': 1000000.00000000,
+                    'limits_withdrawal_min': 2.00000000,
+                    'limits_withdrawal_max': 10000.00000000,
+                    'limits_order_min': 1.00000000,
+                    'limits_order_max': 100000.00000000,
+                    'limits_code_max': 100000.00000000,
+                    'limits_accumulation_min': 1.00000000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                },
+            },
+            # {
+            #     'model': WithdrawalFee,
+            #     'find': {'currency': USDT, 'blockchain_currency': ETH},
+            #     'attributes': {
+            #         'blockchain_currency': ETH,
+            #         'address_fee': 5.00000000
+            #     },
+            # },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': BABYDOGE, 'blockchain_currency': ETH},
+                'attributes': {
+                    'blockchain_currency': ETH,
+                    'address_fee': 0.00010000
+                },
+            },
+             
+        ],
+         
     }
 
     if not IS_BSC:
@@ -1121,11 +1448,11 @@ def main():
             },
         )
 
-    if not IS_XDAI:
+    if not IS_DAI:
         coin_info[TRX].append(
             {
                 'model': DisabledCoin,
-                'find': {'currency': XDAI},
+                'find': {'currency': DAI},
                 'attributes': {
                     'disable_all': True,
                     'disable_stack': True,
@@ -1195,9 +1522,14 @@ def main():
                 AVAX: 100_000,
                 ETC: 1000_000,
                 FTM: 1000_000_000,
-                XDAI: 1000_000_000_000,
+                DAI: 1000_000_000_000,
                 DOGE: 1000_000_000_000,
                 TON: 1000_000,
+                PEPE: 1000_000_000_000,
+                SHIB: 1000_000_000_000,
+                FLOKI: 1000_000_000_000,
+                MEME: 1000_000_000_000,
+                BABYDOGE: 1000_000_000_000,
             }
 
             for currency_id, amount in topup_list.items():
@@ -1222,9 +1554,14 @@ def main():
             (17, 'CELO-USDT'),
             (18, 'ETC-USDT'),
             (19, 'FTM-USDT'),
-            (20, 'XDAI-USDT'),
+            (20, 'DAI-USDT'),
             (21, 'DOGE-USDT'),
             (22, 'TON-USDT'),
+            (24, 'PEPE-USDT'),
+            (24, 'SHIB-USDT'),
+            (25, 'FLOKI-USDT'),
+            (26, 'MEME-USDT'),
+            (27, 'BABYDOGE-USDT'),
 
         ]
 
@@ -1235,6 +1572,142 @@ def main():
 
         # create pairs
         pair_list = {
+            Pair.get('PEPE-USDT'): {
+                PairSettings: {
+                    'is_enabled': True,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0,
+                    'deviation': 0.99000000,
+                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                },
+                BotConfig: {
+                    'name': 'PEPE-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'instant_match': True,
+                    'ohlc_period': 5,
+                    'loop_period_random': True,
+                    'min_period': 5,
+                    'max_period': 10,
+                    'ext_price_delta': 0,
+                    'min_order_quantity': 1,
+                    'max_order_quantity': 10000000,
+                    'low_orders_max_match_size': 0.0029,
+                    'low_orders_spread_size': 200,
+                    'low_orders_min_order_size': 0.0003,
+                    'enabled': True,
+                }
+            },
+            Pair.get('SHIB-USDT'): {
+                PairSettings: {
+                    'is_enabled': True,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0,
+                    'deviation': 0.99000000,
+                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                },
+                BotConfig: {
+                    'name': 'SHIB-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'instant_match': True,
+                    'ohlc_period': 5,
+                    'loop_period_random': True,
+                    'min_period': 5,
+                    'max_period': 10,
+                    'ext_price_delta': 0,
+                    'min_order_quantity': 1,
+                    'max_order_quantity': 10000000,
+                    'low_orders_max_match_size': 0.0029,
+                    'low_orders_spread_size': 200,
+                    'low_orders_min_order_size': 0.0003,
+                    'enabled': True,
+                }
+            },
+             
+            Pair.get('FLOKI-USDT'): {
+                PairSettings: {
+                    'is_enabled': True,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0,
+                    'deviation': 0.99000000,
+                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                },
+                BotConfig: {
+                    'name': 'FLOKI-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'instant_match': True,
+                    'ohlc_period': 5,
+                    'loop_period_random': True,
+                    'min_period': 5,
+                    'max_period': 10,
+                    'ext_price_delta': 0,
+                    'min_order_quantity': 1,
+                    'max_order_quantity': 10000000,
+                    'low_orders_max_match_size': 0.0029,
+                    'low_orders_spread_size': 200,
+                    'low_orders_min_order_size': 0.0003,
+                    'enabled': True,
+                }
+            },
+            Pair.get('MEME-USDT'): {
+                PairSettings: {
+                    'is_enabled': True,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0,
+                    'deviation': 0.99000000,
+                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                },
+                BotConfig: {
+                    'name': 'MEME-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'instant_match': True,
+                    'ohlc_period': 5,
+                    'loop_period_random': True,
+                    'min_period': 5,
+                    'max_period': 10,
+                    'ext_price_delta': 0,
+                    'min_order_quantity': 1,
+                    'max_order_quantity': 10000000,
+                    'low_orders_max_match_size': 0.0029,
+                    'low_orders_spread_size': 200,
+                    'low_orders_min_order_size': 0.0003,
+                    'enabled': True,
+                }
+            },
+             Pair.get('BABYDOGE-USDT'): {
+                PairSettings: {
+                    'is_enabled': True,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0,
+                    'deviation': 0.99000000,
+                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                },
+                BotConfig: {
+                    'name': 'BABYDOGE-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'instant_match': True,
+                    'ohlc_period': 5,
+                    'loop_period_random': True,
+                    'min_period': 5,
+                    'max_period': 10,
+                    'ext_price_delta': 0,
+                    'min_order_quantity': 1,
+                    'max_order_quantity': 10000000,
+                    'low_orders_max_match_size': 0.0029,
+                    'low_orders_spread_size': 200,
+                    'low_orders_min_order_size': 0.0003,
+                    'enabled': True,
+                }
+            },
             Pair.get('TON-USDT'): {
                 PairSettings: {
                     'is_enabled': True,
@@ -1346,7 +1819,7 @@ def main():
                 }
             },
 
-            Pair.get('XDAI-USDT'): {
+            Pair.get('DAI-USDT'): {
                 PairSettings: {
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
@@ -1356,7 +1829,7 @@ def main():
                     'precisions': ['100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
-                    'name': 'XDAI-USDT',
+                    'name': 'DAI-USDT',
                     'user': bot,
                     'strategy': BotConfig.TRADE_STRATEGY_DRAW,
                     'instant_match': True,
@@ -1734,7 +2207,7 @@ def main():
             to_write.append('='*10)
 
         for currency_id in coin_list:
-            if currency_id in [USDT, BTC, TON, DOGE]:
+            if currency_id in [USDT, BTC, TON, DOGE,PEPE,SHIB,FLOKI,MEME,BABYDOGE]:
                 continue
 
             currency = Currency.get(currency_id)

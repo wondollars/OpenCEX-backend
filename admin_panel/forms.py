@@ -15,6 +15,9 @@ from cryptocoins.coins.celo.celo import celo_manager
 from cryptocoins.coins.core.core import core_manager
 from cryptocoins.coins.fuse.fuse import fuse_manager
 from cryptocoins.coins.avax.avax import avax_manager
+from cryptocoins.coins.etc.etc import etc_manager
+from cryptocoins.coins.ftm.ftm import ftm_manager
+from cryptocoins.coins.dai.dai import dai_manager
 from lib.cipher import AESCoderDecoder
 
 CryptoBitcoin = Bitcoin()
@@ -138,17 +141,17 @@ class AvaxApproveAdminForm(BaseApproveAdminForm):
 class EtcApproveAdminForm(BaseApproveAdminForm):
 
     def get_encrypted_string(self):
-        return avax_manager.get_keeper_wallet().private_key
+        return etc_manager.get_keeper_wallet().private_key
     
 class FtmApproveAdminForm(BaseApproveAdminForm):
 
     def get_encrypted_string(self):
-        return avax_manager.get_keeper_wallet().private_key
+        return ftm_manager.get_keeper_wallet().private_key
 
-class XdaiApproveAdminForm(BaseApproveAdminForm):
+class DaiApproveAdminForm(BaseApproveAdminForm):
 
     def get_encrypted_string(self):
-        return avax_manager.get_keeper_wallet().private_key
+        return dai_manager.get_keeper_wallet().private_key
 
 
 

@@ -1,0 +1,3 @@
+DAI = 38
+CODE = 'DAI'
+DECIMALS = 18

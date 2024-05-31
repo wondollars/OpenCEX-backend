@@ -4,9 +4,9 @@ import logging
 import cachetools.func
 from django.conf import settings
 
-from core.consts.currencies import ERC20_XDAI_CURRENCIES
+from core.consts.currencies import ERC20_DAI_CURRENCIES
 from core.currency import Currency
-from cryptocoins.coins.xdai import XDAI_CURRENCY, w3
+from cryptocoins.coins.dai import DAI_CURRENCY, w3
 from cryptocoins.evm.manager import register_evm_handler
 from cryptocoins.interfaces.common import GasPriceCache
 from cryptocoins.interfaces.web3_commons import Web3Manager, Web3Token, Web3Transaction, Web3CommonHandler
@@ -20,54 +20,54 @@ DEFAULT_TRANSFER_GAS_LIMIT = 100_000
 DEFAULT_TRANSFER_GAS_MULTIPLIER = 2
 
 
-class XdaiTransaction(Web3Transaction):
+class DaiTransaction(Web3Transaction):
     pass
 
 
-class XdaiGasPriceCache(GasPriceCache):
-    GAS_PRICE_UPDATE_PERIOD = settings.XDAI_GAS_PRICE_UPDATE_PERIOD
-    GAS_PRICE_COEFFICIENT = settings.XDAI_GAS_PRICE_COEFFICIENT
-    MIN_GAS_PRICE = settings.XDAI_MIN_GAS_PRICE
-    MAX_GAS_PRICE = settings.XDAI_MAX_GAS_PRICE
+class DaiGasPriceCache(GasPriceCache):
+    GAS_PRICE_UPDATE_PERIOD = settings.DAI_GAS_PRICE_UPDATE_PERIOD
+    GAS_PRICE_COEFFICIENT = settings.DAI_GAS_PRICE_COEFFICIENT
+    MIN_GAS_PRICE = settings.DAI_MIN_GAS_PRICE
+    MAX_GAS_PRICE = settings.DAI_MAX_GAS_PRICE
 
     @cachetools.func.ttl_cache(ttl=GAS_PRICE_UPDATE_PERIOD)
     def get_price(self):
         return self.web3.eth.gas_price
 
 
-class ERC20XDAIToken(Web3Token):
+class ERC20DAIToken(Web3Token):
     ABI = ERC20_ABI
-    BLOCKCHAIN_CURRENCY: Currency = XDAI_CURRENCY
-    CHAIN_ID = settings.XDAI_CHAIN_ID
+    BLOCKCHAIN_CURRENCY: Currency = DAI_CURRENCY
+    CHAIN_ID = settings.DAI_CHAIN_ID
 
 
-class XdaiManager(Web3Manager):
-    GAS_CURRENCY = settings.XDAI_TX_GAS
-    CURRENCY: Currency = XDAI_CURRENCY
-    TOKEN_CURRENCIES = ERC20_XDAI_CURRENCIES
-    TOKEN_CLASS = ERC20XDAIToken
-    GAS_PRICE_CACHE_CLASS = XdaiGasPriceCache
-    CHAIN_ID = settings.XDAI_CHAIN_ID
-    MIN_BALANCE_TO_ACCUMULATE_DUST = to_decimal(env('XDAI_MIN_BALANCE_TO_ACCUMULATE_DUST', default=0.01))
-    DEFAULT_RECEIPT_WAIT_TIMEOUT = env('XDAI_DEFAULT_RECEIPT_WAIT_TIMEOUT', default=5*60)
-    COLD_WALLET_ADDRESS = settings.XDAI_SAFE_ADDR
+class DaiManager(Web3Manager):
+    GAS_CURRENCY = settings.DAI_TX_GAS
+    CURRENCY: Currency = DAI_CURRENCY
+    TOKEN_CURRENCIES = ERC20_DAI_CURRENCIES
+    TOKEN_CLASS = ERC20DAIToken
+    GAS_PRICE_CACHE_CLASS = DaiGasPriceCache
+    CHAIN_ID = settings.DAI_CHAIN_ID
+    MIN_BALANCE_TO_ACCUMULATE_DUST = to_decimal(env('DAI_MIN_BALANCE_TO_ACCUMULATE_DUST', default=0.01))
+    DEFAULT_RECEIPT_WAIT_TIMEOUT = env('DAI_DEFAULT_RECEIPT_WAIT_TIMEOUT', default=5*60)
+    COLD_WALLET_ADDRESS = settings.DAI_SAFE_ADDR
 
 
-xdai_manager: XdaiManager = XdaiManager(client=w3)
+dai_manager: DaiManager = DaiManager(client=w3)
 
 
 @register_evm_handler
-class XdaiHandler(Web3CommonHandler):
-    CURRENCY = XDAI_CURRENCY
-    COIN_MANAGER = xdai_manager
-    TOKEN_CURRENCIES = xdai_manager.registered_token_currencies
-    TOKEN_CONTRACT_ADDRESSES = xdai_manager.registered_token_addresses
-    TRANSACTION_CLASS = XdaiTransaction
-    CHAIN_ID = settings.XDAI_CHAIN_ID
-    BLOCK_GENERATION_TIME = settings.XDAI_BLOCK_GENERATION_TIME
-    IS_ENABLED = env('COMMON_TASKS_XDAI', default=True)
+class DaiHandler(Web3CommonHandler):
+    CURRENCY = DAI_CURRENCY
+    COIN_MANAGER = dai_manager
+    TOKEN_CURRENCIES = dai_manager.registered_token_currencies
+    TOKEN_CONTRACT_ADDRESSES = dai_manager.registered_token_addresses
+    TRANSACTION_CLASS = DaiTransaction
+    CHAIN_ID = settings.DAI_CHAIN_ID
+    BLOCK_GENERATION_TIME = settings.DAI_BLOCK_GENERATION_TIME
+    IS_ENABLED = env('COMMON_TASKS_DAI', default=True)
     W3_CLIENT = w3
-    ACCUMULATION_PERIOD = settings.XDAI_ACCUMULATION_PERIOD
+    ACCUMULATION_PERIOD = settings.DAI_ACCUMULATION_PERIOD
 
     if IS_ENABLED:
-        SAFE_ADDR = w3.to_checksum_address(settings.XDAI_SAFE_ADDR)
+        SAFE_ADDR = w3.to_checksum_address(settings.DAI_SAFE_ADDR)

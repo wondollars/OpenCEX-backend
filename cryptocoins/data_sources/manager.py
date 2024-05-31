@@ -39,10 +39,13 @@ class DataSourcesManager:
         for source in self.reserve_sources:
             try:
                 data = source.get_latest_prices()
-                all_data.update(data)
+                for pair, price in data.items():
+                    if pair not in all_data:
+                        all_data[pair] = price
             except Exception as e:
                 send_telegram_message(f'Datasource provider {source.NAME} error:\n{e}')
         return all_data
+
 
 
     def update_prices(self):
@@ -71,6 +74,7 @@ class DataSourcesManager:
                 continue
 
             new_price = main_source_data.get(pair)
+            reserve_price = reserve_source_data.get(pair)
             if new_price:
                 if not old_price:
                     new_data[pair] = new_price
@@ -79,12 +83,14 @@ class DataSourcesManager:
                 if calc_relative_percent_difference(old_price, new_price) < main_source.MAX_DEVIATION:
                     new_data[pair] = new_price
                 else:
-                    reserve_price = reserve_source_data.get(pair)
+                    # reserve_price = reserve_source_data.get(pair)
                     if reserve_price and calc_relative_percent_difference(new_price, reserve_price) < main_source.MAX_DEVIATION:
                         new_data[pair] = reserve_price
                     else:
                         send_telegram_message(f'{pair.code} price changes more than {main_source.MAX_DEVIATION}%.'
                                             f'\nCurrent price is {old_price}, new price: {new_price}')
+            elif reserve_price:
+                new_data[pair] = reserve_price
             else:
                 if PairSettings.is_alerts_enabled(pair):
                     send_telegram_message(f'{main_source.NAME} {pair.code} price is not available!')

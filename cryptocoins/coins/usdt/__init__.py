@@ -25,7 +25,7 @@ BLOCKCHAINS = {
     'WON': TokenParams(
         symbol=CODE,
         contract_address='0x30F9BcAf63A4A614afd250FE72ecd87d7856dec5',
-        decimal_places=18,
+        decimal_places=2,
     ),
 }
 USDT_CURRENCY = register_token(USDT, CODE, BLOCKCHAINS)

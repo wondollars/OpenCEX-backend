@@ -53,7 +53,7 @@ class FtmWithdrawalApprove(BaseWithdrawalRequest):
     class Meta:
         proxy = True
 
-class XdaiWithdrawalApprove(BaseWithdrawalRequest):
+class DaiWithdrawalApprove(BaseWithdrawalRequest):
     class Meta:
         proxy = True
  

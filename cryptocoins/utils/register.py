@@ -14,7 +14,7 @@ from core.consts.currencies import (
     ERC20_AVAX_CURRENCIES,
     ERC20_ETC_CURRENCIES,
     ERC20_FTM_CURRENCIES,
-    ERC20_XDAI_CURRENCIES,
+    ERC20_DAI_CURRENCIES,
 )
 from core.consts.currencies import ALL_TOKEN_CURRENCIES
 from core.consts.currencies import BEP20_CURRENCIES
@@ -192,16 +192,16 @@ def register_token(currency_id, currency_code, blockchains: Optional[Dict[str, T
 
             log.debug(f'Token {currency} registered as ERC20 FTM')
 
-        if 'XDAI' in blockchains:
-            from cryptocoins.coins.xdai.wallet import erc20_xdai_wallet_creation_wrapper, is_valid_xdai_address
+        if 'DAI' in blockchains:
+            from cryptocoins.coins.dai.wallet import erc20_dai_wallet_creation_wrapper, is_valid_dai_address
 
-            ERC20_XDAI_CURRENCIES.update({
-                currency: blockchains['XDAI']
+            ERC20_DAI_CURRENCIES.update({
+                currency: blockchains['DAI']
             })
-            wallet_creators['XDAI'] = erc20_xdai_wallet_creation_wrapper
-            address_validators['XDAI'] = is_valid_xdai_address
+            wallet_creators['DAI'] = erc20_dai_wallet_creation_wrapper
+            address_validators['DAI'] = is_valid_dai_address
 
-            log.debug(f'Token {currency} registered as ERC20 XDAI')
+            log.debug(f'Token {currency} registered as ERC20 DAI')
 
         CRYPTO_WALLET_CREATORS[currency] = wallet_creators
         CRYPTO_ADDRESS_VALIDATORS[currency] = address_validators
