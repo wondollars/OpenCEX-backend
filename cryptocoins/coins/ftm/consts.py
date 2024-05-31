@@ -1,3 +1,3 @@
-FTM = 36
+FTM = 37
 CODE = 'FTM'
 DECIMALS = 18
