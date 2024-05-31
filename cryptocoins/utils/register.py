@@ -12,6 +12,9 @@ from core.consts.currencies import (
     ERC20_CORE_CURRENCIES,
     ERC20_FUSE_CURRENCIES,
     ERC20_AVAX_CURRENCIES,
+    ERC20_ETC_CURRENCIES,
+    ERC20_FTM_CURRENCIES,
+    ERC20_XDAI_CURRENCIES,
 )
 from core.consts.currencies import ALL_TOKEN_CURRENCIES
 from core.consts.currencies import BEP20_CURRENCIES
@@ -166,6 +169,40 @@ def register_token(currency_id, currency_code, blockchains: Optional[Dict[str, T
             address_validators['AVAX'] = is_valid_avax_address
 
             log.debug(f'Token {currency} registered as ERC20 AVAX')
+        
+        if 'ETC' in blockchains:
+            from cryptocoins.coins.etc.wallet import erc20_etc_wallet_creation_wrapper, is_valid_etc_address
+
+            ERC20_ETC_CURRENCIES.update({
+                currency: blockchains['ETC']
+            })
+            wallet_creators['ETC'] = erc20_etc_wallet_creation_wrapper
+            address_validators['ETC'] = is_valid_etc_address
+
+            log.debug(f'Token {currency} registered as ERC20 ETC')
+
+        if 'FTM' in blockchains:
+            from cryptocoins.coins.ftm.wallet import erc20_ftm_wallet_creation_wrapper, is_valid_ftm_address
+
+            ERC20_FTM_CURRENCIES.update({
+                currency: blockchains['FTM']
+            })
+            wallet_creators['FTM'] = erc20_ftm_wallet_creation_wrapper
+            address_validators['FTM'] = is_valid_ftm_address
+
+            log.debug(f'Token {currency} registered as ERC20 FTM')
+
+        if 'XDAI' in blockchains:
+            from cryptocoins.coins.xdai.wallet import erc20_xdai_wallet_creation_wrapper, is_valid_xdai_address
+
+            ERC20_XDAI_CURRENCIES.update({
+                currency: blockchains['XDAI']
+            })
+            wallet_creators['XDAI'] = erc20_xdai_wallet_creation_wrapper
+            address_validators['XDAI'] = is_valid_xdai_address
+
+            log.debug(f'Token {currency} registered as ERC20 XDAI')
+
         CRYPTO_WALLET_CREATORS[currency] = wallet_creators
         CRYPTO_ADDRESS_VALIDATORS[currency] = address_validators
         currency.set_blockchain_list(list(blockchains))

@@ -134,4 +134,21 @@ class AvaxApproveAdminForm(BaseApproveAdminForm):
 
     def get_encrypted_string(self):
         return avax_manager.get_keeper_wallet().private_key
+    
+class EtcApproveAdminForm(BaseApproveAdminForm):
+
+    def get_encrypted_string(self):
+        return avax_manager.get_keeper_wallet().private_key
+    
+class FtmApproveAdminForm(BaseApproveAdminForm):
+
+    def get_encrypted_string(self):
+        return avax_manager.get_keeper_wallet().private_key
+
+class XdaiApproveAdminForm(BaseApproveAdminForm):
+
+    def get_encrypted_string(self):
+        return avax_manager.get_keeper_wallet().private_key
+
+
 

@@ -44,6 +44,10 @@ from cryptocoins.coins.celo import CELO
 from cryptocoins.coins.fuse import FUSE
 from cryptocoins.coins.core import CORE
 from cryptocoins.coins.avax import AVAX
+from cryptocoins.coins.etc import ETC
+from cryptocoins.coins.ftm import FTM
+from cryptocoins.coins.xdai import XDAI
+
 from cryptocoins.coins.doge import DOGE
 from cryptocoins.coins.ton import TON
 
@@ -68,6 +72,9 @@ def main():
     IS_CORE = env('COMMON_TASKS_CORE', default=True, cast=bool)
     IS_FUSE = env('COMMON_TASKS_FUSE', default=True, cast=bool)
     IS_AVAX = env('COMMON_TASKS_AVAX', default=True, cast=bool)
+    IS_ETC = env('COMMON_TASKS_ETC', default=True, cast=bool)
+    IS_FTM = env('COMMON_TASKS_FTM', default=True, cast=bool)
+    IS_XDAI = env('COMMON_TASKS_XDAI', default=True, cast=bool)
 
     coin_list = [
         ETH,
@@ -81,6 +88,9 @@ def main():
         CORE,
         FUSE,
         AVAX,
+        ETC,
+        FTM,
+        XDAI,
         DOGE,
         TON,
     ]
@@ -612,12 +622,159 @@ def main():
                 },
             },
         ],
+        ETC: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': ETC},
+                'attributes': {
+                    'name': 'Ethereum Classic Coin',
+                    'decimals': 8,
+                    'index': 35,
+                    'tx_explorer': 'https://etc.blockscout.com/tx/',
+                    'links': {
+                        "bt": {"href": "", "title": "BitcoinTalk"},
+                        "cmc": {"href": "https://coinmarketcap.com/currencies/ethereum-classic/", "title": "CoinMarketCap"},
+                        "exp": {"href": "", "title": "Explorer"},
+                        "official": {"href": "", "title": ""}
+                    },
+                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/1321.png',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': ETC},
+                'attributes': {
+                    'limits_deposit_min': 0.00010000,
+                    'limits_deposit_max': 10000000.00000000,
+                    'limits_withdrawal_min': 0.00010000,
+                    'limits_withdrawal_max': 10000000.00000000,
+                    'limits_order_min': 0.01000000,
+                    'limits_order_max': 100000000.00000000,
+                    'limits_code_max': 10000000.00000000,
+                    'limits_accumulation_min': 0.00010000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                    'limits_keeper_accumulation_balance': 100.00000000,
+                    'limits_accumulation_max_gas_price': 500.00000000,
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': ETC},
+                'attributes': {
+                    'blockchain_currency': ETC,
+                    'address_fee': 0.00100000
+                },
+            },
+        ],
+        FTM: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': FTM},
+                'attributes': {
+                    'name': 'Fantom Coin',
+                    'decimals': 8,
+                    'index': 28,
+                    'tx_explorer': 'https://ftmscan.com/tx/',
+                    'links': {
+                        "bt": {"href": "", "title": "BitcoinTalk"},
+                        "cmc": {"href": "https://coinmarketcap.com/currencies/fantom/", "title": "CoinMarketCap"},
+                        "exp": {"href": "", "title": "Explorer"},
+                        "official": {"href": "", "title": ""}
+                    },
+                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/3513.png',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': FTM},
+                'attributes': {
+                    'limits_deposit_min': 0.00010000,
+                    'limits_deposit_max': 10000000.00000000,
+                    'limits_withdrawal_min': 0.00010000,
+                    'limits_withdrawal_max': 10000000.00000000,
+                    'limits_order_min': 0.01000000,
+                    'limits_order_max': 100000000.00000000,
+                    'limits_code_max': 10000000.00000000,
+                    'limits_accumulation_min': 0.00010000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                    'limits_keeper_accumulation_balance': 100.00000000,
+                    'limits_accumulation_max_gas_price': 500.00000000,
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': FTM},
+                'attributes': {
+                    'blockchain_currency': FTM,
+                    'address_fee': 0.00100000
+                },
+            },
+        ],
+        XDAI: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': XDAI},
+                'attributes': {
+                    'name': 'xDai Coin',
+                    'decimals': 8,
+                    'index': 28,
+                    'tx_explorer': 'https://gnosis.blockscout.com/tx/',
+                    'links': {
+                        "bt": {"href": "", "title": "BitcoinTalk"},
+                        "cmc": {"href": "", "title": "CoinMarketCap"},
+                        "exp": {"href": "", "title": "Explorer"},
+                        "official": {"href": "", "title": ""}
+                    },
+                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/8635.png',
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': XDAI},
+                'attributes': {
+                    'limits_deposit_min': 0.00010000,
+                    'limits_deposit_max': 10000000.00000000,
+                    'limits_withdrawal_min': 0.00010000,
+                    'limits_withdrawal_max': 10000000.00000000,
+                    'limits_order_min': 0.01000000,
+                    'limits_order_max': 100000000.00000000,
+                    'limits_code_max': 10000000.00000000,
+                    'limits_accumulation_min': 0.00010000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                    'limits_keeper_accumulation_balance': 100.00000000,
+                    'limits_accumulation_max_gas_price': 500.00000000,
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': XDAI},
+                'attributes': {
+                    'blockchain_currency': XDAI,
+                    'address_fee': 0.00100000
+                },
+            },
+        ],
         CELO: [
             {
                 'model': CoinInfo,
                 'find': {'currency': CELO},
                 'attributes': {
-                    'name': 'CELO Coin',
+                    'name': 'Celo Coin',
                     'decimals': 8,
                     'index': 28,
                     'tx_explorer': 'https://celoscan.io/tx/',
@@ -933,6 +1090,53 @@ def main():
             },
         )
 
+    if not IS_ETC:
+        coin_info[TRX].append(
+            {
+                'model': DisabledCoin,
+                'find': {'currency': ETC},
+                'attributes': {
+                    'disable_all': True,
+                    'disable_stack': True,
+                    'disable_pairs': True,
+                    'disable_exchange': True,
+                    'disable_withdrawals': True,
+                    'disable_topups': True,
+                },
+            },
+        )
+    if not IS_FTM:
+        coin_info[TRX].append(
+            {
+                'model': DisabledCoin,
+                'find': {'currency': FTM},
+                'attributes': {
+                    'disable_all': True,
+                    'disable_stack': True,
+                    'disable_pairs': True,
+                    'disable_exchange': True,
+                    'disable_withdrawals': True,
+                    'disable_topups': True,
+                },
+            },
+        )
+
+    if not IS_XDAI:
+        coin_info[TRX].append(
+            {
+                'model': DisabledCoin,
+                'find': {'currency': XDAI},
+                'attributes': {
+                    'disable_all': True,
+                    'disable_stack': True,
+                    'disable_pairs': True,
+                    'disable_exchange': True,
+                    'disable_withdrawals': True,
+                    'disable_topups': True,
+                },
+            },
+        )
+
     with atomic():
         to_write = []
 
@@ -978,17 +1182,20 @@ def main():
 
             # top up bot
             topup_list = {
-                BTC: 3,
-                ETH: 100,
-                USDT: 100_000,
+                BTC: 300,
+                ETH: 1000_000,
+                USDT: 10000_000,
                 BNB: 10,
                 TRX: 100_000,
                 MATIC: 10_000,
-                WON: 1000_000,
+                WON: 1000_000_000,
                 CELO: 100_000,
                 CORE: 100_000,
                 FUSE: 100_000,
                 AVAX: 100_000,
+                ETC: 1000_000,
+                FTM: 1000_000_000,
+                XDAI: 1000_000_000_000,
                 DOGE: 1000_000_000_000,
                 TON: 1000_000,
             }
@@ -1013,6 +1220,9 @@ def main():
             (15, 'FUSE-USDT'),
             (16, 'CORE-USDT'),
             (17, 'CELO-USDT'),
+            (22, 'ETC-USDT'),
+            (21, 'FTM-USDT'),
+            (20, 'XDAI-USDT'),
             (18, 'DOGE-USDT'),
             (19, 'TON-USDT'),
 
@@ -1079,6 +1289,92 @@ def main():
                     'enabled': True,
                 }
             },
+
+            Pair.get('ETC-USDT'): {
+                PairSettings: {
+                    'is_enabled': True,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0,
+                    'deviation': 0.99000000,
+                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                },
+                BotConfig: {
+                    'name': 'ETC-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'instant_match': True,
+                    'ohlc_period': 5,
+                    'loop_period_random': True,
+                    'min_period': 5,
+                    'max_period': 10,
+                    'ext_price_delta': 0,
+                    'min_order_quantity': 1,
+                    'max_order_quantity': 100000,
+                    'low_orders_max_match_size': 0.0029,
+                    'low_orders_spread_size': 200,
+                    'low_orders_min_order_size': 0.0003,
+                    'enabled': True,
+                }
+            },
+
+            Pair.get('FTM-USDT'): {
+                PairSettings: {
+                    'is_enabled': True,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0,
+                    'deviation': 0.99000000,
+                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                },
+                BotConfig: {
+                    'name': 'FTM-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'instant_match': True,
+                    'ohlc_period': 5,
+                    'loop_period_random': True,
+                    'min_period': 5,
+                    'max_period': 10,
+                    'ext_price_delta': 0,
+                    'min_order_quantity': 1,
+                    'max_order_quantity': 100000,
+                    'low_orders_max_match_size': 0.0029,
+                    'low_orders_spread_size': 200,
+                    'low_orders_min_order_size': 0.0003,
+                    'enabled': True,
+                }
+            },
+
+            Pair.get('XDAI-USDT'): {
+                PairSettings: {
+                    'is_enabled': True,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0,
+                    'deviation': 0.99000000,
+                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                },
+                BotConfig: {
+                    'name': 'XDAI-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'instant_match': True,
+                    'ohlc_period': 5,
+                    'loop_period_random': True,
+                    'min_period': 5,
+                    'max_period': 10,
+                    'ext_price_delta': 0,
+                    'min_order_quantity': 1,
+                    'max_order_quantity': 100000,
+                    'low_orders_max_match_size': 0.0029,
+                    'low_orders_spread_size': 200,
+                    'low_orders_min_order_size': 0.0003,
+                    'enabled': True,
+                }
+            },
+
+
             Pair.get('BTC-USDT'): {
                 PairSettings: {
                     'is_enabled': True,

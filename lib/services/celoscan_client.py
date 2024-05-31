@@ -10,7 +10,7 @@ from lib.services.etherscan_client import EtherscanClient
 log = logging.getLogger(__name__)
 
 
-class PolygonscanClient(EtherscanClient):
+class CeloscanClient(EtherscanClient):
     def __init__(self):
         self.url = 'https://api.celoscan.io/api?'
 

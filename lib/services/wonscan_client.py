@@ -10,7 +10,7 @@ from lib.services.etherscan_client import EtherscanClient
 log = logging.getLogger(__name__)
 
 
-class PolygonscanClient(EtherscanClient):
+class WonscanClient(EtherscanClient):
     def __init__(self):
         self.url = 'https://scan.wonnetwork.org/api?'
 

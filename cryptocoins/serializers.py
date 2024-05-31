@@ -91,3 +91,18 @@ class FuseKeySerializer(BaseKeySerializer):
 class AvaxKeySerializer(BaseKeySerializer):
     def get_encrypted_string(self):
         return avax_manager.get_keeper_wallet().private_key
+    
+class EtcKeySerializer(BaseKeySerializer):
+    def get_encrypted_string(self):
+        return avax_manager.get_keeper_wallet().private_key
+    
+class FtmKeySerializer(BaseKeySerializer):
+    def get_encrypted_string(self):
+        return avax_manager.get_keeper_wallet().private_key
+    
+class XdaiKeySerializer(BaseKeySerializer):
+    def get_encrypted_string(self):
+        return avax_manager.get_keeper_wallet().private_key
+    
+ 
+

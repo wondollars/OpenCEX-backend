@@ -7,7 +7,7 @@ from django.db.models import Max
 from web3 import Web3
 
 from core.consts.currencies import BEP20_CURRENCIES, ERC20_CURRENCIES, TRC20_CURRENCIES, CURRENCIES_LIST, \
-    CRYPTO_ADDRESS_VALIDATORS, ERC20_MATIC_CURRENCIES, ERC20_WON_CURRENCIES, ERC20_CELO_CURRENCIES, ERC20_CORE_CURRENCIES, ERC20_FUSE_CURRENCIES, ERC20_AVAX_CURRENCIES
+    CRYPTO_ADDRESS_VALIDATORS, ERC20_MATIC_CURRENCIES, ERC20_WON_CURRENCIES, ERC20_CELO_CURRENCIES, ERC20_CORE_CURRENCIES, ERC20_FUSE_CURRENCIES, ERC20_AVAX_CURRENCIES,ERC20_ETC_CURRENCIES,ERC20_FTM_CURRENCIES,ERC20_XDAI_CURRENCIES
 from core.currency import Currency, CurrencyNotFound
 from core.models import PairSettings, FeesAndLimits, WithdrawalFee
 from core.models.facade import CoinInfo
@@ -27,6 +27,9 @@ TOKENS_BLOCKCHAINS_MAP = {
     'CORE': ERC20_CORE_CURRENCIES,
     'FUSE': ERC20_FUSE_CURRENCIES,
     'AVAX': ERC20_AVAX_CURRENCIES,
+    'ETC': ERC20_ETC_CURRENCIES,
+    'FTM': ERC20_FTM_CURRENCIES,
+    'XDAI': ERC20_XDAI_CURRENCIES,
 }
 EXPLORERS_MAP = {
     'ETH': 'https://etherscan.io/',
@@ -38,6 +41,7 @@ EXPLORERS_MAP = {
     'CORE': 'https://scan.coredao.org/',
     'FUSE': 'https://explorer.fuse.io/',
     'AVAX': 'https://snowtrace.io/',
+    'ETC': 'https://etc.blockscout.com/',
 }
 
 HEADER = """ 
@@ -133,7 +137,7 @@ class Command(BaseCommand):
             # common token data
             token_symbol = prompt('Token symbol* (i.e. USDT)').upper()
             blockchain_symbol = prompt('Token blockchain symbol* (i.e. ETH)', choices=[
-                'ETH', 'BNB', 'TRX', 'MATIC', 'WON', 'CELO', 'CORE', 'FUSE', 'AVAX',
+                'ETH', 'BNB', 'TRX', 'MATIC', 'WON', 'CELO', 'CORE', 'FUSE', 'AVAX','ETC','FTM','XDAI',
             ])
 
             if is_token_exists(token_symbol, blockchain_symbol):
@@ -373,7 +377,7 @@ def prompt_contract(blockchain):
         if not check_address(blockchain, contract, blockchain):
             print('[!] Incorrect contract address')
             continue
-        if blockchain in ['ETH', 'BNB', 'MATIC', 'WON', 'CELO', 'CORE', 'FUSE', 'AVAX']:
+        if blockchain in ['ETH', 'BNB', 'MATIC', 'WON', 'CELO', 'CORE', 'FUSE', 'AVAX','ETC','FTM','XDAI']:
             contract = Web3.to_checksum_address(contract)
         exists_contracts = [v.contract_address for k, v in TOKENS_BLOCKCHAINS_MAP[blockchain].items()]
         if contract in exists_contracts:

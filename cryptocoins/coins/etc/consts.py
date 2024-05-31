@@ -1,0 +1,3 @@
+ETC = 35
+CODE = 'ETC'
+DECIMALS = 18

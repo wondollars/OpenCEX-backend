@@ -10,3 +10,6 @@ import cryptocoins.coins.fuse
 import cryptocoins.coins.avax
 import cryptocoins.coins.ton
 import cryptocoins.coins.doge
+import cryptocoins.coins.etc
+import cryptocoins.coins.ftm
+import cryptocoins.coins.xdai

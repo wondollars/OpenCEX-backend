@@ -10,7 +10,7 @@ from lib.services.etherscan_client import EtherscanClient
 log = logging.getLogger(__name__)
 
 
-class PolygonscanClient(EtherscanClient):
+class FusescanClient(EtherscanClient):
     def __init__(self):
         self.url = 'https://api.fuse.io/api/v2/?'
 
@@ -18,7 +18,7 @@ class PolygonscanClient(EtherscanClient):
         res = {}
         try:
             res = requests.get(
-                f'{self.url}{uri}&apikey={settings.WONSCAN_KEY}')
+                f'{self.url}{uri}&apikey={settings.FUSESCAN_KEY}')
             res = res.json()
         except Exception as e:
             log.exception('Can\'t fetch data from blockchain.info')

@@ -44,3 +44,16 @@ class FuseWithdrawalApprove(BaseWithdrawalRequest):
 class AvaxWithdrawalApprove(BaseWithdrawalRequest):
     class Meta:
         proxy = True
+
+class EtcWithdrawalApprove(BaseWithdrawalRequest):
+    class Meta:
+        proxy = True
+
+class FtmWithdrawalApprove(BaseWithdrawalRequest):
+    class Meta:
+        proxy = True
+
+class XdaiWithdrawalApprove(BaseWithdrawalRequest):
+    class Meta:
+        proxy = True
+ 
