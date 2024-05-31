@@ -103,7 +103,7 @@ class DataSourcesManager:
                     if percent_difference > 0.3:
                         run_otc_orders_price_update.apply_async([pair.code], queue=f'orders.{pair.code}')
 
-                if pair.code in ['BTC-USDT', 'ETH-USDT']:
+                if pair.code in ['BTC-USDT', 'ETH-USDT','BNB-USDT']:
                     history.append(ExternalPricesHistory(pair=pair, price=price))
         if history:
             ExternalPricesHistory.objects.bulk_create(history)

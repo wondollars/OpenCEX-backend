@@ -13,7 +13,7 @@ from core.models import PairSettings, FeesAndLimits, WithdrawalFee
 from core.models.facade import CoinInfo
 from core.models.stats import InoutsStats
 from core.models.inouts.pair import Pair, PairNotFound
-from cryptocoins.data_sources.crypto import binance_data_source, kucoin_data_source
+from cryptocoins.data_sources.crypto import binance_data_source, kucoin_data_source,mexc_data_source,bitstamp_data_source
 from cryptocoins.tokens_manager import read_tokens_file, write_tokens_file, get_tokens_backup_diffs, \
     restore_backup_file, register_tokens_and_pairs
 
@@ -170,7 +170,7 @@ class Command(BaseCommand):
 
         pair_to_usdt = f'{token_symbol}-USDT'
         is_price_external = binance_data_source.is_pair_exists(pair_to_usdt) or kucoin_data_source.is_pair_exists(
-            pair_to_usdt)
+            pair_to_usdt) or mexc_data_source.is_pair_exists(pair_to_usdt) or bitstamp_data_source.is_pair_exists(pair_to_usdt)
         yes_no = False
         while not yes_no:
             precisions = prompt_precisions(token_symbol)
