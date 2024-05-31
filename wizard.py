@@ -1557,7 +1557,7 @@ def main():
             (20, 'DAI-USDT'),
             (21, 'DOGE-USDT'),
             (22, 'TON-USDT'),
-            (24, 'PEPE-USDT'),
+            (23, 'PEPE-USDT'),
             (24, 'SHIB-USDT'),
             (25, 'FLOKI-USDT'),
             (26, 'MEME-USDT'),
