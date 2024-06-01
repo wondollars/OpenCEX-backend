@@ -76,13 +76,8 @@ class DataSourcesManager:
         main_source_data = self._get_main_source_data()
         reserve_source_data = self._get_reserve_source_data()
 
-        main_source = self.main_source
-        reserve_sources = self.reserve_sources
-
         new_data: Dict[Pair, Decimal] = copy.copy(self._data)
-        # send_telegram_message(f'new_data: {new_data}')
 
-        # alerts
         if not main_source_data:
             if reserve_source_data:
                 main_source_data = reserve_source_data
@@ -91,39 +86,28 @@ class DataSourcesManager:
                 self._update_cached_prices()
                 return new_data
 
-        # check deviation
         for pair, old_price in self._data.items():
             custom_price = PairSettings.get_custom_price(pair)
-           
-            
-
             if custom_price:
                 new_data[pair] = custom_price
                 continue
 
             new_price = main_source_data.get(pair)
             reserve_price = reserve_source_data.get(pair)
+
             if new_price:
                 if not old_price:
                     new_data[pair] = new_price
                     continue
-                if calc_relative_percent_difference(old_price, new_price) < 5:
-                # if calc_relative_percent_difference(old_price, new_price) < main_source.MAX_DEVIATION:
-                    new_data[pair] = new_price
-                    print(f'Updated {pair} with new price from main source: {new_price}')
-                else:
-                    if reserve_price and calc_relative_percent_difference(new_price, reserve_price) < 5:
-                    # if reserve_price and calc_relative_percent_difference(new_price, reserve_price) < main_source.MAX_DEVIATION:
 
+                if calc_relative_percent_difference(old_price, new_price) < main_source.MAX_DEVIATION:
+                    new_data[pair] = new_price
+                else:
+                    if reserve_price and calc_relative_percent_difference(new_price, reserve_price) < main_source.MAX_DEVIATION:
                         new_data[pair] = reserve_price
-                        print(f'Updated {pair} with new price from reserve source: {reserve_price}')
                     else:
-                        new_data[pair] = new_price
                         send_telegram_message(f'{pair.code} price changes more than {main_source.MAX_DEVIATION}%.'
                                             f'\nCurrent price is {old_price}, new price: {new_price}')
-                        
-                
-
             elif reserve_price:
                 new_data[pair] = reserve_price
             else:
@@ -143,11 +127,16 @@ class DataSourcesManager:
                     percent_difference = calc_relative_percent_difference(price, previous_price)
                     if percent_difference > 0.3:
                         run_otc_orders_price_update.apply_async([pair.code], queue=f'orders.{pair.code}')
+                        send_telegram_message(f'Price update triggered for {pair.code} due to significant change.')
 
-                if pair.code in ['BTC-USDT', 'ETH-USDT','BNB-USDT']:
+                if pair.code in ['BTC-USDT', 'ETH-USDT', 'BNB-USDT']:
                     history.append(ExternalPricesHistory(pair=pair, price=price))
         if history:
             ExternalPricesHistory.objects.bulk_create(history)
-        # send_telegram_message(f'pair {pair} new_data: {new_data}')
+            send_telegram_message(f'ExternalPricesHistory updated with {len(history)} entries.')
+
+        send_telegram_message(f'Final new data before caching: {new_data}')
         self._update_cached_prices(new_data)
+        
         return self._data
+
