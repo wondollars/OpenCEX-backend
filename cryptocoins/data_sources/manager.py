@@ -89,19 +89,22 @@ class DataSourcesManager:
 
             new_price = main_source_data.get(pair)
             reserve_price = reserve_source_data.get(pair)
-            # send_telegram_message(f' {pair.code} - custom_price {custom_price} -new_price:{custom_price}-reserve_price:{reserve_price} MAX_DEVIATION: {main_source.MAX_DEVIATION}')
             if new_price:
                 if not old_price:
                     new_data[pair] = new_price
                     continue
-                send_telegram_message(f'pair {pair} new_price: {new_price} - old_price: {old_price} calc_relative_percent_difference: {calc_relative_percent_difference(old_price, new_price)}')
-                if calc_relative_percent_difference(old_price, new_price) < main_source.MAX_DEVIATION:
+                if calc_relative_percent_difference(old_price, new_price) < 5:
+                # if calc_relative_percent_difference(old_price, new_price) < main_source.MAX_DEVIATION:
                     new_data[pair] = new_price
+                    print(f'Updated {pair} with new price from main source: {new_price}')
                 else:
-                    # reserve_price = reserve_source_data.get(pair)
-                    if reserve_price and calc_relative_percent_difference(new_price, reserve_price) < main_source.MAX_DEVIATION:
+                    if reserve_price and calc_relative_percent_difference(new_price, reserve_price) < 5:
+                    # if reserve_price and calc_relative_percent_difference(new_price, reserve_price) < main_source.MAX_DEVIATION:
+
                         new_data[pair] = reserve_price
+                        print(f'Updated {pair} with new price from reserve source: {reserve_price}')
                     else:
+                        new_data[pair] = new_price
                         send_telegram_message(f'{pair.code} price changes more than {main_source.MAX_DEVIATION}%.'
                                             f'\nCurrent price is {old_price}, new price: {new_price}')
             elif reserve_price:
