@@ -1687,10 +1687,10 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0,
-                    'deviation': 0.99000000,
-                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                    'deviation':  0.01,
+                    'precisions': ['1', '0.1', '0.01', '0.001', '0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001', '0.000000001', '0.0000000001', '0.00000000001']
                 },
-                BotConfig: {
+                BotConfig : {
                     'name': 'BABYDOGE-USDT',
                     'user': bot,
                     'strategy': BotConfig.TRADE_STRATEGY_DRAW,
@@ -1704,9 +1704,10 @@ def main():
                     'max_order_quantity': 10000000,
                     'low_orders_max_match_size': 0.0029,
                     'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
-                    'enabled': True,
+                    'low_orders_min_order_size': 0.000000001,  # Giảm giá trị này nếu cần
+                    'enabled': True
                 }
+
             },
             Pair.get('TON-USDT'): {
                 PairSettings: {
