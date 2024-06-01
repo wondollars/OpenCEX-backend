@@ -108,7 +108,7 @@ class DataSourcesManager:
                         send_telegram_message(f'{pair.code} price changes more than {main_source.MAX_DEVIATION}%.'
                                             f'\nCurrent price is {old_price}, new price: {new_price}')
                         
-                send_telegram_message(f'pair {pair} old_price: {new_data[pair]}')
+                
 
             elif reserve_price:
                 new_data[pair] = reserve_price
@@ -134,6 +134,6 @@ class DataSourcesManager:
                     history.append(ExternalPricesHistory(pair=pair, price=price))
         if history:
             ExternalPricesHistory.objects.bulk_create(history)
-
+        send_telegram_message(f'pair {pair} old_price: {new_data}')
         self._update_cached_prices(new_data)
         return self._data
