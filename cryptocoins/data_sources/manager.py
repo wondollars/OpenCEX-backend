@@ -52,7 +52,7 @@ class DataSourcesManager:
         if not all_data:
             send_telegram_message('All reserve sources failed to provide data.')
 
-        send_telegram_message(f'binance_pairs_data {all_data}')
+        # send_telegram_message(f'binance_pairs_data {all_data}')
 
         return all_data
 
@@ -81,6 +81,7 @@ class DataSourcesManager:
         for pair, old_price in self._data.items():
             custom_price = PairSettings.get_custom_price(pair)
            
+            
 
             if custom_price:
                 new_data[pair] = custom_price
@@ -93,7 +94,7 @@ class DataSourcesManager:
                 if not old_price:
                     new_data[pair] = new_price
                     continue
-
+                send_telegram_message(f'pair {pair} new_price: {new_price} - old_price: {old_price} calc_relative_percent_difference: {calc_relative_percent_difference(old_price, new_price)}')
                 if calc_relative_percent_difference(old_price, new_price) < main_source.MAX_DEVIATION:
                     new_data[pair] = new_price
                 else:
