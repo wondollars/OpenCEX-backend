@@ -42,6 +42,8 @@ class DataSourcesManager:
                 data = source.get_latest_prices()
                 if data:
                     all_data.update(data)
+                    
+
                 else:
                     send_telegram_message(f'No data from datasource provider {source.NAME}')
             except Exception as e:
@@ -49,6 +51,8 @@ class DataSourcesManager:
 
         if not all_data:
             send_telegram_message('All reserve sources failed to provide data.')
+
+        send_telegram_message(f'binance_pairs_data {all_data}')
 
         return all_data
 
