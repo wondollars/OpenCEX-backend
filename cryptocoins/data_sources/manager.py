@@ -76,6 +76,8 @@ class DataSourcesManager:
         # check deviation
         for pair, old_price in self._data.items():
             custom_price = PairSettings.get_custom_price(pair)
+            send_telegram_message(f' {pair.code} have {custom_price} &  pair.code {pair.code} & pair {pair}')
+
             if custom_price:
                 new_data[pair] = custom_price
                 continue
