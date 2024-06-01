@@ -43,14 +43,16 @@ def to_decimal(value, decimal_places: int = 18) -> Decimal:
     quantized_value = decimal_value.quantize(Decimal('1.' + '0' * decimal_places), rounding=ROUND_DOWN)
     return quantized_value
 
-def pretty_decimal(number, digits=4) -> str:
+def pretty_decimal(number, digits=18) -> str:
     """ returns formatted decimal number as string """
     if number is None:
         return None
     number = to_decimal(number, decimal_places=digits)
     return f'{{:0.{digits}f}}'.format(number).rstrip('0').rstrip('.')
 
-def to_decimal_pretty(number, digits, remove_exp=True):
+
+
+def to_decimal_pretty(number, digits=18, remove_exp=True):
     res = to_decimal(pretty_decimal(number, digits=digits), decimal_places=digits)
     return remove_exponent(res) if remove_exp else res
 
