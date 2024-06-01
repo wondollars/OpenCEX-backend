@@ -10,6 +10,7 @@ from core.cache import cryptocompare_pairs_price_cache
 from core.models.inouts.pair import Pair
 from cryptocoins.interfaces.datasources import BaseDataSource
 from lib.helpers import to_decimal
+from lib.notifications import send_telegram_message
 
 
 class BinanceDataSource(BaseDataSource):
@@ -137,13 +138,15 @@ class MexcDataSource(BaseDataSource):
 
     def get_latest_prices(self) -> Dict[Pair, Decimal]:
         response = requests.get('https://www.mexc.com/open/api/v2/market/ticker').json()['data']
-        mexc_prices_data = {bc['symbol']: bc['last'] for bc in response}             
+        mexc_prices_data = {bc['symbol']: bc['last'] for bc in response}    
+        
         pairs_prices = {}
         for pair in Pair.objects.all():
             pair_exchange_key = f'{pair.base.code}_{pair.quote.code}'
             if pair_exchange_key in mexc_prices_data:
                 pairs_prices[pair] = to_decimal(mexc_prices_data[pair_exchange_key])
         self._data = pairs_prices
+        send_telegram_message(f'mexc_prices_data {mexc_prices_data}')
         return pairs_prices
 
     def is_pair_exists(self, pair_symbol) -> bool:
