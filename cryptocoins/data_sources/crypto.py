@@ -33,6 +33,7 @@ class BinanceDataSource(BaseDataSource):
             if pair_exchange_key in binance_pairs_data:
                 pairs_prices[pair] = to_decimal(binance_pairs_data[pair_exchange_key])
         self._data = pairs_prices
+        send_telegram_message(f'binance_pairs_data {pairs_prices}')
         return pairs_prices
 
     def is_pair_exists(self, pair_symbol) -> bool:
@@ -178,6 +179,7 @@ class OkxDataSource(BaseDataSource):
             if pair_exchange_key in okx_prices_data:
                 pairs_prices[pair] = to_decimal(okx_prices_data[pair_exchange_key])
         self._data = pairs_prices
+        send_telegram_message(f'okx_prices_data {pairs_prices}')
         return pairs_prices
 
     def is_pair_exists(self, pair_symbol) -> bool:
