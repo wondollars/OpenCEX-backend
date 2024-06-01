@@ -90,6 +90,7 @@ class DataSourcesManager:
             new_price = main_source_data.get(pair)
             reserve_price = reserve_source_data.get(pair)
             if new_price:
+                send_telegram_message(f'pair {pair} old_price: {new_price}')
                 if not old_price:
                     new_data[pair] = new_price
                     continue

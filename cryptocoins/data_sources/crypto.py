@@ -147,7 +147,7 @@ class MexcDataSource(BaseDataSource):
             if pair_exchange_key in mexc_prices_data:
                 pairs_prices[pair] = to_decimal(mexc_prices_data[pair_exchange_key])
         self._data = pairs_prices
-        # send_telegram_message(f'mexc_prices_data {pairs_prices}')
+        send_telegram_message(f'mexc_prices_data {pairs_prices}')
         return pairs_prices
 
     def is_pair_exists(self, pair_symbol) -> bool:
