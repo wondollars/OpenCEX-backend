@@ -1,3 +1,4 @@
+from decimal import Decimal
 import json
 import os
 from datetime import datetime
@@ -1509,27 +1510,27 @@ def main():
 
             # top up bot
             topup_list = {
-                BTC: 1000,
-                ETH: 1000_000,
-                USDT: 10000_000,
-                BNB: 1000_000,
-                TRX: 100_000,
-                MATIC: 1000_000,
-                WON: 1000_000_000,
-                CELO: 1000_000,
-                CORE: 1000_000,
-                FUSE: 1000_000,
-                AVAX: 1000_000,
-                ETC: 1000_000,
-                FTM: 1000_000_000,
-                DAI: 1000_000_000_000,
-                DOGE: 1000_000_000_000,
-                TON: 1000_000,
-                PEPE: 1000_000_000_000,
-                SHIB: 1000_000_000_000,
-                FLOKI: 1000_000_000_000,
-                MEME: 1000_000_000_000,
-                BABYDOGE: 1000_000_000_000,
+                "BTC": Decimal('1000'),
+                "ETH": Decimal('1000000'),
+                "USDT": Decimal('10000000'),
+                "BNB": Decimal('1000000'),
+                "TRX": Decimal('100000'),
+                "MATIC": Decimal('1000000'),
+                "WON": Decimal('1000000000'),
+                "CELO": Decimal('1000000'),
+                "CORE": Decimal('1000000'),
+                "FUSE": Decimal('1000000'),
+                "AVAX": Decimal('1000000'),
+                "ETC": Decimal('1000000'),
+                "FTM": Decimal('1000000000'),
+                "DAI": Decimal('1000000000000'),
+                "DOGE": Decimal('1000000000000'),
+                "TON": Decimal('1000000'),
+                "PEPE": Decimal('1000000000000'),
+                "SHIB": Decimal('1000000000000'),
+                "FLOKI": Decimal('1000000000000'),
+                "MEME": Decimal('1000000000000'),
+                "BABYDOGE": Decimal('1000000000000'),
             }
 
             for currency_id, amount in topup_list.items():
