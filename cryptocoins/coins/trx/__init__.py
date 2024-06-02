@@ -4,7 +4,7 @@ from cryptocoins.utils.register import register_coin
 
 TRX = 7
 CODE = 'TRX'
-DECIMALS = 18
+DECIMALS = 2
 
 TRX_CURRENCY = register_coin(
     currency_id=TRX,

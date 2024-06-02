@@ -112,7 +112,7 @@ def main():
                 'find': {'currency': ETH},
                 'attributes': {
                     'name': 'Ethereum',
-                    'decimals': 18,
+                    'decimals': 8,
                     'index': 3,
                     'tx_explorer': 'https://etherscan.io/tx/',
                     'links': {
@@ -307,7 +307,7 @@ def main():
                 'find': {'currency': TON},
                 'attributes': {
                     'name': 'Toncoin ',
-                    'decimals': 18,
+                    'decimals': 10,
                     'index': 33,
                     'links': {
                         "cmc": {
@@ -370,7 +370,7 @@ def main():
                 'find': {'currency': DOGE},
                 'attributes': {
                     'name': 'Dogecoin',
-                    'decimals': 18,
+                    'decimals': 10,
                     'index': 33,
                     'links': {
                         "cmc": {
@@ -487,7 +487,7 @@ def main():
                 'find': {'currency': BNB},
                 'attributes': {
                     'name': 'Binance Coin',
-                    'decimals': 18,
+                    'decimals': 8,
                     'index': 6,
                     'tx_explorer': 'https://bscscan.com/tx/',
                     'links': {
@@ -541,7 +541,7 @@ def main():
                 'find': {'currency': MATIC},
                 'attributes': {
                     'name': 'MATIC',
-                    'decimals': 18,
+                    'decimals': 8,
                     'index': 27,
                     'tx_explorer': 'https://polygonscan.com/tx/',
                     'links': {
@@ -590,7 +590,7 @@ def main():
                 'find': {'currency': WON},
                 'attributes': {
                     'name': 'Won Coin',
-                    'decimals': 18,
+                    'decimals': 8,
                     'index': 28,
                     'tx_explorer': 'https://scan.wonnetwork.org/tx/',
                     'links': {
@@ -639,7 +639,7 @@ def main():
                 'find': {'currency': ETC},
                 'attributes': {
                     'name': 'Ethereum Classic Coin',
-                    'decimals': 18,
+                    'decimals': 8,
                     'index': 35,
                     'tx_explorer': 'https://etc.blockscout.com/tx/',
                     'links': {
@@ -688,7 +688,7 @@ def main():
                 'find': {'currency': FTM},
                 'attributes': {
                     'name': 'Fantom Coin',
-                    'decimals': 18,
+                    'decimals': 8,
                     'index': 28,
                     'tx_explorer': 'https://ftmscan.com/tx/',
                     'links': {
@@ -737,7 +737,7 @@ def main():
                 'find': {'currency': DAI},
                 'attributes': {
                     'name': 'xDai Coin',
-                    'decimals': 18,
+                    'decimals': 8,
                     'index': 28,
                     'tx_explorer': 'https://gnosis.blockscout.com/tx/',
                     'links': {
@@ -786,7 +786,7 @@ def main():
                 'find': {'currency': CELO},
                 'attributes': {
                     'name': 'Celo Coin',
-                    'decimals': 18,
+                    'decimals': 8,
                     'index': 28,
                     'tx_explorer': 'https://celoscan.io/tx/',
                     'links': {
@@ -835,7 +835,7 @@ def main():
                 'find': {'currency': CORE},
                 'attributes': {
                     'name': 'Core-Dao Coin',
-                    'decimals': 18,
+                    'decimals': 8,
                     'index': 28,
                     'tx_explorer': 'https://scan.coredao.org/tx/',
                     'links': {
@@ -884,7 +884,7 @@ def main():
                 'find': {'currency': FUSE},
                 'attributes': {
                     'name': 'Fuse Coin',
-                    'decimals': 18,
+                    'decimals': 8,
                     'index': 28,
                     'tx_explorer': 'https://explorer.fuse.io/tx/',
                     'links': {
@@ -933,7 +933,7 @@ def main():
                 'find': {'currency': AVAX},
                 'attributes': {
                     'name': 'Avalanche Coin',
-                    'decimals': 18,
+                    'decimals': 8,
                     'index': 30,
                     'tx_explorer': 'https://snowtrace.io/tx/',
                     'links': {
@@ -982,7 +982,7 @@ def main():
                 'find': {'currency': PEPE},
                 'attributes': {
                     'name': 'PEPE',
-                    'decimals': 18,
+                    'decimals': 10,
                     'index': 39,
                     'links': {
                         "cmc": {
@@ -1045,7 +1045,7 @@ def main():
                 'find': {'currency': SHIB},
                 'attributes': {
                     'name': 'Shiba Inu',
-                    'decimals': 18,
+                    'decimals': 10,
                     'index': 43,
                     'links': {
                         "cmc": {
@@ -1108,7 +1108,7 @@ def main():
                 'find': {'currency': FLOKI},
                 'attributes': {
                     'name': 'FLOKI',
-                    'decimals': 18,
+                    'decimals': 10,
                     'index': 33,
                     'links': {
                         "cmc": {
@@ -1171,7 +1171,7 @@ def main():
                 'find': {'currency': MEME},
                 'attributes': {
                     'name': 'MEME',
-                    'decimals': 18,
+                    'decimals': 10,
                     'index': 33,
                     'links': {
                         "cmc": {
@@ -1234,7 +1234,7 @@ def main():
                 'find': {'currency': BABYDOGE},
                 'attributes': {
                     'name': 'Baby Doge Coin',
-                    'decimals': 18,
+                    'decimals': 10,
                     'index': 33,
                     'links': {
                         "cmc": {
