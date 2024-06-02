@@ -182,9 +182,8 @@ def dt_from_js(dt):
     return datetime.datetime.fromtimestamp(dt / 1000, tz=timezone.utc)
 
 
-def remove_exponent(d: Decimal) -> Decimal: 
+def remove_exponent(d) -> Decimal:
     return d.quantize(Decimal(1)) if d == d.to_integral() else d.normalize()
-   
 
 
 def round_down(value, decimals):
@@ -194,33 +193,28 @@ def round_down(value, decimals):
         return round(d, decimals)
 
 
-def to_decimal(value, decimal_places: int = 18) -> Decimal:
+def to_decimal(value, decimal_places: int = 16) -> Decimal:
     """
     Convert to decimal with rounding down
     """
-    context = Context(prec=100)
-    value_as_str = str(value)
-    decimal_value = Decimal(value_as_str, context=context)
-    quantized_value = decimal_value.quantize(Decimal('1.' + '0' * decimal_places), rounding=ROUND_DOWN)
-    return quantized_value
+    return Decimal(str(value)).quantize(Decimal('.00000001'), rounding=ROUND_DOWN, context=Context(prec=100))
 
 
-def pretty_decimal(number, digits=18) -> str:
+def pretty_decimal(number, digits=4) -> str:
     """ returns formatted decimal number as string """
     if number is None:
         return None
-    number = to_decimal(number, decimal_places=digits)
+    number = to_decimal(number)
     return f'{{:0.{digits}f}}'.format(number).rstrip('0').rstrip('.')
 
 
 def to_decimal_pretty(number, digits, remove_exp=True):
-    res = to_decimal(pretty_decimal(number, digits=digits), decimal_places=digits)
+    res = to_decimal(pretty_decimal(number, digits=digits))
     return remove_exponent(res) if remove_exp else res
+
 
 def decimalize(val: Union[Decimal, str, int, float]) -> Decimal:
     return Decimal(str(val))
- 
-
 
 
 def round_by_precision(x, base, is_bid=True):
