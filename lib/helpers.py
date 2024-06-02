@@ -200,7 +200,7 @@ def to_decimal(value, decimal_places: int = 16) -> Decimal:
     return Decimal(str(value)).quantize(Decimal('.00000000000001'), rounding=ROUND_DOWN, context=Context(prec=100))
 
 
-def pretty_decimal(number, digits=4) -> str:
+def pretty_decimal(number, digits=12) -> str:
     """ returns formatted decimal number as string """
     if number is None:
         return None
