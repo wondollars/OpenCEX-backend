@@ -5,7 +5,7 @@ PEPE = 39
 CODE = 'PEPE'
 DECIMALS = 18
 BLOCKCHAINS = {
-    'BNB': TokenParams(
+    'ETH': TokenParams(
         symbol=CODE,
         contract_address='0x6982508145454Ce325dDbE47a25d4ec3d2311933',
         decimal_places=18,
