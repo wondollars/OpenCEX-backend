@@ -3,7 +3,7 @@ from cryptocoins.utils.register import register_token
 
 TON = 35
 CODE = 'TON'
-DECIMALS = 2
+DECIMALS = 18
 BLOCKCHAINS = {
     # 'ETH': TokenParams(
     #     symbol=CODE,

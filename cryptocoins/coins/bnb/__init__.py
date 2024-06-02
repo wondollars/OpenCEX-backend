@@ -6,7 +6,7 @@ from cryptocoins.utils.register import register_coin
 
 BNB = 17
 CODE = 'BNB'
-DECIMALS = 8
+DECIMALS = 18
 
 BNB_CURRENCY = register_coin(
     currency_id=BNB,

@@ -3,7 +3,7 @@ from cryptocoins.utils.register import register_token
 
 DOGE = 34
 CODE = 'DOGE'
-DECIMALS = 2
+DECIMALS = 18
 BLOCKCHAINS = {
     # 'ETH': TokenParams(
     #     symbol=CODE,
