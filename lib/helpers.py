@@ -197,7 +197,7 @@ def to_decimal(value, decimal_places: int = 16) -> Decimal:
     """
     Convert to decimal with rounding down
     """
-    return Decimal(str(value)).quantize(Decimal('.00000000000001'), rounding=ROUND_DOWN, context=Context(prec=100))
+    return Decimal(str(value)).quantize(Decimal('.00000000000000001'), rounding=ROUND_DOWN, context=Context(prec=100))
 
 
 def pretty_decimal(number, digits=12) -> str:
