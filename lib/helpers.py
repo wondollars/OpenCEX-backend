@@ -193,14 +193,14 @@ def round_down(value, decimals):
         return round(d, decimals)
 
 
-def to_decimal(value, decimal_places: int = 16) -> Decimal:
+def to_decimal(value, decimal_places: int = 18) -> Decimal:
     """
     Convert to decimal with rounding down
     """
     return Decimal(str(value)).quantize(Decimal('.00000000000000001'), rounding=ROUND_DOWN, context=Context(prec=100))
 
 
-def pretty_decimal(number, digits=12) -> str:
+def pretty_decimal(number, digits=18) -> str:
     """ returns formatted decimal number as string """
     if number is None:
         return None
