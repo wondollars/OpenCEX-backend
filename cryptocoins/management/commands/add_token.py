@@ -137,7 +137,7 @@ class Command(BaseCommand):
             # common token data
             token_symbol = prompt('Token symbol* (i.e. USDT)').upper()
             blockchain_symbol = prompt('Token blockchain symbol* (i.e. ETH)', choices=[
-                'ETH', 'BNB', 'TRX', 'MATIC', 'WON', 'CELO', 'CORE', 'FUSE', 'AVAX','ETC','FTM','DAI',
+                'ETH', 'BNB', 'TRX', 'MATIC', 'WON', 'CELO', 'CORE', 'FUSE', 'AVAX','ETC','FTM', 'DAI',
             ])
 
             if is_token_exists(token_symbol, blockchain_symbol):
@@ -175,6 +175,7 @@ class Command(BaseCommand):
         pair_to_usdt = f'{token_symbol}-USDT'
         is_price_external = binance_data_source.is_pair_exists(pair_to_usdt) or kucoin_data_source.is_pair_exists(
             pair_to_usdt) or mexc_data_source.is_pair_exists(pair_to_usdt) or bitstamp_data_source.is_pair_exists(pair_to_usdt)
+        print(f'is_price_external: {is_price_external}')
         yes_no = False
         while not yes_no:
             precisions = prompt_precisions(token_symbol)

@@ -140,8 +140,8 @@ class ContentPhotoApiView(viewsets.ReadOnlyModelViewSet):
 @permission_classes((AllowAny,))
 def home_api(request):
     lang = request.GET.get('locale', 'en')
-    # pairs_data = get_filtered_pairs_24h_stats()
-    pairs_data = get_pair_last_price()
+    pairs_data = get_filtered_pairs_24h_stats()
+    # pairs_data = get_pair_last_price()
     pairs_data = {pair['pair']: pair for pair in pairs_data['pairs']}
     btc_usdt_price = pairs_data.get('BTC-USDT', {}).get('price') or 0
     btc_usdt_1fb = 3450
