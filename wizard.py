@@ -1573,7 +1573,7 @@ def main():
         # create pairs
         pair_list = {
             Pair.get('PEPE-USDT'): {
-                    'PairSettings': {
+                    PairSettings: {
                         'is_enabled': True,
                         'is_autoorders_enabled': True,
                         'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
@@ -1581,7 +1581,7 @@ def main():
                         'deviation': 0.99000000,
                         'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
                     },
-                    'BotConfig': {
+                    BotConfig: {
                         'name': 'PEPE-USDT',
                         'user': bot,
                         'strategy': BotConfig.TRADE_STRATEGY_DRAW,
@@ -1600,7 +1600,7 @@ def main():
                     }
                 },
             Pair.get('SHIB-USDT'): {
-                    'PairSettings': {
+                    PairSettings: {
                         'is_enabled': True,
                         'is_autoorders_enabled': True,
                         'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
@@ -1608,7 +1608,7 @@ def main():
                         'deviation': 0.99000000,
                         'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
                     },
-                    'BotConfig': {
+                    BotConfig: {
                         'name': 'SHIB-USDT',
                         'user': bot,
                         'strategy': BotConfig.TRADE_STRATEGY_DRAW,
@@ -1629,7 +1629,7 @@ def main():
 
              
             Pair.get('FLOKI-USDT'): {
-                'PairSettings': {
+                PairSettings: {
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
@@ -1637,7 +1637,7 @@ def main():
                     'deviation': 0.99000000,
                     'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
                 },
-                'BotConfig': {
+                BotConfig: {
                     'name': 'FLOKI-USDT',
                     'user': bot,
                     'strategy': BotConfig.TRADE_STRATEGY_DRAW,
@@ -1657,7 +1657,7 @@ def main():
             },
 
             Pair.get('MEME-USDT'): {
-                'PairSettings': {
+                PairSettings: {
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
@@ -1665,7 +1665,7 @@ def main():
                     'deviation': 0.99000000,
                     'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
                 },
-                'BotConfig': {
+                BotConfig: {
                     'name': 'MEME-USDT',
                     'user': bot,
                     'strategy': BotConfig.TRADE_STRATEGY_DRAW,
