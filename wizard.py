@@ -52,7 +52,7 @@ from cryptocoins.coins.doge import DOGE
 from cryptocoins.coins.ton import TON
 
 from cryptocoins.coins.pepe import PEPE
-from cryptocoins.coins.babydoge import BABYDOGE
+# from cryptocoins.coins.babydoge import BABYDOGE
 from cryptocoins.coins.shib import SHIB
 from cryptocoins.coins.floki import FLOKI
 from cryptocoins.coins.meme import MEME
@@ -100,7 +100,7 @@ def main():
         DOGE,
         TON,
         PEPE,
-        BABYDOGE,
+        # BABYDOGE,
         SHIB,
         FLOKI,
         MEME,
@@ -1228,69 +1228,69 @@ def main():
             },
              
         ],
-        BABYDOGE: [
-            {
-                'model': CoinInfo,
-                'find': {'currency': BABYDOGE},
-                'attributes': {
-                    'name': 'Baby Doge Coin',
-                    'decimals': 10,
-                    'index': 33,
-                    'links': {
-                        "cmc": {
-                            "href": "https://coinmarketcap.com/currencies/baby-doge-coin/",
-                            "title": "CoinMarketCap"
-                        },
-                        "exp": {
-                            "href": "https://etherscan.io/",
-                            "title": "Explorer"
-                        },
-                        "official": {
-                            "href": "https://www.babydoge.com/",
-                            "title": "Baby Doge Coin"
-                        }
-                    },
-                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/28301.png',
-                },
-            },
-            {
-                'model': FeesAndLimits,
-                'find': {'currency': BABYDOGE},
-                'attributes': {
-                    'limits_deposit_min': 1.00000000,
-                    'limits_deposit_max': 1000000.00000000,
-                    'limits_withdrawal_min': 2.00000000,
-                    'limits_withdrawal_max': 10000.00000000,
-                    'limits_order_min': 1.00000000,
-                    'limits_order_max': 100000.00000000,
-                    'limits_code_max': 100000.00000000,
-                    'limits_accumulation_min': 1.00000000,
-                    'fee_deposit_address': 0,
-                    'fee_deposit_code': 0,
-                    'fee_withdrawal_code': 0,
-                    'fee_order_limits': 0.00100000,
-                    'fee_order_market': 0.00200000,
-                    'fee_exchange_value': 0.00200000,
-                },
-            },
-            # {
-            #     'model': WithdrawalFee,
-            #     'find': {'currency': USDT, 'blockchain_currency': ETH},
-            #     'attributes': {
-            #         'blockchain_currency': ETH,
-            #         'address_fee': 5.00000000
-            #     },
-            # },
-            {
-                'model': WithdrawalFee,
-                'find': {'currency': BABYDOGE, 'blockchain_currency': ETH},
-                'attributes': {
-                    'blockchain_currency': ETH,
-                    'address_fee': 0.00010000
-                },
-            },
+        # BABYDOGE: [
+        #     {
+        #         'model': CoinInfo,
+        #         'find': {'currency': BABYDOGE},
+        #         'attributes': {
+        #             'name': 'Baby Doge Coin',
+        #             'decimals': 10,
+        #             'index': 33,
+        #             'links': {
+        #                 "cmc": {
+        #                     "href": "https://coinmarketcap.com/currencies/baby-doge-coin/",
+        #                     "title": "CoinMarketCap"
+        #                 },
+        #                 "exp": {
+        #                     "href": "https://etherscan.io/",
+        #                     "title": "Explorer"
+        #                 },
+        #                 "official": {
+        #                     "href": "https://www.babydoge.com/",
+        #                     "title": "Baby Doge Coin"
+        #                 }
+        #             },
+        #             'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/28301.png',
+        #         },
+        #     },
+        #     {
+        #         'model': FeesAndLimits,
+        #         'find': {'currency': BABYDOGE},
+        #         'attributes': {
+        #             'limits_deposit_min': 1.00000000,
+        #             'limits_deposit_max': 1000000.00000000,
+        #             'limits_withdrawal_min': 2.00000000,
+        #             'limits_withdrawal_max': 10000.00000000,
+        #             'limits_order_min': 1.00000000,
+        #             'limits_order_max': 100000.00000000,
+        #             'limits_code_max': 100000.00000000,
+        #             'limits_accumulation_min': 1.00000000,
+        #             'fee_deposit_address': 0,
+        #             'fee_deposit_code': 0,
+        #             'fee_withdrawal_code': 0,
+        #             'fee_order_limits': 0.00100000,
+        #             'fee_order_market': 0.00200000,
+        #             'fee_exchange_value': 0.00200000,
+        #         },
+        #     },
+        #     # {
+        #     #     'model': WithdrawalFee,
+        #     #     'find': {'currency': USDT, 'blockchain_currency': ETH},
+        #     #     'attributes': {
+        #     #         'blockchain_currency': ETH,
+        #     #         'address_fee': 5.00000000
+        #     #     },
+        #     # },
+        #     {
+        #         'model': WithdrawalFee,
+        #         'find': {'currency': BABYDOGE, 'blockchain_currency': ETH},
+        #         'attributes': {
+        #             'blockchain_currency': ETH,
+        #             'address_fee': 0.00010000
+        #         },
+        #     },
              
-        ],
+        # ],
          
     }
 
@@ -1522,14 +1522,14 @@ def main():
                 AVAX: 1000_000,
                 ETC: 1000_000,
                 FTM: 1000_000_000,
-                DAI: 1000_000_000_000,
-                DOGE: 1000_000_000_000,
+                DAI: 1000_000_000,
+                DOGE: 1000_000_000,
                 TON: 1000_000,
-                PEPE: 1000_000_000_000,
-                SHIB: 1000_000_000_000,
-                FLOKI: 1000_000_000_000,
-                MEME: 1000_000_000_000,
-                BABYDOGE: 1000_000_000_000,
+                PEPE: 1000_000_000,
+                SHIB: 1000_000_000,
+                FLOKI: 1000_000_000,
+                MEME: 1000_000_000,
+                # BABYDOGE: 1000_000_000,
             }
 
             for currency_id, amount in topup_list.items():
@@ -1561,7 +1561,7 @@ def main():
             (24, 'SHIB-USDT'),
             (25, 'FLOKI-USDT'),
             (26, 'MEME-USDT'),
-            (27, 'BABYDOGE-USDT'),
+            # (27, 'BABYDOGE-USDT'),
 
         ]
 
@@ -1573,70 +1573,71 @@ def main():
         # create pairs
         pair_list = {
             Pair.get('PEPE-USDT'): {
-                PairSettings: {
-                    'is_enabled': True,
-                    'is_autoorders_enabled': True,
-                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation': 0.99000000,
-                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                    'PairSettings': {
+                        'is_enabled': True,
+                        'is_autoorders_enabled': True,
+                        'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                        'custom_price': 0,
+                        'deviation': 0.99000000,
+                        'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
+                    },
+                    'BotConfig': {
+                        'name': 'PEPE-USDT',
+                        'user': bot,
+                        'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                        'instant_match': True,
+                        'ohlc_period': 5,
+                        'loop_period_random': True,
+                        'min_period': 5,
+                        'max_period': 10,
+                        'ext_price_delta': 0,
+                        'min_order_quantity': 1000000,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
+                        'max_order_quantity': 100000000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
+                        'low_orders_max_match_size': 1000000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
+                        'low_orders_spread_size': 1,  # Kích thước spread tối thiểu giữa lệnh mua và lệnh bán
+                        'low_orders_min_order_size': 1000000,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
+                        'enabled': True,
+                    }
                 },
-                BotConfig: {
-                    'name': 'PEPE-USDT',
-                    'user': bot,
-                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
-                    'instant_match': True,
-                    'ohlc_period': 5,
-                    'loop_period_random': True,
-                    'min_period': 5,
-                    'max_period': 10,
-                    'ext_price_delta': 0,
-                    'min_order_quantity': 1,
-                    'max_order_quantity': 10000000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
-                    'enabled': True,
-                }
-            },
             Pair.get('SHIB-USDT'): {
-                PairSettings: {
-                    'is_enabled': True,
-                    'is_autoorders_enabled': True,
-                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation': 0.99000000,
-                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                    'PairSettings': {
+                        'is_enabled': True,
+                        'is_autoorders_enabled': True,
+                        'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                        'custom_price': 0,
+                        'deviation': 0.99000000,
+                        'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
+                    },
+                    'BotConfig': {
+                        'name': 'SHIB-USDT',
+                        'user': bot,
+                        'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                        'instant_match': True,
+                        'ohlc_period': 5,
+                        'loop_period_random': True,
+                        'min_period': 5,
+                        'max_period': 10,
+                        'ext_price_delta': 0,
+                        'min_order_quantity': 1000000,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
+                        'max_order_quantity': 100000000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
+                        'low_orders_max_match_size': 1000000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
+                        'low_orders_spread_size': 0.00000001,  # Kích thước spread tối thiểu giữa lệnh mua và lệnh bán
+                        'low_orders_min_order_size': 1000000,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
+                        'enabled': True,
+                    }
                 },
-                BotConfig: {
-                    'name': 'SHIB-USDT',
-                    'user': bot,
-                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
-                    'instant_match': True,
-                    'ohlc_period': 5,
-                    'loop_period_random': True,
-                    'min_period': 5,
-                    'max_period': 10,
-                    'ext_price_delta': 0,
-                    'min_order_quantity': 1,
-                    'max_order_quantity': 10000000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
-                    'enabled': True,
-                }
-            },
+
              
             Pair.get('FLOKI-USDT'): {
-                PairSettings: {
+                'PairSettings': {
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0,
                     'deviation': 0.99000000,
-                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                    'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
                 },
-                BotConfig: {
+                'BotConfig': {
                     'name': 'FLOKI-USDT',
                     'user': bot,
                     'strategy': BotConfig.TRADE_STRATEGY_DRAW,
@@ -1646,24 +1647,25 @@ def main():
                     'min_period': 5,
                     'max_period': 10,
                     'ext_price_delta': 0,
-                    'min_order_quantity': 1,
-                    'max_order_quantity': 10000000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
+                    'min_order_quantity': 100000,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
+                    'max_order_quantity': 10000000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
+                    'low_orders_max_match_size': 100000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
+                    'low_orders_spread_size': 1,  # Kích thước spread tối thiểu giữa lệnh mua và lệnh bán
+                    'low_orders_min_order_size': 100000,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
                     'enabled': True,
                 }
             },
+
             Pair.get('MEME-USDT'): {
-                PairSettings: {
+                'PairSettings': {
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0,
                     'deviation': 0.99000000,
-                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                    'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
                 },
-                BotConfig: {
+                'BotConfig': {
                     'name': 'MEME-USDT',
                     'user': bot,
                     'strategy': BotConfig.TRADE_STRATEGY_DRAW,
@@ -1673,42 +1675,43 @@ def main():
                     'min_period': 5,
                     'max_period': 10,
                     'ext_price_delta': 0,
-                    'min_order_quantity': 1,
-                    'max_order_quantity': 10000000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
+                    'min_order_quantity': 1000,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
+                    'max_order_quantity': 100000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
+                    'low_orders_max_match_size': 1000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
+                    'low_orders_spread_size': 1,  # Kích thước spread tối thiểu giữa lệnh mua và lệnh bán
+                    'low_orders_min_order_size': 1000,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
                     'enabled': True,
                 }
             },
-            Pair.get('BABYDOGE-USDT'): {
-                PairSettings: {
-                    'is_enabled': True,
-                    'is_autoorders_enabled': True,
-                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation':  0.01,
-                    'precisions': ['1', '0.1', '0.01', '0.001', '0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001', '0.000000001', '0.0000000001', '0.00000000001']
-                },
-                BotConfig : {
-                    'name': 'BABYDOGE-USDT',
-                    'user': bot,
-                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
-                    'instant_match': True,
-                    'ohlc_period': 5,
-                    'loop_period_random': True,
-                    'min_period': 5,
-                    'max_period': 10,
-                    'ext_price_delta': 0,
-                    'min_order_quantity': 1,
-                    'max_order_quantity': 10000000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.000000001,  # Giảm giá trị này nếu cần
-                    'enabled': True
-                }
 
-            },
+            # Pair.get('BABYDOGE-USDT'): {
+            #     PairSettings: {
+            #         'is_enabled': True,
+            #         'is_autoorders_enabled': True,
+            #         'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+            #         'custom_price': 0,
+            #         'deviation':  0.01,
+            #         'precisions': ['1', '0.1', '0.01', '0.001', '0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001', '0.000000001', '0.0000000001', '0.00000000001']
+            #     },
+            #     BotConfig : {
+            #         'name': 'BABYDOGE-USDT',
+            #         'user': bot,
+            #         'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+            #         'instant_match': True,
+            #         'ohlc_period': 5,
+            #         'loop_period_random': True,
+            #         'min_period': 5,
+            #         'max_period': 10,
+            #         'ext_price_delta': 0,
+            #         'min_order_quantity': 1,
+            #         'max_order_quantity': 10000000,
+            #         'low_orders_max_match_size': 0.0029,
+            #         'low_orders_spread_size': 200,
+            #         'low_orders_min_order_size': 0.000000001,  # Giảm giá trị này nếu cần
+            #         'enabled': True
+            #     }
+
+            # },
             Pair.get('TON-USDT'): {
                 PairSettings: {
                     'is_enabled': True,
@@ -1729,10 +1732,10 @@ def main():
                     'max_period': 10,
                     'ext_price_delta': 0,
                     'min_order_quantity': 1,
-                    'max_order_quantity': 100000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
+                    'max_order_quantity': 10000,
+                    'low_orders_max_match_size': 1,
+                    'low_orders_spread_size': 1,
+                    'low_orders_min_order_size': 1,
                     'enabled': True,
                 }
             },
@@ -1756,10 +1759,10 @@ def main():
                     'max_period': 10,
                     'ext_price_delta': 0,
                     'min_order_quantity': 1,
-                    'max_order_quantity': 10000000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
+                    'max_order_quantity': 1000000,
+                    'low_orders_max_match_size': 1,
+                    'low_orders_spread_size': 1,
+                    'low_orders_min_order_size': 1,
                     'enabled': True,
                 }
             },
@@ -1785,9 +1788,9 @@ def main():
                     'ext_price_delta': 0,
                     'min_order_quantity': 1,
                     'max_order_quantity': 100000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
+                    'low_orders_max_match_size': 1,
+                    'low_orders_spread_size': 1,
+                    'low_orders_min_order_size': 1,
                     'enabled': True,
                 }
             },
@@ -1813,9 +1816,9 @@ def main():
                     'ext_price_delta': 0,
                     'min_order_quantity': 1,
                     'max_order_quantity': 100000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
+                    'low_orders_max_match_size': 1,
+                    'low_orders_spread_size': 1,
+                    'low_orders_min_order_size': 1,
                     'enabled': True,
                 }
             },
@@ -1841,9 +1844,9 @@ def main():
                     'ext_price_delta': 0,
                     'min_order_quantity': 1,
                     'max_order_quantity': 100000,
-                    'low_orders_max_match_size': 0.0029,
-                    'low_orders_spread_size': 200,
-                    'low_orders_min_order_size': 0.0003,
+                    'low_orders_max_match_size':1,
+                    'low_orders_spread_size': 1,
+                    'low_orders_min_order_size': 1,
                     'enabled': True,
                 }
             },
@@ -1869,7 +1872,7 @@ def main():
                     'max_period': 280,
                     'ext_price_delta': 0,
                     'min_order_quantity': 0.001,
-                    'max_order_quantity': 0.05,
+                    'max_order_quantity': 0.1,
                     'low_orders_max_match_size': 0.0029,
                     'low_orders_spread_size': 200,
                     'low_orders_min_order_size': 0.0003,
@@ -1896,7 +1899,7 @@ def main():
                     'max_period': 208,
                     'ext_price_delta': 0.001,
                     'min_order_quantity': 0.03,
-                    'max_order_quantity': 2.02,
+                    'max_order_quantity': 5.02,
                     'low_orders_max_match_size': 1,
                     'low_orders_spread_size': 1,
                     'low_orders_min_order_size': 1,
@@ -1991,7 +1994,7 @@ def main():
                     'is_enabled': IS_WON,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_CUSTOM,
-                    'custom_price': 0.1,
+                    'custom_price': 0.05,
                     'deviation': 0.0,
                     'precisions': ['10', '1', '0.1', '0.01', '0.001'],
                 },
@@ -2006,7 +2009,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0.001,
+                    'ext_price_delta': 0.00001,
                     'min_order_quantity': 10,
                     'max_order_quantity': 10000,
                     'low_orders_max_match_size': 1,
@@ -2035,7 +2038,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0.001,
+                    'ext_price_delta': 0.0001,
                     'min_order_quantity': 10,
                     'max_order_quantity': 10000,
                     'low_orders_max_match_size': 1,
@@ -2208,8 +2211,8 @@ def main():
             to_write.append('='*10)
 
         for currency_id in coin_list:
-            if currency_id in [USDT, BTC, TON, DOGE,PEPE,SHIB,FLOKI,MEME,BABYDOGE]:
-            # if currency_id in [USDT, BTC, TON, DOGE,PEPE,SHIB,FLOKI,MEME]:
+            # if currency_id in [USDT, BTC, TON, DOGE,PEPE,SHIB,FLOKI,MEME,BABYDOGE]:
+            if currency_id in [USDT, BTC, TON, DOGE,PEPE,SHIB,FLOKI,MEME]:
                 continue
 
             currency = Currency.get(currency_id)

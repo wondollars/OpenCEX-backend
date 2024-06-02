@@ -21,23 +21,23 @@ class DataSourcesManager:
         for pair in Pair.objects.all():
             self._data[pair] = external_exchanges_pairs_price_cache.get(pair.code)
 
-    # def _update_cached_prices(self, new_data=None):
-    #     if not new_data:
-    #         new_data = self._data
-    #     for pair, price in new_data.items():
-    #         external_exchanges_pairs_price_cache.set(pair.code, price)
-
     def _update_cached_prices(self, new_data=None):
         if not new_data:
             new_data = self._data
         for pair, price in new_data.items():
-            try:
-                # send_telegram_message(f'Preparing to cache {pair.code}: {price}')
-                external_exchanges_pairs_price_cache.set(pair.code, price)
-                cached_value = external_exchanges_pairs_price_cache.get(pair.code)
-                send_telegram_message(f'Cached value for {pair.code}: {cached_value}')
-            except Exception as e:
-                send_telegram_message(f'Error caching {pair.code}: {e}')
+            external_exchanges_pairs_price_cache.set(pair.code, price)
+
+    # def _update_cached_prices(self, new_data=None):
+    #     if not new_data:
+    #         new_data = self._data
+    #     for pair, price in new_data.items():
+    #         try:
+    #             # send_telegram_message(f'Preparing to cache {pair.code}: {price}')
+    #             external_exchanges_pairs_price_cache.set(pair.code, price)
+    #             cached_value = external_exchanges_pairs_price_cache.get(pair.code)
+    #             send_telegram_message(f'Cached value for {pair.code}: {cached_value}')
+    #         except Exception as e:
+    #             send_telegram_message(f'Error caching {pair.code}: {e}')
 
 
     def _get_main_source_data(self):
