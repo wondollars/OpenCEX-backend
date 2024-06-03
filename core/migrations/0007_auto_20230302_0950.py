@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='wallettransactions',
             name='fee_amount',
-            field=lib.fields.MoneyField(decimal_places=16, default=0, max_digits=32),
+            field=lib.fields.MoneyField(decimal_places=8, default=0, max_digits=32),
         ),
         migrations.AddField(
             model_name='wallettransactions',

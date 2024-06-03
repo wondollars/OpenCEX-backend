@@ -24,8 +24,8 @@ from core.models.inouts.pair import PairSerialField
 
 
 class OTCSerializer(serializers.Serializer):
-    otc_percent = serializers.DecimalField(max_digits=32, decimal_places=16)
-    otc_limit = serializers.DecimalField(max_digits=32, decimal_places=16)
+    otc_percent = serializers.DecimalField(max_digits=32, decimal_places=8)
+    otc_limit = serializers.DecimalField(max_digits=32, decimal_places=8)
 
     def validate(self, attrs):
         attrs = serializers.Serializer.validate(self, attrs)
@@ -54,7 +54,7 @@ class OrderSerializer(serializers.ModelSerializer):
     )
     updated = JSDatetimeField(required=False)
     created = JSDatetimeField(required=False)
-    quantity = serializers.DecimalField(max_digits=32, decimal_places=16)
+    quantity = serializers.DecimalField(max_digits=32, decimal_places=8)
 
     def get_otc_price(self, pair, percent):
         return OtcOrdersUpdater.make_price(pair, percent)
@@ -147,8 +147,8 @@ class ExchangeResultSerialzier(serializers.ModelSerializer):
     quote_currency = CurrencySerialField()
     operation = serializers.IntegerField()
     order = OrderSerializer()
-    cost = serializers.DecimalField(max_digits=32, decimal_places=16)
-    quantity = serializers.DecimalField(max_digits=32, decimal_places=16)
+    cost = serializers.DecimalField(max_digits=32, decimal_places=8)
+    quantity = serializers.DecimalField(max_digits=32, decimal_places=8)
 
     class Meta:
         model = Exchange
@@ -159,8 +159,8 @@ class ExchangeRequestSerializer(serializers.Serializer):
     operation = serializers.IntegerField(min_value=0, max_value=1)
     base_currency = CurrencySerialField()
     quote_currency = CurrencySerialField()
-    quantity = serializers.DecimalField(min_value=0, max_digits=32, decimal_places=16, required=False)
-    quantity_alt = serializers.DecimalField(min_value=0, max_digits=32, decimal_places=16, required=False)
+    quantity = serializers.DecimalField(min_value=0, max_digits=32, decimal_places=8, required=False)
+    quantity_alt = serializers.DecimalField(min_value=0, max_digits=32, decimal_places=8, required=False)
     pair = PairSerialField(required=False)
     strict_pair = serializers.BooleanField(required=False)
 
@@ -196,11 +196,11 @@ class ExchangeRequestSerializer(serializers.Serializer):
 
 class UpdateOrderSerializer(serializers.Serializer):
     id = serializers.IntegerField(required=True)
-    price = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=16)
-    stop = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=16)
-    quantity = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=16)
-    otc_limit = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=16)
-    otc_percent = serializers.DecimalField(required=False, max_digits=32, decimal_places=16)
+    price = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=8)
+    stop = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=8)
+    quantity = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=8)
+    otc_limit = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=8)
+    otc_percent = serializers.DecimalField(required=False, max_digits=32, decimal_places=8)
 
     def validate(self, data):
         data = serializers.Serializer.validate(self, data)

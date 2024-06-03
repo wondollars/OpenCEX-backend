@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='feesandlimits',
             name='limits_keeper_accumulation_balance',
-            field=models.DecimalField(decimal_places=16, default=0, max_digits=32),
+            field=models.DecimalField(decimal_places=8, default=0, max_digits=32),
         ),
     ]

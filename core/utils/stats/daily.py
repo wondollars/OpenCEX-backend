@@ -6,7 +6,6 @@ from core.cache import PAIRS_VOLUME_CACHE_KEY
 from core.cache import last_pair_price_cache
 from core.cache import orders_app_cache
 from core.models.inouts.pair import Pair
-from lib.notifications import send_telegram_message
 
 
 def get_pair_last_price(pair):
@@ -42,8 +41,6 @@ def get_last_prices(ts=None):
         item = q.first()
         resultq[pair.code] = item['price'] if item else None
 
-    # send_telegram_message(f'get_last_prices: {resultq}')
-   
     return resultq
 
 

@@ -77,7 +77,7 @@ class WalletHistoryItem(BaseModel, UserMixinModel):
     state = models.PositiveSmallIntegerField(choices=STATES, default=STATE_PENDING)
     operation_type = models.PositiveSmallIntegerField(choices=OPERATION_TYPES)
     currency = CurrencyModelField()
-    amount = models.DecimalField(max_digits=32, decimal_places=16, default=0)
+    amount = models.DecimalField(max_digits=32, decimal_places=8, default=0)
     # transaction hash for crypto and request id for fiat
     tx_hash = models.CharField(max_length=255, default=str)
     # wallet address for crypto and target account for fiat

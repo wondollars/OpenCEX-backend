@@ -38,7 +38,7 @@ class MoneyField(models.DecimalField):
     Default init values overriden
     """
 
-    def __init__(self, verbose_name=None, name=None, max_digits=32, decimal_places=16, **kwargs):
+    def __init__(self, verbose_name=None, name=None, max_digits=32, decimal_places=8, **kwargs):
         super().__init__(verbose_name, name, max_digits, decimal_places, **kwargs)
 
 
