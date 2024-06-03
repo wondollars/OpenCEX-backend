@@ -21,7 +21,7 @@ user_email_field = serializers.HiddenField(default=CurrentUserEmail())
 
 
 class CurrencyAmountLimitSerializer(serializers.Serializer):
-    amount = serializers.DecimalField(min_value=0, max_digits=32, decimal_places=8)
+    amount = serializers.DecimalField(min_value=0, max_digits=32, decimal_places=16)
     currency = CurrencySerialField()
 
     def validate(self, data):

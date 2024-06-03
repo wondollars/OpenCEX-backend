@@ -77,7 +77,7 @@ class TradesAggregatedStats(models.Model):
     close_price = MoneyField(default=0)
 
     volume = MoneyField(default=0)  # quoted
-    amount = models.DecimalField(decimal_places=8, default=0, max_digits=32)  # base currency
+    amount = models.DecimalField(decimal_places=16, default=0, max_digits=32)  # base currency
     num_trades = models.IntegerField(default=0)
 
     fee_base = MoneyField(default=0)

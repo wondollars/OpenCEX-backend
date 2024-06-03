@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='orderchangehistory',
             name='stop',
-            field=lib.fields.MoneyField(blank=True, decimal_places=8, max_digits=32, null=True),
+            field=lib.fields.MoneyField(blank=True, decimal_places=16, max_digits=32, null=True),
         ),
     ]
