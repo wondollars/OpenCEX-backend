@@ -1635,7 +1635,7 @@ def main():
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0,
                     'deviation': 0.99000000,
-                    'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
+                    'precisions': ['100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
                     'name': 'FLOKI-USDT',
