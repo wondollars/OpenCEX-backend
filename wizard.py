@@ -1577,9 +1577,9 @@ def main():
                         'is_enabled': True,
                         'is_autoorders_enabled': True,
                         'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                        'custom_price': 0,
-                        'deviation': 0.99000000,
-                        'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
+                        'custom_price': 0.001,
+                        'deviation': 0.98000000,
+                        'precisions': ['0.001', '0.0001', '0.00001', '0.000001', '0.0000001']
                     },
                     BotConfig: {
                         'name': 'PEPE-USDT',
@@ -1590,12 +1590,12 @@ def main():
                         'loop_period_random': True,
                         'min_period': 5,
                         'max_period': 10,
-                        'ext_price_delta': 0,
-                        'min_order_quantity': 1000000,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
-                        'max_order_quantity': 100000000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
-                        'low_orders_max_match_size': 1000000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
+                        'ext_price_delta': 0.002,
+                        'min_order_quantity': 1,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
+                        'max_order_quantity': 1000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
+                        'low_orders_max_match_size': 10000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
                         'low_orders_spread_size': 1,  # Kích thước spread tối thiểu giữa lệnh mua và lệnh bán
-                        'low_orders_min_order_size': 1000000,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
+                        'low_orders_min_order_size': 1,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
                         'enabled': True,
                     }
                 },
@@ -1605,8 +1605,8 @@ def main():
                         'is_autoorders_enabled': True,
                         'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                         'custom_price': 0,
-                        'deviation': 0.99000000,
-                        'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
+                        'deviation': 0.98000000,
+                        'precisions': ['0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001']
                     },
                     BotConfig: {
                         'name': 'SHIB-USDT',
@@ -1617,12 +1617,12 @@ def main():
                         'loop_period_random': True,
                         'min_period': 5,
                         'max_period': 10,
-                        'ext_price_delta': 0,
-                        'min_order_quantity': 1000000,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
-                        'max_order_quantity': 100000000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
-                        'low_orders_max_match_size': 1000000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
-                        'low_orders_spread_size': 0.00000001,  # Kích thước spread tối thiểu giữa lệnh mua và lệnh bán
-                        'low_orders_min_order_size': 1000000,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
+                        'ext_price_delta': 0.002,
+                        'min_order_quantity': 1,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
+                        'max_order_quantity': 1000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
+                        'low_orders_max_match_size': 10000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
+                        'low_orders_spread_size': 1,  # Kích thước spread tối thiểu giữa lệnh mua và lệnh bán
+                        'low_orders_min_order_size': 1,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
                         'enabled': True,
                     }
                 },
@@ -1633,9 +1633,9 @@ def main():
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation': 0.99000000,
-                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                    'custom_price': 0.001,
+                    'deviation': 0.98000000,
+                    'precisions': ['1', '0.1', '0.01', '0.001', '0.0001']
                 },
                 BotConfig: {
                     'name': 'FLOKI-USDT',
@@ -1646,12 +1646,12 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0,
-                    'min_order_quantity': 100000,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
-                    'max_order_quantity': 10000000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
-                    'low_orders_max_match_size': 100000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
+                    'ext_price_delta': 0.002,
+                    'min_order_quantity': 1,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
+                    'max_order_quantity': 1000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
+                    'low_orders_max_match_size': 10000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
                     'low_orders_spread_size': 1,  # Kích thước spread tối thiểu giữa lệnh mua và lệnh bán
-                    'low_orders_min_order_size': 100000,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
+                    'low_orders_min_order_size': 1,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
                     'enabled': True,
                 }
             },
@@ -1661,9 +1661,9 @@ def main():
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation': 0.99000000,
-                    'precisions': ['0.00000001', '0.0000001', '0.000001', '0.00001', '0.0001']
+                    'custom_price': 0.01,
+                    'deviation': 0.98000000,
+                    'precisions': ['0.1', '0.01', '0.0001', '0.00001', '0.000001']
                 },
                 BotConfig: {
                     'name': 'MEME-USDT',
@@ -1674,12 +1674,12 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0,
-                    'min_order_quantity': 1000,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
-                    'max_order_quantity': 100000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
-                    'low_orders_max_match_size': 1000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
+                    'ext_price_delta': 0.002,
+                    'min_order_quantity': 1,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
+                    'max_order_quantity': 1000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
+                    'low_orders_max_match_size': 10000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
                     'low_orders_spread_size': 1,  # Kích thước spread tối thiểu giữa lệnh mua và lệnh bán
-                    'low_orders_min_order_size': 1000,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
+                    'low_orders_min_order_size': 1,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
                     'enabled': True,
                 }
             },
@@ -1717,8 +1717,8 @@ def main():
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation': 0.99000000,
+                    'custom_price': 0.1,
+                    'deviation': 0.98000000,
                     'precisions': ['100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
@@ -1730,7 +1730,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 1,
                     'max_order_quantity': 10000,
                     'low_orders_max_match_size': 1,
@@ -1744,8 +1744,8 @@ def main():
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation': 0.99000000,
+                    'custom_price': 0.1,
+                    'deviation': 0.98000000,
                     'precisions': ['100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
@@ -1757,7 +1757,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 1,
                     'max_order_quantity': 1000000,
                     'low_orders_max_match_size': 1,
@@ -1772,8 +1772,8 @@ def main():
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation': 0.99000000,
+                    'custom_price': 0.1,
+                    'deviation': 0.98000000,
                     'precisions': ['100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
@@ -1785,7 +1785,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 1,
                     'max_order_quantity': 100000,
                     'low_orders_max_match_size': 1,
@@ -1800,8 +1800,8 @@ def main():
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation': 0.99000000,
+                    'custom_price': 0.1,
+                    'deviation': 0.98000000,
                     'precisions': ['100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
@@ -1813,7 +1813,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 1,
                     'max_order_quantity': 100000,
                     'low_orders_max_match_size': 1,
@@ -1829,7 +1829,7 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0,
-                    'deviation': 0.99000000,
+                    'deviation': 0.98000000,
                     'precisions': ['100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
@@ -1841,7 +1841,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 1,
                     'max_order_quantity': 100000,
                     'low_orders_max_match_size':1,
@@ -1870,7 +1870,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 75,
                     'max_period': 280,
-                    'ext_price_delta': 0,
+                    'ext_price_delta': 0.001,
                     'min_order_quantity': 0.001,
                     'max_order_quantity': 0.1,
                     'low_orders_max_match_size': 0.0029,
@@ -1885,7 +1885,7 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0,
-                    'deviation': 0.99000000,
+                    'deviation': 0.98000000,
                     'precisions': ['100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
@@ -1897,7 +1897,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 61,
                     'max_period': 208,
-                    'ext_price_delta': 0.001,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 0.03,
                     'max_order_quantity': 5.02,
                     'low_orders_max_match_size': 1,
@@ -1911,7 +1911,7 @@ def main():
                     'is_enabled': IS_TRON,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
+                    'custom_price': 0.1,
                     'deviation': 0.0,
                     'precisions': ['0.01', '0.001', '0.0001', '0.00001', '0.000001']
                 },
@@ -1939,7 +1939,7 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0,
-                    'deviation': 0.0,
+                    'deviation': 0.98,
                     'precisions': ['100', '10', '1', '0.1', '0.01'],
                 },
                 BotConfig: {
@@ -1951,7 +1951,7 @@ def main():
                     'loop_period_random': False,
                     'min_period': 10,
                     'max_period': 180,
-                    'ext_price_delta': 0.001,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 0.01,
                     'max_order_quantity': 0.5, 
                     'low_orders_max_match_size': 1,
@@ -1965,8 +1965,8 @@ def main():
                     'is_enabled': IS_MATIC,
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                    'custom_price': 0,
-                    'deviation': 0.0,
+                    'custom_price': 0.1,
+                    'deviation': 0.98,
                     'precisions': ['10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
@@ -1980,7 +1980,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 10,
                     'max_period': 60,
-                    'ext_price_delta': 0.001,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 10,
                     'max_order_quantity': 10000,  
                     'low_orders_max_match_size': 1,
@@ -1995,7 +1995,7 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_CUSTOM,
                     'custom_price': 0.05,
-                    'deviation': 0.0,
+                    'deviation': 0.95,
                     'precisions': ['10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
@@ -2009,7 +2009,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0.00001,
+                    'ext_price_delta': 0.005,
                     'min_order_quantity': 10,
                     'max_order_quantity': 10000,
                     'low_orders_max_match_size': 1,
@@ -2024,7 +2024,7 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
-                    'deviation': 0.0,
+                    'deviation': 0.98,
                     'precisions': ['10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
@@ -2038,7 +2038,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0.0001,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 10,
                     'max_order_quantity': 10000,
                     'low_orders_max_match_size': 1,
@@ -2053,7 +2053,7 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
-                    'deviation': 0.0,
+                    'deviation': 0.98,
                     'precisions': ['10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
@@ -2067,7 +2067,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0.001,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 10,
                     'max_order_quantity': 10000,
                     'low_orders_max_match_size': 1,
@@ -2082,7 +2082,7 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
-                    'deviation': 0.0,
+                    'deviation': 0.98,
                     'precisions': ['10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
@@ -2096,7 +2096,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0.001,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 10,
                     'max_order_quantity': 10000,  
                     'low_orders_max_match_size': 1,
@@ -2111,7 +2111,7 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
-                    'deviation': 0.0,
+                    'deviation': 0.98,
                     'precisions': ['10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
@@ -2125,7 +2125,7 @@ def main():
                     'loop_period_random': True,
                     'min_period': 5,
                     'max_period': 10,
-                    'ext_price_delta': 0.001,
+                    'ext_price_delta': 0.002,
                     'min_order_quantity': 10,
                     'max_order_quantity': 10000,
                     'low_orders_max_match_size': 1,

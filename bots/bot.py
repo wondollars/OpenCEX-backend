@@ -21,12 +21,12 @@ from lib.notifications import send_telegram_message
 log = logging.getLogger(__name__)
 
 
-EXTERNAL_PRICE_PERCENT_DIFFERENCE = 3
+EXTERNAL_PRICE_PERCENT_DIFFERENCE = 5
 
-PRICE_MIN_DELTA = to_decimal(0.0000000001)
+PRICE_MIN_DELTA = to_decimal(0.0000000000001)
 
 money_format = functools.partial(pretty_decimal, digits=2)
-crypto_format = functools.partial(pretty_decimal, digits=12)
+crypto_format = functools.partial(pretty_decimal, digits=16)
 
 
 class Bot:
