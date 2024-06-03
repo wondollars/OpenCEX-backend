@@ -42,7 +42,7 @@ def get_last_prices(ts=None):
         item = q.first()
         resultq[pair.code] = item['price'] if item else None
 
-    send_telegram_message(f'get_last_prices: {resultq}')
+    # send_telegram_message(f'get_last_prices: {resultq}')
    
     return resultq
 
