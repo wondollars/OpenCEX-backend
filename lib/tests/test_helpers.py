@@ -8,11 +8,11 @@ from lib.helpers import to_decimal, normalize_data
 class TestToDecimal:
 
     def test_float_to_decimal(self):
-        assert to_decimal('1.020304050607', decimal_places=16) == Decimal('1.02030405')
+        assert to_decimal('1.020304050607', decimal_places=12) == Decimal('1.02030405')
         assert to_decimal('1.020304050607', decimal_places=10) == Decimal('1.0203040506')
         assert to_decimal(0.001) == Decimal('0.001')
         assert to_decimal(1) == Decimal('1')
-        assert to_decimal(Decimal('1.020304050607'), decimal_places=16) == Decimal('1.02030405')
+        assert to_decimal(Decimal('1.020304050607'), decimal_places=12) == Decimal('1.02030405')
         assert to_decimal(0.00000001) == Decimal('0.00000001')
         assert to_decimal(1.00000001) == Decimal('1.00000001')
         assert to_decimal(0.1) * to_decimal(0.1) == to_decimal(0.01)

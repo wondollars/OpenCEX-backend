@@ -73,7 +73,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('min_score', models.DecimalField(decimal_places=2, help_text='Minimal scoring to accumulate', max_digits=5)),
                 ('deffered_scoring_time', models.IntegerField(default=0, help_text='Time to wait scoring in minutes')),
-                ('min_tx_amount', lib.fields.MoneyField(decimal_places=16, default=0.001, max_digits=32)),
+                ('min_tx_amount', lib.fields.MoneyField(decimal_places=12, default=0.001, max_digits=32)),
                 ('currency', core.currency.CurrencyModelField(db_index=True, unique=True)),
             ],
         ),

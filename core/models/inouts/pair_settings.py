@@ -24,7 +24,7 @@ class PairSettings(models.Model):
     is_autoorders_enabled = models.BooleanField(default=True)
     price_source = models.SmallIntegerField(choices=PRICE_SOURCES, default=PRICE_SOURCE_EXTERNAL)
     custom_price = MoneyField(default=0.0)
-    deviation = models.DecimalField(default=0.0, max_digits=16, decimal_places=12, help_text='Max order price deviation')
+    deviation = models.DecimalField(default=0.0, max_digits=12, decimal_places=12, help_text='Max order price deviation')
     enable_alerts = models.BooleanField(default=True)
     precisions = ArrayField(models.CharField(max_length=16), default=list)
     min_order_size = MoneyField(default=0.0)

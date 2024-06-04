@@ -26,37 +26,37 @@ class FeesAndLimits(models.Model):
 
     currency = CurrencyModelField(unique=True)
     limits_deposit_min = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     limits_deposit_max = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     limits_withdrawal_min = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     limits_withdrawal_max = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     limits_order_min = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     limits_order_max = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     limits_code_max = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     limits_accumulation_min = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     limits_keeper_accumulation_balance = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     limits_accumulation_max_gas_price = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0, help_text='Gwei')
+        max_digits=32, decimal_places=12, default=0, help_text='Gwei')
     fee_deposit_address = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     fee_deposit_code = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     fee_withdrawal_code = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     fee_order_limits = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     fee_order_market = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
     fee_exchange_value = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
 
     def save(self, *args, **kwargs):
         super(FeesAndLimits, self).save(*args, **kwargs)
@@ -145,7 +145,7 @@ class WithdrawalFee(models.Model):
     currency = CurrencyModelField()
     blockchain_currency = CurrencyModelField()
     address_fee = models.DecimalField(
-        max_digits=32, decimal_places=16, default=0)
+        max_digits=32, decimal_places=12, default=0)
 
     class Meta:
         unique_together = (('currency', 'blockchain_currency'),)

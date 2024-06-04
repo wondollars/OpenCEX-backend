@@ -45,8 +45,8 @@ class ApiOrderSerializer(OrderSerializer):
 
 class UpdateOrderSerializer(serializers.Serializer):
     # id = serializers.IntegerField(required=True)
-    price = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=16)
-    quantity = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=16)
+    price = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=12)
+    quantity = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=12)
 
     def validate(self, data):
         data = serializers.Serializer.validate(self, data)
@@ -65,15 +65,15 @@ class UpdateOrderSerializer(serializers.Serializer):
 
 
 class OTCSerializer(serializers.Serializer):
-    quantity = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=16)
+    quantity = serializers.DecimalField(min_value=0, required=False, max_digits=32, decimal_places=12)
     otc_percent = serializers.DecimalField(
         min_value=-settings.OTC_PERCENT_LIMIT,
         max_value=+settings.OTC_PERCENT_LIMIT,
-        max_digits=32, decimal_places=16,
+        max_digits=32, decimal_places=12,
     )
     otc_limit = serializers.DecimalField(
         min_value=0.000001,
-        max_digits=32, decimal_places=16,
+        max_digits=32, decimal_places=12,
     )
 
     def validate(self, data):
