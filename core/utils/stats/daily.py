@@ -47,9 +47,9 @@ def get_last_prices(ts=None):
 
     
     # test = {}
-    test = get_last_price_from_otc()
-    send_telegram_message(f'resultq: {resultq}')
-    send_telegram_message(f'test: {test}')
+    # test = get_last_price_from_otc()
+    # send_telegram_message(f'resultq: {resultq}')
+    # send_telegram_message(f'test: {test}')
     return resultq
 
 def get_last_price_from_otc(): 
@@ -88,8 +88,8 @@ def get_pairs_24h_stats() -> dict:
     volumes = {Pair.get(i['pair']).code: i['volume'] for i in qs}
     base_volumes = {Pair.get(i['pair']).code: i['base_volume'] for i in qs}
 
-    # last_prices = get_last_price_from_otc()
-    last_prices = get_last_prices()
+    last_prices = get_last_price_from_otc()
+    # last_prices = get_last_prices()
     prices_24h = get_last_prices(ts_24h_ago)
 
     result = []
