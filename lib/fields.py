@@ -43,7 +43,7 @@ class MoneyField(models.DecimalField):
 
 
 class FiatMoneyField(models.DecimalField):
-    def __init__(self, verbose_name=None, name=None, max_digits=12, decimal_places=2, **kwargs):
+    def __init__(self, verbose_name=None, name=None, max_digits=16, decimal_places=2, **kwargs):
         super().__init__(verbose_name, name, max_digits, decimal_places, **kwargs)
 
 

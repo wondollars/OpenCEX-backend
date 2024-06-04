@@ -290,7 +290,7 @@ class Migration(migrations.Migration):
                 ('is_autoorders_enabled', models.BooleanField(default=True)),
                 ('price_source', models.SmallIntegerField(choices=[(1, 'External'), (2, 'Custom')], default=1)),
                 ('custom_price', lib.fields.MoneyField(decimal_places=16, default=0.0, max_digits=32)),
-                ('deviation', models.DecimalField(decimal_places=16, default=0.0, help_text='Max order price deviation', max_digits=12)),
+                ('deviation', models.DecimalField(decimal_places=16, default=0.0, help_text='Max order price deviation', max_digits=16)),
             ],
         ),
         migrations.CreateModel(
