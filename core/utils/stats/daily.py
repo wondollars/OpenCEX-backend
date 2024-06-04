@@ -51,12 +51,10 @@ def get_last_prices(ts=None):
     send_telegram_message(f'resultq_: {resultq_}')
     return resultq
 
-def get_last_price_from_otc():
-    from core.models.orders import ExecutionResult
-
+def get_last_price_from_otc(): 
     resultq = {}
     for pair in Pair.objects.all():        
-        q = to_decimal(OtcOrdersUpdater.get_cached_price(pair))
+        q = to_decimal(OtcOrdersUpdater.get_cached_price(pair.code))
         item = q.first()
         resultq[pair.code] = item['price'] if item else None
 
