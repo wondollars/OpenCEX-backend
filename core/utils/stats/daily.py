@@ -6,8 +6,8 @@ from core.cache import PAIRS_VOLUME_CACHE_KEY
 from core.cache import last_pair_price_cache
 from core.cache import orders_app_cache
 from core.models.inouts.pair import Pair
-from core.otcupdater import OtcOrdersUpdater
-from lib.helpers import to_decimal
+# from core.otcupdater import OtcOrdersUpdater
+# from lib.helpers import to_decimal
 from lib.notifications import send_telegram_message
 # from core.cache import external_exchanges_pairs_price_cache
 
