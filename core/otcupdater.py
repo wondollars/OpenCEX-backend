@@ -101,7 +101,7 @@ class OtcOrdersUpdater:
         return updated_orders
 
     def update_order_price(self, order, price):
-        price = round(price, 5)
+        price = round(price, 12)
         order.update_order({'id': order.id, 'price': price}, nowait=True)
 
     @classmethod
