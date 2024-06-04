@@ -47,10 +47,10 @@ def get_last_prices(ts=None):
         resultq[pair.code] = item['price'] if item else None
 
     
-    test = {}
-    test = get_last_price_from_otc()
+    # test = {}
+    # test = get_last_price_from_otc()
     send_telegram_message(f'resultq: {resultq}')
-    send_telegram_message(f'resultq_: {test}')
+    # send_telegram_message(f'resultq_: {test}')
     return resultq
 
 def get_last_price_from_otc(): 
