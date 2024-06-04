@@ -44,11 +44,14 @@ def get_last_prices(ts=None):
         item = q.first()
         resultq[pair.code] = item['price'] if item else None
 
-    # send_telegram_message(f'get_last_prices: {resultq}')
-   
+    
+    resultq_ = {}
+    resultq_ = get_last_price_from_otc()
+    send_telegram_message(f'resultq: {resultq}')
+    send_telegram_message(f'resultq_: {resultq_}')
     return resultq
 
-def get_last_price_from_otc(ts=None):
+def get_last_price_from_otc():
     from core.models.orders import ExecutionResult
 
     resultq = {}
@@ -86,8 +89,8 @@ def get_pairs_24h_stats() -> dict:
     volumes = {Pair.get(i['pair']).code: i['volume'] for i in qs}
     base_volumes = {Pair.get(i['pair']).code: i['base_volume'] for i in qs}
 
-    last_prices = get_last_price_from_otc()
-    # last_prices = get_last_prices()
+    # last_prices = get_last_price_from_otc()
+    last_prices = get_last_prices()
     prices_24h = get_last_prices(ts_24h_ago)
 
     result = []
