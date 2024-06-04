@@ -9,6 +9,8 @@ from core.models.inouts.pair import Pair
 from core.otcupdater import OtcOrdersUpdater
 from lib.helpers import to_decimal
 from lib.notifications import send_telegram_message
+from core.cache import external_exchanges_pairs_price_cache
+
 
 
 def get_pair_last_price(pair):
@@ -45,22 +47,22 @@ def get_last_prices(ts=None):
         resultq[pair.code] = item['price'] if item else None
 
     
-    resultq_ = {}
-    resultq_ = get_last_price_from_otc()
+    test = {}
+    test = get_last_price_from_otc()
     send_telegram_message(f'resultq: {resultq}')
-    send_telegram_message(f'resultq_: {resultq_}')
+    send_telegram_message(f'resultq_: {test}')
     return resultq
 
 def get_last_price_from_otc(): 
-    resultq = {}
+    resultq_ = {}
     for pair in Pair.objects.all():        
-        q = to_decimal(OtcOrdersUpdater.get_cached_price(pair.code))
-        item = q.first()
-        resultq[pair.code] = item['price'] if item else None
+        price = to_decimal(external_exchanges_pairs_price_cache.get(pair) or 0)
+        
+        resultq_[pair.code] = price
 
     # send_telegram_message(f'get_last_prices: {resultq}')
    
-    return resultq
+    return resultq_
 
 
 def get_pairs_24h_stats() -> dict:
