@@ -620,7 +620,7 @@ def main():
                     'fee_order_limits': 0.00100000,
                     'fee_order_market': 0.00200000,
                     'fee_exchange_value': 0.00200000,
-                    'limits_keeper_accumulation_balance': 100.00000000,
+                    'limits_keeper_accumulation_balance': 1.00000000,
                     'limits_accumulation_max_gas_price': 500.00000000,
                 },
             },
@@ -1578,8 +1578,8 @@ def main():
                         'is_autoorders_enabled': True,
                         'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                         'custom_price': 0.001,
-                        'deviation': 0.98000000,
-                        'precisions': ['0.001', '0.0001', '0.00001', '0.000001', '0.0000001']
+                        'deviation': 0,
+                        'precisions': ['0.001', '0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001']
                     },
                     BotConfig: {
                         'name': 'PEPE-USDT',
@@ -1606,7 +1606,7 @@ def main():
                         'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                         'custom_price': 0,
                         'deviation': 0.98000000,
-                        'precisions': ['0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001']
+                        'precisions': ['0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001', '0.00000001']
                     },
                     BotConfig: {
                         'name': 'SHIB-USDT',
@@ -1634,8 +1634,8 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL, 
                     'custom_price': 0.001,
-                    'deviation': 0.98000000,
-                    'precisions': ['1', '0.1', '0.01', '0.001', '0.0001']
+                    'deviation': 0,
+                    'precisions': ['1', '0.1', '0.01', '0.001', '0.0001', '0.00001', '0.000001', '0.0000001']
  
                 },
                 BotConfig: {
@@ -1664,7 +1664,7 @@ def main():
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.01,
                     'deviation': 0.98000000,
-                    'precisions': ['0.1', '0.01', '0.0001', '0.00001', '0.000001']
+                    'precisions': ['0.1', '0.01', '0.0001', '0.00001', '0.000001', '0.0000001']
                 },
                 BotConfig: {
                     'name': 'MEME-USDT',
@@ -1774,8 +1774,8 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
-                    'deviation': 0.98000000,
-                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                    'deviation': 0,
+                    'precisions': ['1000','100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
                     'name': 'ETC-USDT',
@@ -1802,7 +1802,7 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
-                    'deviation': 0.98000000,
+                    'deviation': 0,
                     'precisions': ['100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
@@ -1860,7 +1860,7 @@ def main():
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0,
                     'deviation': 0.99000000,
-                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                    'precisions': ['1000000','100000','10000','1000','100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
                     'name': 'BTC-USDT',
@@ -1887,7 +1887,7 @@ def main():
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0,
                     'deviation': 0.98000000,
-                    'precisions': ['100', '10', '1', '0.1', '0.01']
+                    'precisions': ['10000','1000','100', '10', '1', '0.1', '0.01']
                 },
                 BotConfig: {
                     'name': 'ETH-USDT',
@@ -1914,7 +1914,7 @@ def main():
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
                     'deviation': 0.0,
-                    'precisions': ['0.01', '0.001', '0.0001', '0.00001', '0.000001']
+                    'precisions': ['100','10','1','0.1','0.01', '0.001', '0.0001', '0.00001', '0.000001']
                 },
                 BotConfig: {
                     'name': 'TRX-USDT',
@@ -1940,8 +1940,8 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0,
-                    'deviation': 0.98,
-                    'precisions': ['100', '10', '1', '0.1', '0.01'],
+                    'deviation': 0,
+                    'precisions': ['10000','1000','100', '10', '1', '0.1', '0.01'],
                 },
                 BotConfig: {
                     'name': 'BNB-USDT',
@@ -1967,8 +1967,8 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
-                    'deviation': 0.98,
-                    'precisions': ['10', '1', '0.1', '0.01', '0.001'],
+                    'deviation': 0,
+                    'precisions': ['100','10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
                     'name': 'MATIC-USDT',
@@ -1996,8 +1996,8 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_CUSTOM,
                     'custom_price': 0.05,
-                    'deviation': 0.95,
-                    'precisions': ['10', '1', '0.1', '0.01', '0.001'],
+                    'deviation': 0,
+                    'precisions': ['100','10', '1', '0.1', '0.01', '0.001','0.0001','0.00001'],
                 },
                 BotConfig: {
                     'name': 'WON-USDT',
@@ -2025,8 +2025,8 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
-                    'deviation': 0.98,
-                    'precisions': ['10', '1', '0.1', '0.01', '0.001'],
+                    'deviation': 0,
+                    'precisions': ['100','10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
                     'name': 'CELO-USDT',
@@ -2054,8 +2054,8 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
-                    'deviation': 0.98,
-                    'precisions': ['10', '1', '0.1', '0.01', '0.001'],
+                    'deviation': 0,
+                    'precisions': ['100','10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
                     'name': 'CORE-USDT',
@@ -2083,8 +2083,8 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
-                    'deviation': 0.98,
-                    'precisions': ['10', '1', '0.1', '0.01', '0.001'],
+                    'deviation': 0,
+                    'precisions': ['100','10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
                     'name': 'FUSE-USDT',
@@ -2112,8 +2112,8 @@ def main():
                     'is_autoorders_enabled': True,
                     'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
                     'custom_price': 0.1,
-                    'deviation': 0.98,
-                    'precisions': ['10', '1', '0.1', '0.01', '0.001'],
+                    'deviation': 0,
+                    'precisions': ['1000','100','10', '1', '0.1', '0.01', '0.001'],
                 },
                 BotConfig: {
                     'name': 'AVAX-USDT',
