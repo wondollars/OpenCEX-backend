@@ -1632,10 +1632,11 @@ def main():
                 PairSettings: {
                     'is_enabled': True,
                     'is_autoorders_enabled': True,
-                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL, 
                     'custom_price': 0.001,
                     'deviation': 0.98000000,
                     'precisions': ['1', '0.1', '0.01', '0.001', '0.0001']
+ 
                 },
                 BotConfig: {
                     'name': 'FLOKI-USDT',

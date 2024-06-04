@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='feesandlimits',
             name='limits_accumulation_max_gas_price',
-            field=models.DecimalField(decimal_places=16, default=0, help_text='Gwei', max_digits=32),
+            field=models.DecimalField(decimal_places=8, default=0, help_text='Gwei', max_digits=32),
         ),
         migrations.AlterField(
             model_name='wallettransactions',
