@@ -19,3 +19,4 @@ import cryptocoins.coins.pepe
 import cryptocoins.coins.shib
 import cryptocoins.coins.floki
 import cryptocoins.coins.meme
+import cryptocoins.coins.cake
