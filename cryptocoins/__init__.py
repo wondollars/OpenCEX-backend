@@ -16,7 +16,7 @@ import cryptocoins.coins.dai
 
 import cryptocoins.coins.pepe
 # import cryptocoins.coins.babydoge
-import cryptocoins.coins.shib
-import cryptocoins.coins.floki
+# import cryptocoins.coins.shib
+# import cryptocoins.coins.floki
 import cryptocoins.coins.meme
 import cryptocoins.coins.cake
