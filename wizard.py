@@ -51,7 +51,7 @@ from cryptocoins.coins.dai import DAI
 from cryptocoins.coins.doge import DOGE
 from cryptocoins.coins.ton import TON
 
-from cryptocoins.coins.pepe import PEPE
+# from cryptocoins.coins.pepe import PEPE
 # from cryptocoins.coins.babydoge import BABYDOGE
 # from cryptocoins.coins.shib import SHIB
 # from cryptocoins.coins.floki import FLOKI
@@ -100,7 +100,7 @@ def main():
         DAI,
         DOGE,
         TON,
-        PEPE,
+        # PEPE,
         # BABYDOGE,
         # SHIB,
         # FLOKI,
@@ -978,69 +978,69 @@ def main():
                 },
             },
         ],
-        PEPE: [
-            {
-                'model': CoinInfo,
-                'find': {'currency': PEPE},
-                'attributes': {
-                    'name': 'PEPE',
-                    'decimals': 10,
-                    'index': 39,
-                    'links': {
-                        "cmc": {
-                            "href": "https://coinmarketcap.com/currencies/pepe/",
-                            "title": "CoinMarketCap"
-                        },
-                        "exp": {
-                            "href": "https://etherscan.io/",
-                            "title": "Explorer"
-                        },
-                        "official": {
-                            "href": "https://www.pepe.vip/",
-                            "title": "PEPE"
-                        }
-                    },
-                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/24478.png',
-                },
-            },
-            {
-                'model': FeesAndLimits,
-                'find': {'currency': PEPE},
-                'attributes': {
-                    'limits_deposit_min': 1.00000000,
-                    'limits_deposit_max': 1000000.00000000,
-                    'limits_withdrawal_min': 2.00000000,
-                    'limits_withdrawal_max': 10000.00000000,
-                    'limits_order_min': 1.00000000,
-                    'limits_order_max': 100000.00000000,
-                    'limits_code_max': 100000.00000000,
-                    'limits_accumulation_min': 1.00000000,
-                    'fee_deposit_address': 0,
-                    'fee_deposit_code': 0,
-                    'fee_withdrawal_code': 0,
-                    'fee_order_limits': 0.00100000,
-                    'fee_order_market': 0.00200000,
-                    'fee_exchange_value': 0.00200000,
-                },
-            },
-            # {
-            #     'model': WithdrawalFee,
-            #     'find': {'currency': USDT, 'blockchain_currency': ETH},
-            #     'attributes': {
-            #         'blockchain_currency': ETH,
-            #         'address_fee': 5.00000000
-            #     },
-            # },
-            {
-                'model': WithdrawalFee,
-                'find': {'currency': PEPE, 'blockchain_currency': BNB},
-                'attributes': {
-                    'blockchain_currency': BNB,
-                    'address_fee': 0.00010000
-                },
-            },
+        # PEPE: [
+        #     {
+        #         'model': CoinInfo,
+        #         'find': {'currency': PEPE},
+        #         'attributes': {
+        #             'name': 'PEPE',
+        #             'decimals': 10,
+        #             'index': 39,
+        #             'links': {
+        #                 "cmc": {
+        #                     "href": "https://coinmarketcap.com/currencies/pepe/",
+        #                     "title": "CoinMarketCap"
+        #                 },
+        #                 "exp": {
+        #                     "href": "https://etherscan.io/",
+        #                     "title": "Explorer"
+        #                 },
+        #                 "official": {
+        #                     "href": "https://www.pepe.vip/",
+        #                     "title": "PEPE"
+        #                 }
+        #             },
+        #             'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/24478.png',
+        #         },
+        #     },
+        #     {
+        #         'model': FeesAndLimits,
+        #         'find': {'currency': PEPE},
+        #         'attributes': {
+        #             'limits_deposit_min': 1.00000000,
+        #             'limits_deposit_max': 1000000.00000000,
+        #             'limits_withdrawal_min': 2.00000000,
+        #             'limits_withdrawal_max': 10000.00000000,
+        #             'limits_order_min': 1.00000000,
+        #             'limits_order_max': 100000.00000000,
+        #             'limits_code_max': 100000.00000000,
+        #             'limits_accumulation_min': 1.00000000,
+        #             'fee_deposit_address': 0,
+        #             'fee_deposit_code': 0,
+        #             'fee_withdrawal_code': 0,
+        #             'fee_order_limits': 0.00100000,
+        #             'fee_order_market': 0.00200000,
+        #             'fee_exchange_value': 0.00200000,
+        #         },
+        #     },
+        #     # {
+        #     #     'model': WithdrawalFee,
+        #     #     'find': {'currency': USDT, 'blockchain_currency': ETH},
+        #     #     'attributes': {
+        #     #         'blockchain_currency': ETH,
+        #     #         'address_fee': 5.00000000
+        #     #     },
+        #     # },
+        #     {
+        #         'model': WithdrawalFee,
+        #         'find': {'currency': PEPE, 'blockchain_currency': BNB},
+        #         'attributes': {
+        #             'blockchain_currency': BNB,
+        #             'address_fee': 0.00010000
+        #         },
+        #     },
              
-        ],
+        # ],
         # SHIB: [
         #     {
         #         'model': CoinInfo,
@@ -1590,7 +1590,7 @@ def main():
                 DAI: 1000_000_000,
                 DOGE: 1000_000_000,
                 TON: 1000_000,
-                PEPE: 1000_000_000,
+                # PEPE: 1000_000_000,
                 # SHIB: 1000_000_000,
                 # FLOKI: 1000_000_000,
                 MEME: 1000_000_000,
@@ -1623,7 +1623,7 @@ def main():
             (20, 'DAI-USDT'),
             (21, 'DOGE-USDT'),
             (22, 'TON-USDT'),
-            (23, 'PEPE-USDT'),
+            # (23, 'PEPE-USDT'),
             # (24, 'SHIB-USDT'),
             # (25, 'FLOKI-USDT'),
             (26, 'MEME-USDT'),
@@ -1639,44 +1639,17 @@ def main():
 
         # create pairs
         pair_list = {
-            Pair.get('PEPE-USDT'): {
-                    PairSettings: {
-                        'is_enabled': True,
-                        'is_autoorders_enabled': True,
-                        'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
-                        'custom_price': 0.001,
-                        'deviation': 0,
-                        'precisions': ['0.001', '0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001']
-                    },
-                    BotConfig: {
-                        'name': 'PEPE-USDT',
-                        'user': bot,
-                        'strategy': BotConfig.TRADE_STRATEGY_DRAW,
-                        'instant_match': True,
-                        'ohlc_period': 5,
-                        'loop_period_random': True,
-                        'min_period': 5,
-                        'max_period': 10,
-                        'ext_price_delta': 0.002,
-                        'min_order_quantity': 1,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
-                        'max_order_quantity': 1000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
-                        'low_orders_max_match_size': 10000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
-                        'low_orders_spread_size': 1,  # Kích thước spread tối thiểu giữa lệnh mua và lệnh bán
-                        'low_orders_min_order_size': 1,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
-                        'enabled': True,
-                    }
-                },
-            # Pair.get('CAKE-USDT'): {
+            # Pair.get('PEPE-USDT'): {
             #         PairSettings: {
             #             'is_enabled': True,
             #             'is_autoorders_enabled': True,
             #             'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
             #             'custom_price': 0.001,
             #             'deviation': 0,
-            #             'precisions': ['100', '10', '1', '0.1', '0.01', '0.001']
+            #             'precisions': ['0.001', '0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001']
             #         },
             #         BotConfig: {
-            #             'name': 'CAKE-USDT',
+            #             'name': 'PEPE-USDT',
             #             'user': bot,
             #             'strategy': BotConfig.TRADE_STRATEGY_DRAW,
             #             'instant_match': True,
@@ -1684,7 +1657,7 @@ def main():
             #             'loop_period_random': True,
             #             'min_period': 5,
             #             'max_period': 10,
-            #             'ext_price_delta': 0.005,
+            #             'ext_price_delta': 0.002,
             #             'min_order_quantity': 1,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
             #             'max_order_quantity': 1000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
             #             'low_orders_max_match_size': 10000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
@@ -1693,6 +1666,33 @@ def main():
             #             'enabled': True,
             #         }
             #     },
+            Pair.get('CAKE-USDT'): {
+                    PairSettings: {
+                        'is_enabled': True,
+                        'is_autoorders_enabled': True,
+                        'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                        'custom_price': 0.001,
+                        'deviation': 0,
+                        'precisions': ['100', '10', '1', '0.1', '0.01', '0.001']
+                    },
+                    BotConfig: {
+                        'name': 'CAKE-USDT',
+                        'user': bot,
+                        'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                        'instant_match': True,
+                        'ohlc_period': 5,
+                        'loop_period_random': True,
+                        'min_period': 5,
+                        'max_period': 10,
+                        'ext_price_delta': 0.005,
+                        'min_order_quantity': 1,  # Số lượng đặt lệnh tối thiểu được điều chỉnh
+                        'max_order_quantity': 1000000,  # Số lượng đặt lệnh tối đa được điều chỉnh
+                        'low_orders_max_match_size': 10000,  # Kích thước khớp lệnh tối đa cho các lệnh nhỏ được điều chỉnh
+                        'low_orders_spread_size': 1,  # Kích thước spread tối thiểu giữa lệnh mua và lệnh bán
+                        'low_orders_min_order_size': 1,  # Kích thước đặt lệnh nhỏ nhất cho các lệnh nhỏ
+                        'enabled': True,
+                    }
+                },
 
             # Pair.get('SHIB-USDT'): {
             #         PairSettings: {
@@ -2308,7 +2308,7 @@ def main():
 
         for currency_id in coin_list:
             # if currency_id in [USDT, BTC, TON, DOGE,PEPE,SHIB,FLOKI,MEME,BABYDOGE]:
-            if currency_id in [USDT, BTC, TON, DOGE,PEPE,MEME,CAKE]:
+            if currency_id in [USDT, BTC, TON, DOGE,MEME,CAKE]:
                 continue
 
             currency = Currency.get(currency_id)

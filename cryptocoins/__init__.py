@@ -14,7 +14,7 @@ import cryptocoins.coins.etc
 import cryptocoins.coins.ftm
 import cryptocoins.coins.dai
 
-import cryptocoins.coins.pepe
+# import cryptocoins.coins.pepe
 # import cryptocoins.coins.babydoge
 # import cryptocoins.coins.shib
 # import cryptocoins.coins.floki
