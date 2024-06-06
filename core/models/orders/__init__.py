@@ -1131,12 +1131,12 @@ class ExecutionResult(UserMixinModel, BaseModel):
 
     def get_fee_amount(self):
         return to_decimal(to_decimal(self.result_amount) * to_decimal(self.fee_rate))
-    def save(self, *args, **kwargs):
-        # Debug giá trị trước khi lưu
-        send_telegram_message(f"Saving ExecutionResult: pair={self.pair.code}, price={self.price}, quantity={self.quantity}")
-        super().save(*args, **kwargs)
-        # Debug giá trị sau khi lưu
-        send_telegram_message(f"Saved ExecutionResult: pair={self.pair.code}, price={self.price}, quantity={self.quantity}")
+    # def save(self, *args, **kwargs):
+    #     # Debug giá trị trước khi lưu
+    #     send_telegram_message(f"Saving ExecutionResult: pair={self.pair.code}, price={self.price}, quantity={self.quantity}")
+    #     super().save(*args, **kwargs)
+    #     # Debug giá trị sau khi lưu
+    #     send_telegram_message(f"Saved ExecutionResult: pair={self.pair.code}, price={self.price}, quantity={self.quantity}")
 
 
 # order signal handlers
