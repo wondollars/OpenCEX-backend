@@ -203,7 +203,7 @@ def get_filtered_pairs_24h_stats_otc(disabled_type=None):
     from core.models import DisabledCoin
     from core.models import PairSettings
 
-    pairs_data = orders_app_cache.get(PAIRS_VOLUME_CACHE_KEY) or get_pairs_24h_stats_otc()
+    pairs_data =  get_pairs_24h_stats_otc() or orders_app_cache.get(PAIRS_VOLUME_CACHE_KEY)
     allowed_pairs = []
     for pair in pairs_data['pairs']:
         base, quote = pair['pair'].split('-')
