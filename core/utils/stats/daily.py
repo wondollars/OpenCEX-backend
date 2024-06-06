@@ -48,7 +48,7 @@ def get_last_prices(ts=None):
     
     # test = {}
     # test = get_last_price_from_otc()
-    # send_telegram_message(f'resultq: {resultq}')
+    send_telegram_message(f'resultq: {resultq}')
     # send_telegram_message(f'test: {test}')
     return resultq
 
