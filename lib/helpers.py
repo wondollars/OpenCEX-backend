@@ -193,26 +193,26 @@ def round_down(value, decimals):
         return round(d, decimals)
 
 
-# def to_decimal(value, decimal_places: int = 18) -> Decimal:
-#     """
-#     Convert to decimal with rounding down
-#     """
-#     return Decimal(str(value)).quantize(Decimal('.00000000000000001'), rounding=ROUND_DOWN, context=Context(prec=100))
+def to_decimal(value, decimal_places: int = 18) -> Decimal:
+    """
+    Convert to decimal with rounding down
+    """
+    return Decimal(str(value)).quantize(Decimal('.00000000000000001'), rounding=ROUND_DOWN, context=Context(prec=100))
 
-def to_decimal(value, decimal_places=18):
-    """
-    Convert to decimal with specified decimal places
-    """
-    # Chuyển đổi giá trị thành đối tượng Decimal
-    decimal_value = Decimal(str(value))
+# def to_decimal(value, decimal_places=18):
+#     """
+#     Convert to decimal with specified decimal places
+#     """
+#     # Chuyển đổi giá trị thành đối tượng Decimal
+#     decimal_value = Decimal(str(value))
     
-    # Xác định số chữ số thập phân cần làm tròn
-    rounding_precision = Decimal('0.1') ** decimal_places
+#     # Xác định số chữ số thập phân cần làm tròn
+#     rounding_precision = Decimal('0.1') ** decimal_places
     
-    # Làm tròn giá trị Decimal
-    rounded_value = decimal_value.quantize(rounding_precision, rounding=ROUND_DOWN)
+#     # Làm tròn giá trị Decimal
+#     rounded_value = decimal_value.quantize(rounding_precision, rounding=ROUND_DOWN)
     
-    return rounded_value
+#     return rounded_value
 
 
 
