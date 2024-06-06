@@ -4,6 +4,7 @@ from django.conf import settings
 from django.utils import translation
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiExample
+from lib.notifications import send_telegram_message
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
@@ -178,6 +179,9 @@ def coin_item_api_view(request, ticker):
     coin_static_page = CoinStaticPage.objects.filter(currency=ticker).first()
 
     coins_info = CoinInfo.get_coins_info()
+
+    send_telegram_message(f'coins_info: {coins_info}')
+
 
     if coin_static_page is None or ticker not in coins_info:
         return Response(status=status.HTTP_404_NOT_FOUND)
