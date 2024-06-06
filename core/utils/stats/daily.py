@@ -59,7 +59,7 @@ def get_last_price_from_otc():
         
         resultq_[pair.code] = price
 
-    send_telegram_message(f'get_last_prices: {resultq}')
+    send_telegram_message(f'get_last_prices: {resultq_}')
    
     return resultq_
 
