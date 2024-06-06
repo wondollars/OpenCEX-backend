@@ -14,7 +14,7 @@ from rest_framework.response import Response
 from core.consts.currencies import CURRENCIES_LIST
 from core.models.facade import CoinInfo
 from core.models.inouts.disabled_coin import DisabledCoin
-from core.utils.stats.daily import get_filtered_pairs_24h_stats, get_pair_last_price
+from core.utils.stats.daily import get_filtered_pairs_24h_stats, get_pair_last_price, get_filtered_pairs_24h_stats_otc
 from lib.filterbackend import FilterBackend
 from seo.models import CoinStaticPage
 from seo.models import CoinStaticSubPage
@@ -140,7 +140,7 @@ class ContentPhotoApiView(viewsets.ReadOnlyModelViewSet):
 @permission_classes((AllowAny,))
 def home_api(request):
     lang = request.GET.get('locale', 'en')
-    pairs_data = get_filtered_pairs_24h_stats()
+    pairs_data = get_filtered_pairs_24h_stats_otc()
     # pairs_data = get_pair_last_price()
     pairs_data = {pair['pair']: pair for pair in pairs_data['pairs']}
     btc_usdt_price = pairs_data.get('BTC-USDT', {}).get('price') or 0
@@ -185,7 +185,7 @@ def coin_item_api_view(request, ticker):
     if DisabledCoin.is_coin_disabled(ticker.upper()):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    pairs_data = get_filtered_pairs_24h_stats()
+    pairs_data = get_filtered_pairs_24h_stats_otc()
     pairs_data = {pair['pair']: pair for pair in pairs_data['pairs']}
     coins = {}
     usdt_volume = 0

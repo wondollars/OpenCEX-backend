@@ -48,7 +48,7 @@ def get_last_prices(ts=None):
     
     # test = {}
     # test = get_last_price_from_otc()
-    send_telegram_message(f'resultq: {resultq}')
+    # send_telegram_message(f'resultq: {resultq}')
     # send_telegram_message(f'test: {test}')
     return resultq
 
@@ -121,6 +121,62 @@ def get_pairs_24h_stats() -> dict:
         'pairs': result,
     }
 
+def get_pairs_24h_stats_otc() -> dict:
+    """Returns pairs 24h stats"""
+    from core.models.orders import ExecutionResult
+    from core.models.inouts.pair_settings import PairSettings
+
+    volume = Sum(F('price') * F('quantity'))
+
+    ts_24h_ago = timezone.now().replace(
+        second=0,
+        microsecond=0,
+    ) - timezone.timedelta(hours=24)
+
+    qs = ExecutionResult.objects.filter(
+        order__operation=1, # count only one operation, other case volume should be /2!
+        cancelled=False,
+        updated__gte=ts_24h_ago
+    ).values('pair').annotate(
+        volume=volume,
+        base_volume=Sum('quantity')
+    )
+
+    volumes = {Pair.get(i['pair']).code: i['volume'] for i in qs}
+    base_volumes = {Pair.get(i['pair']).code: i['base_volume'] for i in qs}
+
+    last_prices = get_last_price_from_otc()
+    # last_prices = get_last_prices()
+    prices_24h = get_last_prices(ts_24h_ago)
+
+    result = []
+    for pair in Pair.objects.all():
+        price = last_prices.get(str(pair), None)
+        price24 = prices_24h.get(str(pair), None)
+        price_24_value = 0
+        if price is not None and price24 is not None:
+            price_24_value = price - price24
+        if not price:
+            trend = 0
+        elif not price24:
+            trend = 100
+        else:
+            trend = 100 * (price - price24) / price24
+        pair_data = pair.to_dict()
+        pair_data['stack_precisions'] = PairSettings.get_stack_precisions_by_pair(pair.code)
+        result.append({
+            'volume': volumes.get(str(pair), None),
+            'base_volume': base_volumes.get(str(pair), None),
+            'price': price,
+            'price_24h': trend,  # price 24h percent
+            'price_24h_value': price_24_value,  # price 24h value
+            'pair': str(pair),
+            'pair_data': pair_data,
+        })
+
+    return {
+        'pairs': result,
+    }
 
 def get_filtered_pairs_24h_stats(disabled_type=None):
     """Returns pairs 24h stats excluding disabled pairs and coins"""
@@ -128,6 +184,26 @@ def get_filtered_pairs_24h_stats(disabled_type=None):
     from core.models import PairSettings
 
     pairs_data = orders_app_cache.get(PAIRS_VOLUME_CACHE_KEY) or get_pairs_24h_stats()
+    allowed_pairs = []
+    for pair in pairs_data['pairs']:
+        base, quote = pair['pair'].split('-')
+
+        if not PairSettings.is_pair_enabled(pair['pair']):
+            continue
+
+        if DisabledCoin.is_coin_disabled(base, disabled_type) or DisabledCoin.is_coin_disabled(quote, disabled_type):
+            continue
+        allowed_pairs.append(pair)
+
+    pairs_data['pairs'] = allowed_pairs
+    return pairs_data
+
+def get_filtered_pairs_24h_stats_otc(disabled_type=None):
+    """Returns pairs 24h stats excluding disabled pairs and coins"""
+    from core.models import DisabledCoin
+    from core.models import PairSettings
+
+    pairs_data = orders_app_cache.get(PAIRS_VOLUME_CACHE_KEY) or get_pairs_24h_stats_otc()
     allowed_pairs = []
     for pair in pairs_data['pairs']:
         base, quote = pair['pair'].split('-')
