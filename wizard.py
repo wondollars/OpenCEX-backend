@@ -2314,14 +2314,14 @@ def main():
             currency = Currency.get(currency_id)
             if not Keeper.objects.filter(currency=currency).exists():
                 private_key_pure_keep, private_key_keep, k_password, keeper = keeper_create(currency)
-                gas_password, gas_keeper = keeper_create(currency, True)
-                # private_key_pure_gas, private_key_gas, gas_password, gas_keeper = keeper_create(currency, True)
+                # gas_password, gas_keeper = keeper_create(currency, True)
+                private_key_pure_gas, private_key_gas, gas_password, gas_keeper = keeper_create(currency, True)
                 to_write.append(f'{currency.code} Info')
                 to_write.append(f'Keeper address: {keeper.user_wallet.address}, Password: {k_password}')
                 to_write.append(f'Keeper private_key_pure: {private_key_pure_keep}, private_key: {private_key_keep}')
                 to_write.append(f'++++++++++++++++++++++++++++++++++++++++++++++++')
                 to_write.append(f'GasKeeper address: {gas_keeper.user_wallet.address}, Password: {gas_password}')
-                # to_write.append(f'GasKeeper private_key_pure_gas: {private_key_pure_gas}, private_key_gas: {private_key_gas}')
+                to_write.append(f'GasKeeper private_key_pure_gas: {private_key_pure_gas}, private_key_gas: {private_key_gas}')
                 to_write.append('='*10)
             else:
                 to_write.append(f'{currency.code} Info')
