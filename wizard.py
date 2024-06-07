@@ -2386,7 +2386,9 @@ def keeper_create(currency, is_gas_keeper=False):
 
     if not new_keeper_wallet:
         raise Exception('New wallet was not created')
-
+    
+    private_key_pure = None
+    private_key = None
     password = None
     if not is_gas_keeper:
         password = User.objects.make_random_password()
