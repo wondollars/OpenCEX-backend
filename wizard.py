@@ -2313,15 +2313,15 @@ def main():
 
             currency = Currency.get(currency_id)
             if not Keeper.objects.filter(currency=currency).exists():
-                private_key_pure_keep, private_key_keep, k_password, keeper = keeper_create(currency)
+                private_key_keep, k_password, keeper = keeper_create(currency)
                 # gas_password, gas_keeper = keeper_create(currency, True)
-                private_key_pure_gas, private_key_gas, gas_password, gas_keeper = keeper_create(currency, True)
+                private_key_gas, gas_password, gas_keeper = keeper_create(currency, True)
                 to_write.append(f'{currency.code} Info')
                 to_write.append(f'Keeper address: {keeper.user_wallet.address}, Password: {k_password}')
-                to_write.append(f'Keeper private_key_pure: {private_key_pure_keep}, private_key: {private_key_keep}')
+                to_write.append(f'Keeper Private_key: {private_key_keep}')
                 to_write.append(f'++++++++++++++++++++++++++++++++++++++++++++++++')
                 to_write.append(f'GasKeeper address: {gas_keeper.user_wallet.address}, Password: {gas_password}')
-                to_write.append(f'GasKeeper private_key_pure_gas: {private_key_pure_gas}, private_key_gas: {private_key_gas}')
+                to_write.append(f'GasKeeper Private_key_gas: {private_key_gas}')
                 to_write.append('='*10)
             else:
                 to_write.append(f'{currency.code} Info')
@@ -2386,13 +2386,11 @@ def keeper_create(currency, is_gas_keeper=False):
 
     if not new_keeper_wallet:
         raise Exception('New wallet was not created')
-    
-    private_key_pure = None
+
     private_key = None
     password = None
     if not is_gas_keeper:
         password = User.objects.make_random_password()
-        private_key_pure = new_keeper_wallet.private_key
         private_key = AESCoderDecoder(settings.CRYPTO_KEY).decrypt(new_keeper_wallet.private_key)
         encrypted_key = AESCoderDecoder(password).encrypt(private_key)
         dbl_encrypted_key = AESCoderDecoder(settings.CRYPTO_KEY).encrypt(encrypted_key)
@@ -2404,7 +2402,7 @@ def keeper_create(currency, is_gas_keeper=False):
         KeeperModel = GasKeeper
 
     keeper = create_keeper(new_keeper_wallet, KeeperModel)
-    return private_key_pure, private_key, password, keeper
+    return private_key, password, keeper
 
 
 
