@@ -24,7 +24,7 @@ BLOCKCHAINS = {
     # ),
     'WON': TokenParams(
         symbol=CODE,
-        contract_address='0x30F9BcAf63A4A614afd250FE72ecd87d7856dec5',
+        contract_address='0xd4ae2dFD7135F66709fd13c9d25aF8CB3b61E85e',
         decimal_places=18,
     ),
 }
